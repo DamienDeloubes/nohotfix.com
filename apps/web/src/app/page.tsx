@@ -19,7 +19,9 @@ export default function HomePage(): ReactElement {
     <>
       <Navigation />
 
-      <main>
+      {/* overflow-x-clip contains the decorative grid-line overshoot (GridFrame)
+          without creating a scroll container — vertical overshoot stays visible. */}
+      <main className="overflow-x-clip">
         <Hero />
         <TrustStrip />
         <PainHook />

@@ -99,6 +99,9 @@ const config: Config = {
         'border-default': 'var(--border-default)',
         'border-strong': 'var(--border-strong)',
         'border-focus': 'var(--border-focus)',
+        /* Decorative grid-line motif (see globals.css) */
+        gridline: 'var(--grid-line)',
+        'gridline-strong': 'var(--grid-line-strong)',
       },
 
       fontFamily: {

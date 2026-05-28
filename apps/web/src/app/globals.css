@@ -39,6 +39,64 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* ─── Decorative grid lines (technical "blueprint" frame motif) ───
+   Hairline guide lines that fade into the background at their ends, plus small
+   corner markers. Built as elements (not CSS borders) so they can bleed past a
+   box, fade, and carry corner ticks. Colours are theme-aware and tunable here. */
+:root {
+  --grid-line: rgba(17, 17, 16, 0.12);
+  --grid-line-strong: rgba(17, 17, 16, 0.26);
+  /* How far the frame lines shoot past the box before fading to nothing.
+     The solid run maps exactly to the box; the fade lives entirely in the overshoot. */
+  --grid-line-overshoot: 64px;
+}
+.dark {
+  --grid-line: rgba(255, 255, 255, 0.12);
+  --grid-line-strong: rgba(255, 255, 255, 0.26);
+}
+
+.grid-line {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+.grid-line--h {
+  height: 1px;
+  left: calc(-1 * var(--grid-line-overshoot));
+  width: calc(100% + 2 * var(--grid-line-overshoot));
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--grid-line) var(--grid-line-overshoot),
+    var(--grid-line) calc(100% - var(--grid-line-overshoot)),
+    transparent 100%
+  );
+}
+.grid-line--v {
+  width: 1px;
+  top: calc(-1 * var(--grid-line-overshoot));
+  height: calc(100% + 2 * var(--grid-line-overshoot));
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    var(--grid-line) var(--grid-line-overshoot),
+    var(--grid-line) calc(100% - var(--grid-line-overshoot)),
+    transparent 100%
+  );
+}
+.grid-corner {
+  position: absolute;
+  z-index: 2;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--grid-line-strong);
+  pointer-events: none;
+}
+.grid-corner--accent {
+  background: var(--color-primary);
+}
+
 /* ─── Card utilities — light + dark per brand spec ─── */
 @layer components {
   /* Standard card — solid white/dark-700, shadow + border (NO backdrop-filter) */

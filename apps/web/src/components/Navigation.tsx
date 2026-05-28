@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import { NoHotfixLogo } from './NoHotfixLogo';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
@@ -27,12 +28,12 @@ export function Navigation(): React.ReactElement {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[300ms] ease-premium ${
-        scrolled ? 'glass-nav' : 'bg-transparent border-b border-transparent'
-      }`}
-    >
-      <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[300ms] ease-premium ${scrolled ? 'glass-nav' : 'bg-transparent border-b border-transparent'}`}>
+      {/* Inset to match the framed hero. Horizontal: section gutter (p-3/sm:p-4 =
+          12/16px) + panel padding (px-6 = 24px) = 36/40px, so the logo and CTA align
+          with the hero's content edge. Vertical: pt-3/sm:pt-4 (12/16px) mirrors the
+          hero's top gutter, so the nav content lines up with the panel's top edge. */}
+      <div className="px-9 sm:px-10 pt-3 pb-3 sm:pt-8 sm:pb-8 flex items-center justify-between">
         {/* Logo — adapts to theme */}
         <a href="/" className="flex items-center no-underline">
           <NoHotfixLogo variant={isDark ? 'dark' : 'light'} height={24} id="nav" />
@@ -76,11 +77,7 @@ export function Navigation(): React.ReactElement {
           </a>
 
           {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Toggle menu"
-          >
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
             <span className="block w-5 h-0.5 bg-[var(--text-primary)]" />
             <span className="block w-5 h-0.5 bg-[var(--text-primary)]" />
             <span className="block w-5 h-0.5 bg-[var(--text-primary)]" />
@@ -91,7 +88,7 @@ export function Navigation(): React.ReactElement {
       {/* Mobile menu */}
       {mobileOpen && (
         <div
-          className="lg:hidden border-t border-[var(--border-default)] px-6 py-6 flex flex-col gap-4
+          className="lg:hidden border-t border-[var(--border-default)] px-9 sm:px-10 py-6 flex flex-col gap-4
             backdrop-blur-xl"
           style={{ background: 'var(--nav-bg)' }}
         >

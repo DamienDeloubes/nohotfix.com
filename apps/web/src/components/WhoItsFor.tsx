@@ -1,5 +1,6 @@
 'use client';
 
+import { GridFrame } from './GridFrame';
 import { ScrollReveal } from './ScrollReveal';
 
 const personas = [
@@ -51,52 +52,59 @@ export function WhoItsFor(): React.ReactElement {
           </h2>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {personas.map((p, i) => (
-            <ScrollReveal key={i} delay={i * 100}>
-              <div className="brand-card brand-card-hover p-8 h-full flex flex-col relative overflow-hidden">
-                {/* Top accent stripe — persona accent */}
+        <ScrollReveal>
+          {/* Framed bento: outer fading guide-lines + corner markers (GridFrame),
+              inner hairline dividers between cells via gap-px over bg-gridline. */}
+          <GridFrame>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gridline">
+              {personas.map((p) => (
                 <div
-                  className="absolute top-0 left-8 w-[60px] h-[2px] rounded-full"
-                  style={{ background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }}
-                />
-
-                <span
-                  className="text-[13px] font-medium uppercase tracking-[0.08em] mb-4"
-                  style={{ color: p.accentColor }}
+                  key={p.label}
+                  className="relative flex flex-col overflow-hidden p-8 bg-[var(--bg-page)] transition-colors duration-200 hover:bg-[var(--bg-card)]"
                 >
-                  {p.label}
-                </span>
+                  {/* Top accent stripe — persona accent */}
+                  <div
+                    className="absolute top-0 left-8 w-[60px] h-[2px] rounded-full"
+                    style={{ background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }}
+                  />
 
-                <h3
-                  className="text-[var(--text-primary)] text-xl sm:text-2xl font-semibold leading-8
-                    tracking-[-0.015em] mb-4"
-                >
-                  {p.heading}
-                </h3>
+                  <span
+                    className="text-[13px] font-medium uppercase tracking-[0.08em] mb-4"
+                    style={{ color: p.accentColor }}
+                  >
+                    {p.label}
+                  </span>
 
-                <p className="text-[15px] leading-6 text-[var(--text-secondary)] mb-6">{p.body}</p>
+                  <h3
+                    className="text-[var(--text-primary)] text-xl sm:text-2xl font-semibold leading-8
+                      tracking-[-0.015em] mb-4"
+                  >
+                    {p.heading}
+                  </h3>
 
-                <ul className="space-y-3 mb-8 flex-1">
-                  {p.painPoints.map((point, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
-                      <span className="text-[var(--nogo-text)] shrink-0 mt-0.5">&times;</span>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                  <p className="text-[15px] leading-6 text-[var(--text-secondary)] mb-6">{p.body}</p>
 
-                <a
-                  href={p.link.href}
-                  className="arrow-link text-[15px] font-semibold no-underline hover:underline
-                    text-[var(--text-link)] hover:text-[var(--text-link-hover)] transition-colors duration-150"
-                >
-                  {p.link.text} <span className="arrow">&rarr;</span>
-                </a>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {p.painPoints.map((point, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
+                        <span className="text-[var(--nogo-text)] shrink-0 mt-0.5">&times;</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href={p.link.href}
+                    className="arrow-link text-[15px] font-semibold no-underline hover:underline
+                      text-[var(--text-link)] hover:text-[var(--text-link-hover)] transition-colors duration-150"
+                  >
+                    {p.link.text} <span className="arrow">&rarr;</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </GridFrame>
+        </ScrollReveal>
       </div>
     </section>
   );

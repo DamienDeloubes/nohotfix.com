@@ -1,5 +1,6 @@
 'use client';
 
+import { GridFrame } from './GridFrame';
 import { ScrollReveal } from './ScrollReveal';
 
 const guarantees = [
@@ -54,59 +55,66 @@ export function ThreeGuarantees(): React.ReactElement {
           </p>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {guarantees.map((g, i) => (
-            <ScrollReveal key={i} delay={i * 100}>
-              <div className="brand-card brand-card-hover p-6 sm:p-8 h-full flex flex-col">
+        <ScrollReveal>
+          {/* Framed bento: outer fading guide-lines + corner markers (GridFrame),
+              inner hairline dividers between cells via gap-px over bg-gridline. */}
+          <GridFrame accent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gridline">
+              {guarantees.map((g, i) => (
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mb-6"
-                  style={{
-                    background: g.iconBgVar,
-                    border: `1px solid ${g.iconBorderVar}`,
-                  }}
+                  key={i}
+                  className="flex flex-col p-6 sm:p-8 bg-[var(--bg-section-alt)] transition-colors duration-200 hover:bg-[var(--bg-card)]"
                 >
-                  <GuaranteeIcon type={g.icon} colorVar={g.iconColorVar} />
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center mb-6"
+                    style={{
+                      background: g.iconBgVar,
+                      border: `1px solid ${g.iconBorderVar}`,
+                    }}
+                  >
+                    <GuaranteeIcon type={g.icon} colorVar={g.iconColorVar} />
+                  </div>
+
+                  <span
+                    className="text-[12px] font-medium uppercase tracking-[0.08em] mb-2"
+                    style={{ color: g.iconColorVar }}
+                  >
+                    {g.eyebrow}
+                  </span>
+
+                  <h3
+                    className="text-[var(--text-primary)] text-xl sm:text-2xl font-semibold leading-8
+                      tracking-[-0.01em] mb-4"
+                  >
+                    {g.heading}
+                  </h3>
+
+                  <p className="text-[15px] leading-6 text-[var(--text-secondary)] mb-6 flex-1">
+                    {g.body}
+                  </p>
+
+                  {/* Mini-UI visual — uses card-elevated surface to contrast with the cell */}
+                  <div
+                    className="rounded-xl p-4 mb-6"
+                    style={{
+                      background: 'var(--bg-card-elevated)',
+                      border: '1px solid var(--border-default)',
+                    }}
+                  >
+                    <CardVisual type={g.visual} />
+                  </div>
+
+                  <a
+                    href={g.link.href}
+                    className="arrow-link text-sm font-medium no-underline hover:underline text-[var(--text-link)] hover:text-[var(--text-link-hover)]"
+                  >
+                    {g.link.text} <span className="arrow">&rarr;</span>
+                  </a>
                 </div>
-
-                <span
-                  className="text-[12px] font-medium uppercase tracking-[0.08em] mb-2"
-                  style={{ color: g.iconColorVar }}
-                >
-                  {g.eyebrow}
-                </span>
-
-                <h3
-                  className="text-[var(--text-primary)] text-xl sm:text-2xl font-semibold leading-8
-                    tracking-[-0.01em] mb-4"
-                >
-                  {g.heading}
-                </h3>
-
-                <p className="text-[15px] leading-6 text-[var(--text-secondary)] mb-6 flex-1">
-                  {g.body}
-                </p>
-
-                {/* Mini-UI visual — uses card-elevated surface to contrast with card */}
-                <div
-                  className="rounded-xl p-4 mb-6"
-                  style={{
-                    background: 'var(--bg-card-elevated)',
-                    border: '1px solid var(--border-default)',
-                  }}
-                >
-                  <CardVisual type={g.visual} />
-                </div>
-
-                <a
-                  href={g.link.href}
-                  className="arrow-link text-sm font-medium no-underline hover:underline text-[var(--text-link)] hover:text-[var(--text-link-hover)]"
-                >
-                  {g.link.text} <span className="arrow">&rarr;</span>
-                </a>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+              ))}
+            </div>
+          </GridFrame>
+        </ScrollReveal>
       </div>
     </section>
   );

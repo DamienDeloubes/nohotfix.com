@@ -3,17 +3,26 @@
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
 
-const DarkVeil = dynamic(() => import('./DarkVeil'), { ssr: false });
+const PixelBlast = dynamic(() => import('./PixelBlast'), { ssr: false });
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
 export function Hero(): React.ReactElement {
   const [loaded, setLoaded] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
   useEffect(() => {
@@ -34,38 +43,44 @@ export function Hero(): React.ReactElement {
        */}
       <div
         className="relative overflow-hidden rounded-[20px] sm:rounded-[28px]
-          bg-[var(--bg-card)] border border-[var(--border-default)] shadow-[var(--shadow-card)]
+          bg-[var(--bg-page)] border border-[var(--border-default)] shadow-[var(--shadow-card)]
           sm:min-h-[calc(100svh-2rem)]
           flex flex-col items-center justify-center pt-28 pb-20 sm:pt-32 sm:pb-24 px-6"
       >
-        {/* Dark mode: WebGL veil, clipped to the panel's rounded corners */}
-        {isDark && (
-          <div className="absolute inset-0 z-0" aria-hidden="true">
-            <DarkVeil
-              beamWidth={3}
-              beamHeight={80}
-              beamNumber={20}
-              lightColor="#ea6b04"
-              speed={2}
-              noiseIntensity={1.75}
-              scale={0.2}
-              rotation={30}
-            />
-            {/* Fade overlay to blend the beams into the panel surface below */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg-card)]" />
-          </div>
-        )}
-
-        {/* Warm glow rising from the bottom edge — corner-clipped by the panel.
-            The Scalora-style atmospheric touch, kept subtle. */}
+        {/* Legibility scrim over the PixelBlast background. Uses color-mix instead
+            of Tailwind's `/opacity` modifier: the `page` color is a bare var(--bg-page),
+            and Tailwind can't inject alpha into a raw var(), so `from-page/75` renders
+            transparent. color-mix applies the alpha and stays theme-aware. Sits above
+            the canvas (z-0) and below the content (z-10). */}
         <div
-          className="absolute inset-x-0 bottom-0 h-[55%] z-0 pointer-events-none"
+          className="absolute inset-0 z-[1] pointer-events-none"
           aria-hidden="true"
           style={{
-            background:
-              'radial-gradient(70% 100% at 50% 118%, rgba(234,106,4,0.12) 0%, transparent 72%)',
+            background: 'linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 80%, transparent) 0%, color-mix(in srgb, var(--bg-page) 30%, transparent) 100%)',
           }}
         />
+        {/* PixelBlast animated background — covers the entire panel, clipped to its
+            rounded corners by the panel's overflow-hidden. Theme-aware orange.
+            Disabled under prefers-reduced-motion (clean surface instead). */}
+        {!reducedMotion && (
+          <div className="absolute inset-0 z-0" aria-hidden="true">
+            <PixelBlast
+              variant="square"
+              pixelSize={4}
+              color={isDark ? '#F97316' : '#EA6B04'}
+              patternScale={3}
+              patternDensity={1.1}
+              pixelSizeJitter={0.4}
+              enableRipples
+              rippleSpeed={0.4}
+              rippleThickness={0.1}
+              rippleIntensityScale={1.4}
+              speed={0.6}
+              edgeFade={0.4}
+              transparent
+            />
+          </div>
+        )}
 
         {/* Hero content — z-10 to sit above the background */}
         <div className="relative z-10 flex flex-col items-center">
@@ -94,8 +109,7 @@ export function Hero(): React.ReactElement {
               transition-all duration-600 delay-500
               ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
           >
-            Your team can&apos;t mark a spec as passed without the evidence. The go/no-go decision is
-            permanent. The record writes itself.
+            Your team can&apos;t mark a spec as passed without the evidence. The go/no-go decision is permanent. The record writes itself.
           </p>
 
           {/* CTA Row */}
@@ -111,12 +125,8 @@ export function Hero(): React.ReactElement {
                 hover:shadow-[0_1px_0_rgba(255,255,255,0.28)_inset,0_8px_24px_rgba(234,106,4,0.45)]
                 hover:scale-[1.02] transition-all duration-300 ease-premium"
               style={{ background: 'var(--color-primary)' }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = 'var(--color-primary-hover)')
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = 'var(--color-primary)')
-              }
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = 'var(--color-primary-hover)')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = 'var(--color-primary)')}
             >
               Start for free <span className="arrow">&rarr;</span>
             </a>
@@ -176,39 +186,30 @@ function ProductPreview() {
     <div
       className="relative rounded-2xl sm:rounded-[28px] overflow-hidden"
       style={{
-        boxShadow:
-          '0 0 0 1px var(--border-default), 0 24px 80px rgba(0,0,0,0.12)',
+        boxShadow: '0 0 0 1px var(--border-default), 0 24px 80px rgba(0,0,0,0.12)',
       }}
     >
       {/* Browser chrome */}
-      <div
-        className="border-b border-[var(--border-default)] px-4 py-3 flex items-center gap-3 bg-[var(--bg-section-alt)]"
-      >
+      <div className="border-b border-[var(--border-default)] px-4 py-3 flex items-center gap-3 bg-[var(--bg-section-alt)]">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-[#EF4444]" />
           <div className="w-3 h-3 rounded-full bg-[#F59E0B]" />
           <div className="w-3 h-3 rounded-full bg-[#22C55E]" />
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="px-4 py-1 rounded-full bg-[var(--border-default)] text-[12px] font-mono text-[var(--text-muted)]">
-            nohotfix.com/runs/release-v2.4.1
-          </div>
+          <div className="px-4 py-1 rounded-full bg-[var(--border-default)] text-[12px] font-mono text-[var(--text-muted)]">nohotfix.com/runs/release-v2.4.1</div>
         </div>
         <div className="w-[52px]" />
       </div>
 
       {/* Tab nav */}
-      <div
-        className="border-b border-[var(--border-default)] px-6 flex gap-6 bg-[var(--bg-card)]"
-      >
+      <div className="border-b border-[var(--border-default)] px-6 flex gap-6 bg-[var(--bg-card)]">
         {tabs.map((tab, i) => (
           <button
             key={tab}
             onClick={() => selectTab(i)}
             className={`py-3 text-sm font-medium border-b-2 transition-all duration-200 ${
-              activeTab === i
-                ? 'text-[var(--text-primary)] border-[var(--color-primary)]'
-                : 'text-[var(--text-muted)] border-transparent hover:text-[var(--text-secondary)]'
+              activeTab === i ? 'text-[var(--text-primary)] border-[var(--color-primary)]' : 'text-[var(--text-muted)] border-transparent hover:text-[var(--text-secondary)]'
             }`}
           >
             {tab}
@@ -226,48 +227,27 @@ function ProductPreview() {
   );
 }
 
-function SpecRow({
-  name,
-  status,
-  statusColor,
-  artifact,
-  blocked,
-}: {
-  name: string;
-  status: string;
-  statusColor: string;
-  artifact?: string;
-  blocked?: boolean;
-}) {
+function SpecRow({ name, status, statusColor, artifact, blocked }: { name: string; status: string; statusColor: string; artifact?: string; blocked?: boolean }) {
   // Light: --go-surface / --go-text / --go-border etc. resolve per theme from tokens.css
   const colorMap: Record<string, string> = {
     green: 'bg-[var(--go-surface)] text-[var(--go-text)] border-[var(--go-border)]',
-    slate:
-      'bg-[var(--bg-section-alt)] text-[var(--text-muted)] border-[var(--border-default)]',
+    slate: 'bg-[var(--bg-section-alt)] text-[var(--text-muted)] border-[var(--border-default)]',
     amber: 'bg-[var(--nogo-surface)] text-[var(--nogo-text)] border-[var(--nogo-border)]',
     // In-progress: slate neutral (blue is retired)
-    inprogress:
-      'bg-[var(--bg-section-alt)] text-[var(--text-secondary)] border-[var(--border-default)]',
+    inprogress: 'bg-[var(--bg-section-alt)] text-[var(--text-secondary)] border-[var(--border-default)]',
   };
 
-  const resolvedColor =
-    statusColor === 'blue' || statusColor === 'inprogress' ? 'inprogress' : colorMap[statusColor] ? statusColor : 'slate';
+  const resolvedColor = statusColor === 'blue' || statusColor === 'inprogress' ? 'inprogress' : colorMap[statusColor] ? statusColor : 'slate';
 
   return (
     <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--bg-section-alt)] border border-[var(--border-default)]">
       <div className="flex items-center gap-3 min-w-0">
-        <span
-          className={`shrink-0 px-2.5 py-0.5 rounded-full text-xs font-medium border ${colorMap[resolvedColor]}`}
-        >
-          {status}
-        </span>
+        <span className={`shrink-0 px-2.5 py-0.5 rounded-full text-xs font-medium border ${colorMap[resolvedColor]}`}>{status}</span>
         <span className="text-sm text-[var(--text-primary)] truncate">{name}</span>
       </div>
       <div className="flex items-center gap-2 shrink-0 ml-3">
         {artifact && (
-          <span className="hidden sm:inline text-xs text-[var(--text-muted)] bg-[var(--bg-section-alt)] px-2 py-1 rounded border border-[var(--border-default)]">
-            {artifact}
-          </span>
+          <span className="hidden sm:inline text-xs text-[var(--text-muted)] bg-[var(--bg-section-alt)] px-2 py-1 rounded border border-[var(--border-default)]">{artifact}</span>
         )}
         {blocked ? (
           <span
@@ -288,9 +268,7 @@ function TabExecuteSpecs() {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-[var(--text-primary)] text-sm font-semibold">
-          Release v2.4.1 — Specs
-        </h3>
+        <h3 className="text-[var(--text-primary)] text-sm font-semibold">Release v2.4.1 — Specs</h3>
         <span className="text-xs text-[var(--text-muted)]">2 of 3 complete</span>
       </div>
       <SpecRow name="API authentication flow" status="Passed" statusColor="green" artifact="auth-screenshot.png" />
@@ -309,9 +287,7 @@ function TabExecuteSpecs() {
 function TabGoNoGo() {
   return (
     <div className="space-y-4">
-      <h3 className="text-[var(--text-primary)] text-sm font-semibold">
-        Release v2.4.1 — Go / No-Go Review
-      </h3>
+      <h3 className="text-[var(--text-primary)] text-sm font-semibold">Release v2.4.1 — Go / No-Go Review</h3>
 
       <div className="space-y-2">
         <SpecRow name="API authentication flow" status="Passed" statusColor="green" />
@@ -320,21 +296,14 @@ function TabGoNoGo() {
       </div>
 
       <div className="flex gap-3 mt-4">
-        <button
-          className="flex-1 py-2.5 rounded-md text-white text-sm font-medium shadow-[0_0_12px_rgba(0,204,128,0.30)]"
-          style={{ background: 'var(--color-go-500)' }}
-        >
+        <button className="flex-1 py-2.5 rounded-md text-white text-sm font-medium shadow-[0_0_12px_rgba(0,204,128,0.30)]" style={{ background: 'var(--color-go-500)' }}>
           Ship it (Go)
         </button>
-        <button className="flex-1 py-2.5 rounded-md text-sm font-medium bg-[var(--nogo-surface)] text-[var(--nogo-text)] border border-[var(--nogo-border)]">
-          Hold (No-Go)
-        </button>
+        <button className="flex-1 py-2.5 rounded-md text-sm font-medium bg-[var(--nogo-surface)] text-[var(--nogo-text)] border border-[var(--nogo-border)]">Hold (No-Go)</button>
       </div>
 
       <div className="mt-2">
-        <label className="text-xs text-[var(--text-muted)] mb-1 block">
-          Justification required for Go with failures
-        </label>
+        <label className="text-xs text-[var(--text-muted)] mb-1 block">Justification required for Go with failures</label>
         <div className="bg-[var(--bg-section-alt)] border border-[var(--border-default)] rounded-md p-3 text-sm font-mono text-[var(--text-secondary)]">
           Minor auth token edge case in low-traffic scenario. Mitigation: server-side session...
         </div>
@@ -364,8 +333,7 @@ function TabRecord() {
       <div className="bg-[var(--bg-section-alt)] border border-[var(--border-default)] rounded-xl p-4">
         <div className="text-xs text-[var(--text-muted)] mb-2">Justification</div>
         <p className="text-[13px] font-mono text-[var(--text-secondary)] leading-5">
-          Minor auth token edge case in low-traffic scenario. Mitigation: server-side session
-          invalidation on next request. Accepted risk.
+          Minor auth token edge case in low-traffic scenario. Mitigation: server-side session invalidation on next request. Accepted risk.
         </p>
       </div>
 
@@ -375,25 +343,14 @@ function TabRecord() {
         <SpecRow name="Error handling — 500 responses" status="Failed" statusColor="amber" />
       </div>
 
-      <div className="text-xs text-[var(--text-muted)] text-center italic">
-        The record is sealed. Nothing in it can be changed.
-      </div>
+      <div className="text-xs text-[var(--text-muted)] text-center italic">The record is sealed. Nothing in it can be changed.</div>
     </div>
   );
 }
 
 function LockIcon() {
   return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
@@ -402,16 +359,7 @@ function LockIcon() {
 
 function CheckCircleIcon() {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="var(--color-go-500)"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-go-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <path d="M9 12l2 2 4-4" />
     </svg>
