@@ -93,7 +93,7 @@
 **Purpose**: Final verification across all user stories.
 
 - [x] T014 Run `pnpm turbo run typecheck` to verify no type errors across the monorepo
-- [x] T015 Run `pnpm --filter @releasepilot/domain-authoring test` to verify all unit tests pass (existing + new)
+- [x] T015 Run `pnpm --filter @nohotfix/domain-authoring test` to verify all unit tests pass (existing + new)
 - [x] T016 Run `pnpm turbo run build` to verify full build succeeds
 - [x] T017 Verify no ad-hoc string errors — all error paths use existing domain error codes from `packages/shared/src/errors/codes.ts`
 - [x] T018 Verify checkbox data round-trip: create spec with checkbox requirements via UI, view on detail page, confirm correct persistence and display

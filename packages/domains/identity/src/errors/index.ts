@@ -1,4 +1,4 @@
-import { DomainError, ErrorCode } from '@releasepilot/shared';
+import { DomainError, ErrorCode } from '@nohotfix/shared';
 
 // ── Session & Token ─────────────────────────────────────────────────────────
 

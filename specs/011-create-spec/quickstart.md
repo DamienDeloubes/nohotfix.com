@@ -14,7 +14,7 @@
 pnpm install
 
 # Run database migrations
-pnpm --filter @releasepilot/db migrate
+pnpm --filter @nohotfix/db migrate
 
 # Start API + App concurrently
 pnpm turbo run dev --filter=api --filter=app
@@ -54,7 +54,7 @@ API runs on `http://localhost:3001`, App on `http://localhost:5173`.
 
 ```bash
 # Unit tests (domain)
-pnpm --filter @releasepilot/domain-authoring test
+pnpm --filter @nohotfix/domain-authoring test
 
 # Integration tests (API)
 pnpm --filter api test

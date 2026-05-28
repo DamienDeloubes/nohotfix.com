@@ -1,4 +1,4 @@
-# Project Summary — NoHotfix.io
+# Project Summary — NoHotfix.com
 
 _Last updated: 2026-03-11_
 

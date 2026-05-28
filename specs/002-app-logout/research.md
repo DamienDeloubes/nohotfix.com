@@ -36,7 +36,7 @@
 
 **Decision**: Use `window.location.href = webUrl` where `webUrl` comes from `VITE_WEB_URL` environment variable. This is a full-page navigation to a different origin.
 
-**Rationale**: `apps/app` (e.g., `app.releasepilot.io`) and `apps/web` (e.g., `releasepilot.io`) are different origins. TanStack Router only controls in-app navigation. A cross-origin redirect requires `window.location.href` assignment. The `VITE_WEB_URL` env var follows the existing pattern of `VITE_API_URL`.
+**Rationale**: `apps/app` (e.g., `app.nohotfix.io`) and `apps/web` (e.g., `nohotfix.io`) are different origins. TanStack Router only controls in-app navigation. A cross-origin redirect requires `window.location.href` assignment. The `VITE_WEB_URL` env var follows the existing pattern of `VITE_API_URL`.
 
 **Alternatives considered**:
 - Hardcoding the URL: Violates env-based configuration. Different in dev vs prod.

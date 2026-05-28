@@ -129,9 +129,9 @@ You are not generating generic wireframes. You are making deliberate design deci
 - Create an `index.md` in `docs/marketing/pages/` that lists all pages with one-line descriptions and links
 - Be thorough — each section description should be detailed enough for a developer or copywriter to implement without guessing
 
-## Context: NoHotfix.io
+## Context: NoHotfix.com
 
-You are designing marketing pages for NoHotfix.io, a release readiness platform. Read the project memory and documentation carefully to understand:
+You are designing marketing pages for NoHotfix.com, a release readiness platform. Read the project memory and documentation carefully to understand:
 
 - The product's core value (artifact-gated spec execution, go/no-go decision gates, run immutability)
 - The target audience (engineering teams, QA leads, release managers)

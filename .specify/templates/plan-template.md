@@ -35,7 +35,7 @@ Verify all five principles from `.specify/memory/constitution.md`:
 
 | # | Principle | Check |
 |---|-----------|-------|
-| I | **Bounded Context Integrity** — Feature assigned to one primary context; no cross-domain imports; domain pkg has no infrastructure deps (`@releasepilot/db`, Kysely, Stripe, etc.); dual entry-point consumer rules respected | ☐ |
+| I | **Bounded Context Integrity** — Feature assigned to one primary context; no cross-domain imports; domain pkg has no infrastructure deps (`@nohotfix/db`, Kysely, Stripe, etc.); dual entry-point consumer rules respected | ☐ |
 | II | **Code Quality & Simplicity** — Hexagonal Architecture maintained (domain logic transport-agnostic); composition root is the wiring point; HTTP status codes only in API error handler; named exports; `org_id` on all tenant queries; error taxonomy used | ☐ |
 | III | **Testing Discipline** — Unit tests cover state machine valid + invalid transitions and enforcement paths; integration tests cover happy path + `org_id` boundary + immutability guard; E2E coverage if user-critical path affected | ☐ |
 | IV | **UX Consistency** — Terminal states read-only; role guards at TanStack Router `beforeLoad`; polling intervals per constitution table; domain UI lives in `packages/domains/<ctx>/src/ui/`, not in `apps/app`; query keys centralised in `apps/app/src/api/query-keys.ts` (no inline string keys); domain hooks accept `queryKey`/`invalidateKeys` as parameters | ☐ |

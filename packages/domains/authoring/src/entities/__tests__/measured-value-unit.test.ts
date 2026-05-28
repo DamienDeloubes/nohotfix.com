@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorArtifactRequirementsInvalidError } from '../../errors/index.js';
 import { MeasuredValueUnit } from '../value-objects/measured-value-unit.js';

@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import { ArchiveImpactResponseSchema, type ArchiveImpactResponse } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { ArchiveImpactResponseSchema, type ArchiveImpactResponse } from '@nohotfix/shared';
 
 interface UseArchiveImpactOptions {
   orgSlug: string;

@@ -1,4 +1,4 @@
-import { extractPlainTextLength } from '@releasepilot/shared';
+import { extractPlainTextLength } from '@nohotfix/shared';
 
 import { AuthorSpecFieldTooLongError } from '../errors/index.js';
 import { ArtifactRequirements, type ArtifactRequirementJson } from './value-objects/artifact-requirements.js';

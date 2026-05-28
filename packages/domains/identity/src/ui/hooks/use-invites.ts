@@ -1,5 +1,5 @@
-import { useApiMutation, useApiQuery } from '@releasepilot/api-client';
-import type { CreateInviteRequest, InviteResendDto, ListInvitesDto } from '@releasepilot/shared';
+import { useApiMutation, useApiQuery } from '@nohotfix/api-client';
+import type { CreateInviteRequest, InviteResendDto, ListInvitesDto } from '@nohotfix/shared';
 
 interface UseInvitesOptions {
   orgSlug: string;

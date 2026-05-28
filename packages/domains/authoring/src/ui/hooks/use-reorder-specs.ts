@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { ReorderSpecsRequest } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { ReorderSpecsRequest } from '@nohotfix/shared';
 
 interface UseReorderSpecsOptions {
   orgSlug: string;

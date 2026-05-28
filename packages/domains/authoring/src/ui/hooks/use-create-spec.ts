@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { CreateLibrarySpecRequest, LibrarySpec } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { CreateLibrarySpecRequest, LibrarySpec } from '@nohotfix/shared';
 
 interface UseCreateSpecOptions {
   orgSlug: string;

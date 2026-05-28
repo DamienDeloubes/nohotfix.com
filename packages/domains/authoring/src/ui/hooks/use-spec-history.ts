@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 
-import { useApiQuery } from '@releasepilot/api-client';
-import { SpecHistoryResponseSchema, type SpecHistoryResponse } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { SpecHistoryResponseSchema, type SpecHistoryResponse } from '@nohotfix/shared';
 
 interface UseSpecHistoryOptions {
   orgSlug: string;

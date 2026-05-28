@@ -1,4 +1,4 @@
-import type { LibrarySpec } from '@releasepilot/shared';
+import type { LibrarySpec } from '@nohotfix/shared';
 
 import { SpecLibraryEntryEntity, type CreateSpecLibraryEntryParams } from '../entities/spec-library-entry.js';
 import type { TestStepProps } from '../entities/value-objects/test-step.js';

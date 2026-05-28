@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { EMAIL_REGEX } from '@releasepilot/shared';
+import { EMAIL_REGEX } from '@nohotfix/shared';
 
 interface InviteMemberFormProps {
   onSubmit: (data: { email: string; role: 'admin' | 'member' }) => Promise<void>;

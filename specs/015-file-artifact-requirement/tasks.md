@@ -92,8 +92,8 @@
 
 **Purpose**: Verify everything works end-to-end across the full stack.
 
-- [x] T013 [P] Run `pnpm --filter @releasepilot/domain-authoring test` to verify all domain unit tests pass (including new file artifact tests)
-- [x] T014 [P] Run `pnpm --filter @releasepilot/shared build` to verify shared schema builds with new file variant
+- [x] T013 [P] Run `pnpm --filter @nohotfix/domain-authoring test` to verify all domain unit tests pass (including new file artifact tests)
+- [x] T014 [P] Run `pnpm --filter @nohotfix/shared build` to verify shared schema builds with new file variant
 - [x] T015 Run `pnpm turbo run build typecheck test` to verify full pipeline passes
 - [x] T016 Manual smoke test: create a spec with mixed text + file artifact requirements, verify create form, submit, and detail page all work correctly
 

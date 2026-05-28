@@ -1,4 +1,4 @@
-import type { SpecHistoryAction } from '@releasepilot/shared';
+import type { SpecHistoryAction } from '@nohotfix/shared';
 
 import type { ChangelogRepository } from '../ports/changelog-repository.js';
 

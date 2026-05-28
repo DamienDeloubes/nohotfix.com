@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { MembershipEntity } from '../../entities/membership.js';
 import { OrganisationEntity } from '../../entities/organisation.js';

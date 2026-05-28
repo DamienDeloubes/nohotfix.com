@@ -69,7 +69,7 @@ packages/domains/identity/src/ui/components/MembersList.tsx        # Add role dr
 
 ```bash
 # Unit tests (domain logic)
-pnpm --filter @releasepilot/domain-identity test
+pnpm --filter @nohotfix/domain-identity test
 
 # Integration tests (API routes)
 pnpm --filter api test

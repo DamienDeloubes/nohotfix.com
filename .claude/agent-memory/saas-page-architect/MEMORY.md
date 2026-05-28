@@ -1,6 +1,6 @@
 # SaaS Page Architect — Memory
 
-## Project: NoHotfix.io
+## Project: NoHotfix.com
 
 ### Key File Locations
 

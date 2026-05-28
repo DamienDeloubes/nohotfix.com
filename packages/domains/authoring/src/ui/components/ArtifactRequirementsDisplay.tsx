@@ -1,4 +1,4 @@
-import type { ArtifactRequirementResponse } from '@releasepilot/shared';
+import type { ArtifactRequirementResponse } from '@nohotfix/shared';
 
 interface ArtifactRequirementsDisplayProps {
   requirements: ArtifactRequirementResponse[] | null;

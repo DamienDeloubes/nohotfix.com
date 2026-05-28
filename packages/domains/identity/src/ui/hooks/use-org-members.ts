@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import type { ListOrgMembersDto } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import type { ListOrgMembersDto } from '@nohotfix/shared';
 
 interface UseOrgMembersOptions {
   orgSlug: string;

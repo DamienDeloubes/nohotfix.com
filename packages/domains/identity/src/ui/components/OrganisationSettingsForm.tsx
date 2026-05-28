@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { requireRole, type OrganisationDto } from '@releasepilot/shared';
+import { requireRole, type OrganisationDto } from '@nohotfix/shared';
 
 interface OrganisationSettingsFormProps {
   organisation: OrganisationDto | undefined;

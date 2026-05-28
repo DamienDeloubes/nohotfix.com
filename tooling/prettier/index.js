@@ -11,7 +11,7 @@ const config = {
     '',
     '<THIRD_PARTY_MODULES>',
     '',
-    '^@releasepilot/(.*)$',
+    '^@nohotfix/(.*)$',
     '',
     '^[./]',
   ],

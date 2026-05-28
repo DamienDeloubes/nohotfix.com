@@ -1,6 +1,6 @@
 # Tech Architecture Designer -- Memory
 
-## Project: NoHotfix.io
+## Project: NoHotfix.com
 
 Release readiness platform. Artifact-gated spec execution + go/no-go decision gates + run immutability.
 

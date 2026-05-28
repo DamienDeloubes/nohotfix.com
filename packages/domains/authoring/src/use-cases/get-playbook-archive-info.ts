@@ -1,4 +1,4 @@
-import type { PlaybookArchiveInfoResponse } from '@releasepilot/shared';
+import type { PlaybookArchiveInfoResponse } from '@nohotfix/shared';
 
 import { AuthorPlaybookNotFoundError } from '../errors/index.js';
 import type { PlaybookRepository } from '../ports/playbook-repository.js';

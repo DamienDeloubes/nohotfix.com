@@ -153,7 +153,7 @@
 
 - [x] T024 Verify OTel span attributes on the list endpoint in `apps/api/src/routes/authoring.ts` — confirm `org.slug`, `search.term`, `filter.severity`, `filter.tab`, `sort.column`, `sort.order`, `result.total` are set on the auto-created span via `getSpan(request)`
 - [x] T025 Verify all new exports: use case exported from `packages/domains/authoring/src/index.ts`, all UI components and hooks exported from `packages/domains/authoring/src/ui/index.ts`, shared schemas and types exported from `packages/shared/src/index.ts`
-- [x] T026 Run full validation: `pnpm turbo run build typecheck test` — all packages must pass. Verify `pnpm --filter @releasepilot/domain-authoring test` runs use case tests. Verify `pnpm --filter api test` runs integration tests
+- [x] T026 Run full validation: `pnpm turbo run build typecheck test` — all packages must pass. Verify `pnpm --filter @nohotfix/domain-authoring test` runs use case tests. Verify `pnpm --filter api test` runs integration tests
 
 ---
 

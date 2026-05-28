@@ -1,7 +1,7 @@
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { SpecListItem } from '@releasepilot/shared';
+import type { SpecListItem } from '@nohotfix/shared';
 
 import { SeverityBadge } from './SeverityBadge.js';
 import { TagPills } from './TagPills.js';

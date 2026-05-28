@@ -25,7 +25,7 @@ Introduce org-level managed environments (Production, Acceptance, Test) as a new
 
 | # | Principle | Check |
 |---|-----------|-------|
-| I | **Bounded Context Integrity** — Assigned to **Identity** context. No cross-domain imports. Domain package depends only on `@releasepilot/shared` + `zod`. UI hooks in `packages/domains/identity/src/ui/`. Dual entry-point consumer rules respected: API imports logic only, app imports both. | ✅ |
+| I | **Bounded Context Integrity** — Assigned to **Identity** context. No cross-domain imports. Domain package depends only on `@nohotfix/shared` + `zod`. UI hooks in `packages/domains/identity/src/ui/`. Dual entry-point consumer rules respected: API imports logic only, app imports both. | ✅ |
 | II | **Code Quality & Simplicity** — Hexagonal Architecture: entity + value object + port in domain package; Kysely adapter in `apps/api/src/adapters/`. Composition root wires repository. HTTP status codes only in error handler. Named exports. `org_id` on all queries. Error taxonomy codes registered. | ✅ |
 | III | **Testing Discipline** — Unit tests: EnvironmentName value object validation (valid + invalid), EnvironmentEntity create/reconstitute, use case logic with mocked repos (duplicate name, delete guard). Integration tests: all API endpoints (happy path + error paths + org_id boundary). No E2E needed (settings page, not critical user journey). | ✅ |
 | IV | **UX Consistency** — Admin role guard at TanStack Router `beforeLoad` for settings/environments route. No polling needed (single-author settings page). Domain UI hooks in `packages/domains/identity/src/ui/hooks/`. Query keys centralised in `apps/app/src/api/query-keys.ts`. Hooks accept `queryKey`/`invalidateKeys` params. Confirmation dialog on delete. | ✅ |

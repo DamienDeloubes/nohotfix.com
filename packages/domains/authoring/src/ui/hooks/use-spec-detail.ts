@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 
-import { useApiQuery } from '@releasepilot/api-client';
-import { LibrarySpecSchema, type LibrarySpec } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { LibrarySpecSchema, type LibrarySpec } from '@nohotfix/shared';
 
 interface UseSpecDetailOptions {
   orgSlug: string;

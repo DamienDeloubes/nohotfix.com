@@ -75,10 +75,10 @@
 
 ```bash
 # Run domain unit tests
-pnpm --filter @releasepilot/domain-authoring test
+pnpm --filter @nohotfix/domain-authoring test
 
 # Run shared package build (schema changes)
-pnpm --filter @releasepilot/shared build
+pnpm --filter @nohotfix/shared build
 
 # Full pipeline
 pnpm turbo run build typecheck test

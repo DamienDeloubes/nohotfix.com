@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import type { UserDto } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import type { UserDto } from '@nohotfix/shared';
 
 interface UseCurrentUserOptions {
   queryKey: readonly unknown[];

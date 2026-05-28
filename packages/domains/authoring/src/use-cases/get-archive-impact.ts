@@ -1,4 +1,4 @@
-import type { ArchiveImpactResponse } from '@releasepilot/shared';
+import type { ArchiveImpactResponse } from '@nohotfix/shared';
 
 import { AuthorSpecNotFoundError } from '../errors/index.js';
 import type { PlaybookSpecRepository } from '../ports/playbook-spec-repository.js';

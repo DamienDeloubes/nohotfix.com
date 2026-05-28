@@ -1,5 +1,5 @@
-import { useApiMutation, useApiQuery } from '@releasepilot/api-client';
-import type { CreateEnvironmentRequest, EnvironmentDto } from '@releasepilot/shared';
+import { useApiMutation, useApiQuery } from '@nohotfix/api-client';
+import type { CreateEnvironmentRequest, EnvironmentDto } from '@nohotfix/shared';
 
 interface UseEnvironmentsOptions {
   orgSlug: string;

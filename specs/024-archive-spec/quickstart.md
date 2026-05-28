@@ -41,7 +41,7 @@ pnpm --filter app dev
 
 ```bash
 # Unit tests (domain use case)
-pnpm --filter @releasepilot/domain-authoring test
+pnpm --filter @nohotfix/domain-authoring test
 
 # Integration tests (API routes)
 pnpm --filter api test

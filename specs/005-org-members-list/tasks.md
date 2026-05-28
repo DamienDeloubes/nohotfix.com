@@ -49,7 +49,7 @@
 - [x] T007 [P] [US1] Create `useOrgMembers` TanStack Query hook in `packages/domains/identity/src/ui/hooks/use-org-members.ts` — `useQuery` for `GET /api/orgs/:orgId/members`, `staleTime: 5min`, follow `useUserOrganisations` pattern (accepts `apiUrl` + `getAccessToken` options)
 - [x] T008 [P] [US1] Create `MembersList` component in `packages/domains/identity/src/ui/components/MembersList.tsx` — render member list with display name (email fallback when `displayName` is null) and role badge, loading/empty states
 - [x] T009 [US1] Export `useOrgMembers` hook and `MembersList` component from `packages/domains/identity/src/ui/index.ts`
-- [x] T010 [US1] Update `apps/app/src/routes/_authenticated/$orgSlug/settings/members.tsx` — import and compose `MembersList` from `@releasepilot/domain-identity/ui`, pass org context to `useOrgMembers`
+- [x] T010 [US1] Update `apps/app/src/routes/_authenticated/$orgSlug/settings/members.tsx` — import and compose `MembersList` from `@nohotfix/domain-identity/ui`, pass org context to `useOrgMembers`
 
 ### Tests for User Story 1
 

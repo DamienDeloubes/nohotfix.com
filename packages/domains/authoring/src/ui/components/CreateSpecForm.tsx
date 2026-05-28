@@ -1,4 +1,4 @@
-import type { LibrarySpec } from '@releasepilot/shared';
+import type { LibrarySpec } from '@nohotfix/shared';
 
 import { useCreateSpec } from '../hooks/use-create-spec.js';
 import { SpecForm } from './SpecForm.js';

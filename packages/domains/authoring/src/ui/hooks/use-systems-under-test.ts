@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import { SystemsUnderTestResponseSchema } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { SystemsUnderTestResponseSchema } from '@nohotfix/shared';
 
 interface UseSystemsUnderTestOptions {
   orgSlug: string;

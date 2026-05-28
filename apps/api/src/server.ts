@@ -51,7 +51,7 @@ async function buildServer() {
   // Add back once Sentry plugin is setup
   // await fastify.register(sentryPlugin);
   await fastify.register(cors, {
-    origin: ['https://nohotfix.io', 'https://app.nohotfix.io', ...(config.NODE_ENV !== 'production' ? ['http://localhost:5173', 'http://localhost:3000'] : [])],
+    origin: ['https://nohotfix.com', 'https://app.nohotfix.com', ...(config.NODE_ENV !== 'production' ? ['http://localhost:5173', 'http://localhost:3000'] : [])],
     credentials: true,
   });
   await fastify.register(helmet, {

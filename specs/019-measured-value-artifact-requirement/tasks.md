@@ -22,7 +22,7 @@
 - [x] T001 Add `MeasuredValueArtifactRequirementSchema` (with fields: `type: z.literal('measured_value')`, `label`, `description`, `required`, `unit: MeasuredValueUnitSchema`, `expectedValue: z.number().refine(Number.isFinite)`, `tolerancePercentage: z.number().positive().optional()`, `toleranceDescription: z.string().max(1000).optional()`) and `MeasuredValueArtifactRequirementResponseSchema` (with `index`, nullable fields for description/tolerancePercentage/toleranceDescription) to `packages/shared/src/schemas/specs.ts`. Add both to the `ArtifactRequirementSchema` and `ArtifactRequirementResponseSchema` discriminated unions.
 - [x] T002 Export `MeasuredValueArtifactRequirement` and `MeasuredValueArtifactRequirementResponse` types (via `z.infer`) from `packages/shared/src/types/index.ts`. Add imports for the new schemas from `../schemas/specs.js`.
 
-**Checkpoint**: `pnpm turbo run typecheck --filter @releasepilot/shared` passes
+**Checkpoint**: `pnpm turbo run typecheck --filter @nohotfix/shared` passes
 
 ---
 
@@ -37,7 +37,7 @@
 - [x] T005 Add `'measured_value'` case to the type discriminator switch in `ArtifactRequirements.create()` in `packages/domains/authoring/src/entities/value-objects/artifact-requirements.ts`. Update the raw parameter type to include `unit?: string`, `expectedValue?: number`, `tolerancePercentage?: number`, `toleranceDescription?: string | null`. Pass all type-specific fields from the input item to `MeasuredValueArtifactRequirement.create()`. Update `ArtifactRequirementJson` and `ArtifactRequirementItem` union types to include `MeasuredValueArtifactRequirementJson` and `MeasuredValueArtifactRequirement`.
 - [x] T006 Export `MeasuredValueUnit`, `MeasuredValueArtifactRequirement`, and `MeasuredValueArtifactRequirementJson` from `packages/domains/authoring/src/entities/value-objects/index.ts`
 
-**Checkpoint**: `pnpm turbo run typecheck --filter @releasepilot/domain-authoring` passes
+**Checkpoint**: `pnpm turbo run typecheck --filter @nohotfix/domain-authoring` passes
 
 ---
 
@@ -59,7 +59,7 @@
 - [x] T011 [US1] Update `ArtifactRequirementsList.tsx` in `packages/domains/authoring/src/ui/components/ArtifactRequirementsList.tsx`: import `MeasuredValueArtifactForm` and `MeasuredValueArtifactFormData`. Add `'measured_value'` to `ArtifactType`. Add `MeasuredValueArtifactFormData` to `ArtifactFormData` union. Add `measured_value: 'Measured Value'` to `ARTIFACT_TYPE_LABELS`. Add conditional render branch `item.type === 'measured_value' ? <MeasuredValueArtifactForm ... />` in `SortableArtifact`. Add "+ Measured Value" button in the add buttons section. Update `handleAdd` to initialize measured_value form data: `{ type: 'measured_value', label: '', description: '', required: false, unit: '', expectedValue: '', tolerancePercentage: '', toleranceDescription: '' }`. Add `hasMeasuredValueErrors()` validation helper: check unit is non-empty, expectedValue is a valid finite number when non-empty, tolerancePercentage is positive > 0 when non-empty, toleranceDescription <= 1000 chars. Wire `hasMeasuredValueErrors()` into `hasArtifactErrors()`.
 - [x] T012 [US1] Update `CreateSpecForm.tsx` in `packages/domains/authoring/src/ui/components/CreateSpecForm.tsx`: add `measured_value` case to the artifact requirements payload mapping. Parse `expectedValue` from string to `Number()`, parse `tolerancePercentage` from string to `Number()`. Conditionally include `description` (if trimmed non-empty), `tolerancePercentage` (if non-empty), and `toleranceDescription` (if both tolerancePercentage and toleranceDescription are non-empty after trimming). Cast `unit` to the `MeasuredValueUnit` type. Cast `type` to `'measured_value' as const`.
 
-**Checkpoint**: Admin can add a measured value artifact requirement to a spec, configure unit/expectedValue/tolerance, submit the spec, and data persists to the API. `pnpm --filter @releasepilot/domain-authoring test` passes.
+**Checkpoint**: Admin can add a measured value artifact requirement to a spec, configure unit/expectedValue/tolerance, submit the spec, and data persists to the API. `pnpm --filter @nohotfix/domain-authoring test` passes.
 
 ---
 
@@ -75,7 +75,7 @@
 
 - [x] T013 [US2] Verify and complete frontend inline validation in `MeasuredValueArtifactForm.tsx` in `packages/domains/authoring/src/ui/components/MeasuredValueArtifactForm.tsx`: ensure validation covers all acceptance scenarios from US2: empty label shows error (AS-1), label > 200 chars shows error with counter (AS-2), description > 1000 chars shows error with counter (AS-3), unselected unit shows error (AS-4), empty expectedValue shows error (AS-5), non-numeric expectedValue shows error (AS-6), negative tolerancePercentage shows error (AS-7), zero tolerancePercentage shows error (AS-8). Ensure `hasMeasuredValueErrors()` in `ArtifactRequirementsList.tsx` covers all these cases to block form submission.
 
-**Checkpoint**: All 13 acceptance scenarios from US2 pass (both client-side inline errors and server-side rejection). `pnpm --filter @releasepilot/domain-authoring test` passes.
+**Checkpoint**: All 13 acceptance scenarios from US2 pass (both client-side inline errors and server-side rejection). `pnpm --filter @nohotfix/domain-authoring test` passes.
 
 ---
 
@@ -115,7 +115,7 @@
 
 - [x] T016 Verify all new value object methods (`MeasuredValueUnit`, `MeasuredValueArtifactRequirement`) throw `AuthorArtifactRequirementsInvalidError` with descriptive messages for each error path — no ad-hoc string errors
 - [x] T017 Run full type check and build: `pnpm turbo run typecheck` and `pnpm turbo run build`
-- [x] T018 Run full test suite: `pnpm --filter @releasepilot/domain-authoring test`
+- [x] T018 Run full test suite: `pnpm --filter @nohotfix/domain-authoring test`
 - [x] T019 Run quickstart.md validation: verify all 13 files listed in quickstart.md are created/modified as specified
 
 ---

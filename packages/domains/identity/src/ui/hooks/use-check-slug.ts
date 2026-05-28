@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { useApiQuery } from '@releasepilot/api-client';
-import type { CheckSlugDto } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import type { CheckSlugDto } from '@nohotfix/shared';
 
 interface UseCheckSlugOptions {
   queryKeyFactory: (slug: string) => readonly unknown[];

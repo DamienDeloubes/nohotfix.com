@@ -1,5 +1,5 @@
 {
-  "name": "@releasepilot/domain-identity",
+  "name": "@nohotfix/domain-identity",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -25,28 +25,28 @@
     "format": "prettier --write . --ignore-path ../../../.prettierignore"
   },
   "dependencies": {
-    "@releasepilot/shared": "workspace:*",
+    "@nohotfix/shared": "workspace:*",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "@releasepilot/eslint-config": "workspace:*",
-    "@releasepilot/prettier-config": "workspace:*",
-    "@releasepilot/typescript-config": "workspace:*",
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
     "@types/react": "^19.2.14",
     "react-hook-form": "^7.54.1",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   },
   "peerDependencies": {
-    "@releasepilot/api-client": "workspace:*",
+    "@nohotfix/api-client": "workspace:*",
     "@hookform/resolvers": "^3.0.0",
     "@tanstack/react-query": "^5.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-hook-form": "^7.0.0"
   },
   "peerDependenciesMeta": {
-    "@releasepilot/api-client": {
+    "@nohotfix/api-client": {
       "optional": true
     },
     "react": {

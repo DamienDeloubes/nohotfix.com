@@ -70,7 +70,7 @@ export const RESERVED_SLUGS: ReadonlySet<string> = new Set([
 
   // ── 2. Domain entities & concepts ─────────────────────────────────────────
   // Core domain objects. Blocking these prevents confusion with system entities
-  // and protects against social engineering (e.g. "org.releasepilot.io/user").
+  // and protects against social engineering (e.g. "org.nohotfix.io/user").
   'artifact',
   'audit',
   'event',
@@ -153,8 +153,8 @@ export const RESERVED_SLUGS: ReadonlySet<string> = new Set([
   'production',
   'release',
   'release-pilot',
-  'releasepilot',
-  'releasepilot-io',
+  'nohotfix',
+  'nohotfix-io',
   'staging',
   'starter',
   'team',

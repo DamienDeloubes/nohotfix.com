@@ -1,4 +1,4 @@
-import type { PlaybookHistoryEntry } from '@releasepilot/shared';
+import type { PlaybookHistoryEntry } from '@nohotfix/shared';
 
 /** Maps a playbook history entry to a human-readable action description. */
 export function describePlaybookHistoryAction(entry: PlaybookHistoryEntry): string {

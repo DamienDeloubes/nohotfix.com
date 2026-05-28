@@ -1,4 +1,4 @@
-import type { InviteDto } from '@releasepilot/shared';
+import type { InviteDto } from '@nohotfix/shared';
 
 import { INVITE_RESEND_COOLDOWN_MS } from '../../entities/invite.js';
 

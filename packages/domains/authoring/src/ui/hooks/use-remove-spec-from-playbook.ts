@@ -1,4 +1,4 @@
-import { useApiMutation } from '@releasepilot/api-client';
+import { useApiMutation } from '@nohotfix/api-client';
 
 interface UseRemoveSpecFromPlaybookOptions {
   orgSlug: string;

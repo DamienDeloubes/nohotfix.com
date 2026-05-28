@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorSpecTagsInvalidError } from '../../../errors/index.js';
 import { SpecTag } from '../spec-tag.js';

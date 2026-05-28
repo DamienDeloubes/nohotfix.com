@@ -12,7 +12,7 @@
 
 ```bash
 pnpm install
-pnpm --filter @releasepilot/db run migrate  # Ensure migrations are up to date
+pnpm --filter @nohotfix/db run migrate  # Ensure migrations are up to date
 ```
 
 ## Development
@@ -65,7 +65,7 @@ pnpm --filter app dev
 
 ```bash
 # Unit tests (domain logic)
-pnpm --filter @releasepilot/domain-authoring test
+pnpm --filter @nohotfix/domain-authoring test
 
 # Integration tests (API routes)
 pnpm --filter api test

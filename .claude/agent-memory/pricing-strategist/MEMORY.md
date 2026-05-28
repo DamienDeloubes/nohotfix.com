@@ -1,4 +1,4 @@
-# Pricing Strategist Memory — NoHotfix.io
+# Pricing Strategist Memory — NoHotfix.com
 
 ## Product
 

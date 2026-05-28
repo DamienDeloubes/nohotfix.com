@@ -1,4 +1,4 @@
-# Pricing Model — NoHotfix.io
+# Pricing Model — NoHotfix.com
 
 _Last updated: 2026-03-08 (rebranded 2026-03-11)_
 

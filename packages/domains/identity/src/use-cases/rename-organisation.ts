@@ -1,4 +1,4 @@
-import type { OrganisationDto } from '@releasepilot/shared';
+import type { OrganisationDto } from '@nohotfix/shared';
 
 import type { RoleValue } from '../entities/value-objects/role.js';
 import { AuthOrgNotFoundError, AuthRoleInsufficientError } from '../errors/index.js';

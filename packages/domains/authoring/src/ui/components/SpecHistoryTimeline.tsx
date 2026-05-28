@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { formatRelativeTime, type SpecHistoryEntry } from '@releasepilot/shared';
+import { formatRelativeTime, type SpecHistoryEntry } from '@nohotfix/shared';
 
 import { describeHistoryAction } from '../lib/describe-history-action.js';
 

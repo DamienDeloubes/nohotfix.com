@@ -1,4 +1,4 @@
-import type { UserOrganisationDto } from '@releasepilot/shared';
+import type { UserOrganisationDto } from '@nohotfix/shared';
 
 import type { MembershipRepository } from '../ports/membership-repository.js';
 import type { OrganisationRepository } from '../ports/organisation-repository.js';

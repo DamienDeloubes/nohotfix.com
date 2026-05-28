@@ -1,1 +1,1 @@
-module.exports = require('@releasepilot/eslint-config/node');
+module.exports = require('@nohotfix/eslint-config/node');

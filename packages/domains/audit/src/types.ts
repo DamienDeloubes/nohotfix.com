@@ -1,4 +1,4 @@
-import type { PlaybookHistoryAction, SpecHistoryAction } from '@releasepilot/shared';
+import type { PlaybookHistoryAction, SpecHistoryAction } from '@nohotfix/shared';
 
 export interface ChangelogEntry {
   id: string;

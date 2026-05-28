@@ -31,5 +31,5 @@ This feature introduces no new entities, tables, or persistent data structures. 
 - **Name**: `VITE_WEB_URL`
 - **Purpose**: Target URL for post-logout redirect
 - **Development**: `http://localhost:3000`
-- **Production**: `https://releasepilot.io`
-- **Fallback**: `https://releasepilot.io`
+- **Production**: `https://nohotfix.io`
+- **Fallback**: `https://nohotfix.io`

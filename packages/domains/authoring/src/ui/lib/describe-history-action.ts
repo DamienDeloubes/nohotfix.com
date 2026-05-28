@@ -1,4 +1,4 @@
-import type { SpecHistoryEntry } from '@releasepilot/shared';
+import type { SpecHistoryEntry } from '@nohotfix/shared';
 
 /** Maps a spec history entry to a human-readable action description. */
 export function describeHistoryAction(entry: SpecHistoryEntry): string {

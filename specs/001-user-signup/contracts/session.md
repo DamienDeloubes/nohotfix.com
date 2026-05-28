@@ -12,7 +12,7 @@ Returns the current user's profile data from the WorkOS session, or `null` if no
 
 ### Purpose
 
-Allows `apps/app` (deployed on `app.releasepilot.io`) to read the session established by `apps/web` (deployed on `releasepilot.io`). Session tokens are stored in httpOnly cookies on the `releasepilot.io` domain by the WorkOS AuthKit SDK.
+Allows `apps/app` (deployed on `app.nohotfix.io`) to read the session established by `apps/web` (deployed on `nohotfix.io`). Session tokens are stored in httpOnly cookies on the `nohotfix.io` domain by the WorkOS AuthKit SDK.
 
 ### Authentication
 
@@ -22,7 +22,7 @@ None — this endpoint reads the session from httpOnly cookies automatically. Th
 
 | Header | Value |
 |--------|-------|
-| `Access-Control-Allow-Origin` | `https://app.releasepilot.io` (production) / `http://localhost:5173` (dev) |
+| `Access-Control-Allow-Origin` | `https://app.nohotfix.io` (production) / `http://localhost:5173` (dev) |
 | `Access-Control-Allow-Credentials` | `true` |
 | `Access-Control-Allow-Methods` | `GET, OPTIONS` |
 
@@ -30,7 +30,7 @@ None — this endpoint reads the session from httpOnly cookies automatically. Th
 
 ```
 GET /api/auth/session
-Origin: https://app.releasepilot.io
+Origin: https://app.nohotfix.io
 Cookie: <workos session cookies set by authkit-nextjs>
 ```
 
@@ -73,7 +73,7 @@ HTTP status is always `200`. A missing session is not an error — `null` is a v
 In local development, `apps/web` runs on `http://localhost:3000` and `apps/app` runs on `http://localhost:5173`. The CORS origin in development must allow `http://localhost:5173`.
 
 The `NEXT_PUBLIC_APP_URL` environment variable controls the CORS `Allow-Origin` header:
-- Production: `https://app.releasepilot.io`
+- Production: `https://app.nohotfix.io`
 - Development: `http://localhost:5173`
 
 ---
@@ -84,12 +84,12 @@ There is no explicit API contract for the signup button — it is a standard bro
 
 ### Signup flow
 
-1. User clicks signup button on `releasepilot.io`
+1. User clicks signup button on `nohotfix.io`
 2. Next.js Server Action calls `signIn({ screenHint: 'sign-up' })` from `@workos-inc/authkit-nextjs`
 3. Browser is redirected to WorkOS AuthKit hosted UI
 4. User completes signup form on WorkOS-hosted page
-5. WorkOS redirects browser to `https://releasepilot.io/auth/callback?code=<code>&state=<state>`
-6. `handleAuth()` in the callback route exchanges the code for tokens, sets httpOnly cookies, and redirects browser to `https://app.releasepilot.io`
+5. WorkOS redirects browser to `https://nohotfix.io/auth/callback?code=<code>&state=<state>`
+6. `handleAuth()` in the callback route exchanges the code for tokens, sets httpOnly cookies, and redirects browser to `https://app.nohotfix.io`
 7. SPA calls `GET /api/auth/session` — receives user object
 8. SPA renders `<pre>{JSON.stringify(user, null, 2)}</pre>`
 

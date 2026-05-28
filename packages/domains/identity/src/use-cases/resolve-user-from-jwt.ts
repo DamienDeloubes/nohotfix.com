@@ -1,4 +1,4 @@
-import { DomainError, type UserDto } from '@releasepilot/shared';
+import { DomainError, type UserDto } from '@nohotfix/shared';
 
 import type { UserEntity } from '../entities/user.js';
 import { AuthProviderUnavailableError, AuthUserProvisionFailedError } from '../errors/index.js';

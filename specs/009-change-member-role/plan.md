@@ -25,7 +25,7 @@ Allow admins and owners to change organisation member roles (promote/demote betw
 
 | # | Principle | Check |
 |---|-----------|-------|
-| I | **Bounded Context Integrity** — Feature assigned to **Identity** context. No cross-domain imports. Domain package (`@releasepilot/domain-identity`) depends only on `@releasepilot/shared` + `zod`. Dual entry-point consumer rules respected: `apps/api` imports logic only; `apps/app` imports logic + UI. | ✅ |
+| I | **Bounded Context Integrity** — Feature assigned to **Identity** context. No cross-domain imports. Domain package (`@nohotfix/domain-identity`) depends only on `@nohotfix/shared` + `zod`. Dual entry-point consumer rules respected: `apps/api` imports logic only; `apps/app` imports logic + UI. | ✅ |
 | II | **Code Quality & Simplicity** — Hexagonal architecture maintained: use case is transport-agnostic; repository port defined in domain, Kysely adapter in `apps/api/src/adapters/`. Composition root wires dependencies. Error taxonomy codes follow `AUTH_*` convention. `org_id` included in all queries. Named exports, kebab-case files, PascalCase components. | ✅ |
 | III | **Testing Discipline** — Unit tests: use case business rules (all 5 error paths + 2 happy paths + ownership transfer atomicity). Integration tests: PATCH endpoint happy path + auth rejection + org_id boundary. No state machine or immutability affected. | ✅ |
 | IV | **UX Consistency** — Role change controls hidden from members via role check. Confirmation dialogs for ownership transfer (FR-013) and admin self-demotion (FR-014). Query keys centralised in `apps/app/src/api/query-keys.ts`. Domain hooks accept `queryKey`/`invalidateKeys` params. Domain UI in `packages/domains/identity/src/ui/`. | ✅ |

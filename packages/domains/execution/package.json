@@ -1,5 +1,5 @@
 {
-  "name": "@releasepilot/domain-execution",
+  "name": "@nohotfix/domain-execution",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -24,7 +24,7 @@
     "format": "prettier --write . --ignore-path ../../../.prettierignore"
   },
   "dependencies": {
-    "@releasepilot/shared": "workspace:*",
+    "@nohotfix/shared": "workspace:*",
     "zod": "^3.23.8"
   },
   "peerDependencies": {
@@ -40,9 +40,9 @@
     }
   },
   "devDependencies": {
-    "@releasepilot/eslint-config": "workspace:*",
-    "@releasepilot/prettier-config": "workspace:*",
-    "@releasepilot/typescript-config": "workspace:*",
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
     "typescript": "^5.7.2"
   }
 }

@@ -1,4 +1,4 @@
-import { useApiQuery } from '@releasepilot/api-client';
+import { useApiQuery } from '@nohotfix/api-client';
 
 interface UseTagsSuggestionsParams {
   orgSlug: string;

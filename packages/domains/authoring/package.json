@@ -1,5 +1,5 @@
 {
-  "name": "@releasepilot/domain-authoring",
+  "name": "@nohotfix/domain-authoring",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -29,7 +29,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.9.1",
-    "@releasepilot/shared": "workspace:*",
+    "@nohotfix/shared": "workspace:*",
     "@tanstack/react-table": "^8.21.3",
     "@tiptap/pm": "^3.20.1",
     "@tiptap/react": "^3.20.1",
@@ -38,20 +38,20 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@releasepilot/eslint-config": "workspace:*",
-    "@releasepilot/prettier-config": "workspace:*",
-    "@releasepilot/typescript-config": "workspace:*",
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
     "@types/react": "^19.2.14",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   },
   "peerDependencies": {
-    "@releasepilot/api-client": "workspace:*",
+    "@nohotfix/api-client": "workspace:*",
     "@tanstack/react-query": "^5.0.0",
     "react": "^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
-    "@releasepilot/api-client": {
+    "@nohotfix/api-client": {
       "optional": true
     },
     "react": {

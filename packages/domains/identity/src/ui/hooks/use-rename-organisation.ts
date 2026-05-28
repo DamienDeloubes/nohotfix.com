@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { OrganisationDto } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { OrganisationDto } from '@nohotfix/shared';
 
 interface UseRenameOrganisationOptions {
   orgSlug: string;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorSpecStepInvalidError } from '../../errors/index.js';
 import { TestStep } from '../value-objects/test-step.js';

@@ -15,7 +15,7 @@
 docker compose up -d
 
 # Run migrations (if needed)
-pnpm --filter @releasepilot/db db:migrate
+pnpm --filter @nohotfix/db db:migrate
 
 # Start API + App in dev mode
 pnpm turbo run dev --filter=api --filter=app
@@ -57,7 +57,7 @@ pnpm turbo run build
 pnpm turbo run test
 
 # Run specific domain tests
-pnpm --filter @releasepilot/domain-audit test
+pnpm --filter @nohotfix/domain-audit test
 
 # Typecheck
 pnpm turbo run typecheck

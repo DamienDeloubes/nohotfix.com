@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { ArchivePlaybookResponse } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { ArchivePlaybookResponse } from '@nohotfix/shared';
 
 interface UseArchivePlaybookOptions {
   orgSlug: string;

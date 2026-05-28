@@ -22,7 +22,7 @@
 - [x] T001 Add `MeasuredValueUnitSchema`, `TableColumnDefSchema`, `CellValueSchema`, `TableArtifactRequirementSchema`, and their response counterparts (`TableColumnDefResponseSchema`, `TableArtifactRequirementResponseSchema`) to `packages/shared/src/schemas/specs.ts`. Add `TableArtifactRequirementSchema` and `TableArtifactRequirementResponseSchema` to both `ArtifactRequirementSchema` and `ArtifactRequirementResponseSchema` discriminated unions.
 - [x] T002 Export `TableArtifactRequirement`, `TableColumnDef`, `MeasuredValueUnit`, and `CellValue` types from `packages/shared/src/types/index.ts`
 
-**Checkpoint**: `pnpm turbo run typecheck --filter @releasepilot/shared` passes
+**Checkpoint**: `pnpm turbo run typecheck --filter @nohotfix/shared` passes
 
 ---
 
@@ -37,7 +37,7 @@
 - [x] T005 Add `'table'` case to the type discriminator switch in `ArtifactRequirements.create()` in `packages/domains/authoring/src/entities/value-objects/artifact-requirements.ts`. Pass `columns` and `rows` from the input item to `TableArtifactRequirement.create()`.
 - [x] T006 Export `TableColumnDef` and `TableArtifactRequirement` from `packages/domains/authoring/src/entities/value-objects/index.ts` (or the domain package's public entry point)
 
-**Checkpoint**: `pnpm turbo run typecheck --filter @releasepilot/domain-authoring` passes
+**Checkpoint**: `pnpm turbo run typecheck --filter @nohotfix/domain-authoring` passes
 
 ---
 
@@ -61,7 +61,7 @@
 - [x] T011 [US1] Update `ArtifactRequirementsList.tsx` in `packages/domains/authoring/src/ui/components/ArtifactRequirementsList.tsx`: add `'table'` to `ArtifactType`, add `TableArtifactFormData` to `ArtifactFormData` union, add `table: 'Table'` to `ARTIFACT_TYPE_LABELS`, add conditional render branch `item.type === 'table' ? <TableArtifactForm ... />`, add "+ Table" button in the add buttons section, update `handleAdd` to initialize table form data with empty columns/rows arrays.
 - [x] T012 [US1] Update `CreateSpecForm.tsx` in `packages/domains/authoring/src/ui/components/CreateSpecForm.tsx`: update type assertion to include `'table'` in the artifact requirements mapping, add conditional logic to include `columns` and `rows` in the payload for table type requirements.
 
-**Checkpoint**: Admin can add a table artifact requirement to a spec, configure columns (all 4 types) and rows, submit the spec, and data persists to the API. `pnpm --filter @releasepilot/domain-authoring test` passes.
+**Checkpoint**: Admin can add a table artifact requirement to a spec, configure columns (all 4 types) and rows, submit the spec, and data persists to the API. `pnpm --filter @nohotfix/domain-authoring test` passes.
 
 ---
 
@@ -102,7 +102,7 @@
 
 - [x] T016 Verify all new value object methods (`TableColumnDef`, `TableArtifactRequirement`) throw `AuthorArtifactRequirementsInvalidError` with descriptive messages for each error path — no ad-hoc string errors
 - [x] T017 Run full type check and build: `pnpm turbo run typecheck` and `pnpm turbo run build`
-- [x] T018 Run full test suite: `pnpm --filter @releasepilot/domain-authoring test`
+- [x] T018 Run full test suite: `pnpm --filter @nohotfix/domain-authoring test`
 - [x] T019 Run quickstart.md validation: verify all 13 files listed in quickstart.md are created/modified as specified
 
 ---

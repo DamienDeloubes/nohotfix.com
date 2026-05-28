@@ -1,5 +1,5 @@
 {
-  "name": "@releasepilot/api-client",
+  "name": "@nohotfix/api-client",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -24,9 +24,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@releasepilot/eslint-config": "workspace:*",
-    "@releasepilot/prettier-config": "workspace:*",
-    "@releasepilot/typescript-config": "workspace:*",
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
     "@types/react": "^18.3.28",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"

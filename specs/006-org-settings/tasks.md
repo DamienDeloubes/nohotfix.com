@@ -49,7 +49,7 @@
 - [x] T006 [P] [US1] Create `useOrganisationDetails` TanStack Query hook in `packages/domains/identity/src/ui/hooks/use-organisation-details.ts` — `GET /api/orgs/:orgSlug`, returns `{ data, isLoading, error }`
 - [x] T007 [US1] Create `OrganisationSettingsForm` component in `packages/domains/identity/src/ui/components/OrganisationSettingsForm.tsx` — displays org name and slug as read-only text fields; accepts `role` prop to conditionally render edit affordances (edit mode built in US2); shows loading skeleton while fetching
 - [x] T008 [US1] Export `OrganisationSettingsForm` and `useOrganisationDetails` from `packages/domains/identity/src/ui/index.ts`
-- [x] T009 [US1] Replace placeholder in `apps/app/src/routes/_authenticated/$orgSlug/settings/general.tsx` — import `OrganisationSettingsForm` and `useOrganisationDetails` from `@releasepilot/domain-identity/ui`, pass org slug and role from route context
+- [x] T009 [US1] Replace placeholder in `apps/app/src/routes/_authenticated/$orgSlug/settings/general.tsx` — import `OrganisationSettingsForm` and `useOrganisationDetails` from `@nohotfix/domain-identity/ui`, pass org slug and role from route context
 
 **Checkpoint**: All roles can view org name + slug on the General Settings page
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorArtifactLabelInvalidError } from '../../errors/index.js';
 import { ArtifactLabel } from '../value-objects/artifact-label.js';

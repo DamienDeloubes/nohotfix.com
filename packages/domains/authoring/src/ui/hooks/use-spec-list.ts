@@ -1,7 +1,7 @@
 import { keepPreviousData } from '@tanstack/react-query';
 
-import { useApiQuery } from '@releasepilot/api-client';
-import { SpecListResultSchema, type SpecListResult } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { SpecListResultSchema, type SpecListResult } from '@nohotfix/shared';
 
 interface UseSpecListOptions {
   orgSlug: string;

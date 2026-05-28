@@ -1,4 +1,4 @@
-# Marketing Website Sitemap — NoHotfix.io
+# Marketing Website Sitemap — NoHotfix.com
 
 **Product**: NoHotfix
 **Date generated**: 2026-03-10 (rebranded 2026-03-11)

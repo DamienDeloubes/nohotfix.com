@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { ChangeMemberRoleRequest } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { ChangeMemberRoleRequest } from '@nohotfix/shared';
 
 interface UseChangeMemberRoleOptions {
   orgSlug: string;

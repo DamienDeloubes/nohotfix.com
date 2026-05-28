@@ -2,7 +2,7 @@
 
 import { ScrollReveal } from './ScrollReveal';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.io';
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
 export function FinalCTA() {
   return (

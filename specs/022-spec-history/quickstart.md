@@ -48,8 +48,8 @@ The existing `changelog` table supports all spec history needs. No schema change
 pnpm turbo run test
 
 # Run specific domain tests
-pnpm --filter @releasepilot/domain-audit test
-pnpm --filter @releasepilot/domain-authoring test
+pnpm --filter @nohotfix/domain-audit test
+pnpm --filter @nohotfix/domain-authoring test
 
 # Run API integration tests
 pnpm --filter api test

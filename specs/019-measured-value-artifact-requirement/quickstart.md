@@ -68,7 +68,7 @@
 pnpm turbo run typecheck
 
 # Unit tests
-pnpm --filter @releasepilot/domain-authoring test
+pnpm --filter @nohotfix/domain-authoring test
 
 # Full build
 pnpm turbo run build

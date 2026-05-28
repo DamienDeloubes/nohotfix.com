@@ -1,4 +1,4 @@
-# Homepage — NoHotfix.io
+# Homepage — NoHotfix.com
 
 **URL**: `/`
 **Design inspiration**: [todesktop.com](https://www.todesktop.com/) — dark-dominant, glassmorphism, premium micro-interactions

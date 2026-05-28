@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 
-import { useApiQuery } from '@releasepilot/api-client';
-import { PlaybookHistoryResponseSchema, type PlaybookHistoryResponse } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { PlaybookHistoryResponseSchema, type PlaybookHistoryResponse } from '@nohotfix/shared';
 
 interface UsePlaybookHistoryOptions {
   orgSlug: string;

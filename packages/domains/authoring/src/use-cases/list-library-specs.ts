@@ -1,4 +1,4 @@
-import { escapeSearch, type SpecListResult } from '@releasepilot/shared';
+import { escapeSearch, type SpecListResult } from '@nohotfix/shared';
 
 import type { SpecLibraryRepository } from '../ports/spec-library-repository.js';
 

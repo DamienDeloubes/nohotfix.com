@@ -1,4 +1,4 @@
-import type { OrganisationDto } from '@releasepilot/shared';
+import type { OrganisationDto } from '@nohotfix/shared';
 
 import { OrganisationName } from '../entities/value-objects/organisation-name.js';
 import { OrganisationSlug } from '../entities/value-objects/organisation-slug.js';

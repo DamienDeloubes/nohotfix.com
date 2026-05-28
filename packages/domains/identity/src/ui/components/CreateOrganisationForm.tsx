@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { CreateOrganisationRequestSchema, type CreateOrganisationRequest, type OrganisationDto } from '@releasepilot/shared';
+import { CreateOrganisationRequestSchema, type CreateOrganisationRequest, type OrganisationDto } from '@nohotfix/shared';
 
 import { useCheckSlug } from '../hooks/use-check-slug.js';
 import { useCreateOrganisation } from '../hooks/use-create-organisation.js';

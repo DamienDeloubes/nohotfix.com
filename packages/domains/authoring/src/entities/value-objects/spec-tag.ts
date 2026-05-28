@@ -1,4 +1,4 @@
-import { toKebabCase } from '@releasepilot/shared';
+import { toKebabCase } from '@nohotfix/shared';
 
 import { AuthorSpecTagsInvalidError } from '../../errors/index.js';
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorSpecDurationInvalidError } from '../../../errors/index.js';
 import { EstimatedDuration } from '../estimated-duration.js';

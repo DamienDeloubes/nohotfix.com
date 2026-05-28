@@ -30,7 +30,7 @@ All technical context is resolved. The feature reuses the existing changelog inf
 
 - **Decision**: When `archiveLibrarySpec()` removes specs from playbooks, the route handler records `spec_archived` entries for each affected playbook in the same transaction.
 - **Rationale**: The archive use case already calls `playbookSpecRepo.removeByLibrarySpecId()`. The route handler knows which playbooks were affected (via `getArchiveImpact()`) and can record entries for each.
-- **Alternatives considered**: Record inside the use case — rejected because use cases in `@releasepilot/domain-authoring` cannot import from `@releasepilot/domain-audit` (bounded context integrity). API-layer orchestration is the correct cross-context mechanism.
+- **Alternatives considered**: Record inside the use case — rejected because use cases in `@nohotfix/domain-authoring` cannot import from `@nohotfix/domain-audit` (bounded context integrity). API-layer orchestration is the correct cross-context mechanism.
 
 ### 5. Section Name Denormalization in Spec-Level Actions
 

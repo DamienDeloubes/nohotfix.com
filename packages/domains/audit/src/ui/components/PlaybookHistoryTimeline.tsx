@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { formatRelativeTime, type PlaybookHistoryEntry } from '@releasepilot/shared';
+import { formatRelativeTime, type PlaybookHistoryEntry } from '@nohotfix/shared';
 
 import { describePlaybookHistoryAction } from '../lib/describe-playbook-history-action.js';
 

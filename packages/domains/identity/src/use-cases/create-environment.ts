@@ -1,4 +1,4 @@
-import type { EnvironmentDto } from '@releasepilot/shared';
+import type { EnvironmentDto } from '@nohotfix/shared';
 
 import { EnvironmentName } from '../entities/value-objects/environment-name.js';
 import { AuthEnvNameDuplicateError } from '../errors/index.js';

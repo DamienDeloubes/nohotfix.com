@@ -1,4 +1,4 @@
-import { EMAIL_REGEX } from '@releasepilot/shared';
+import { EMAIL_REGEX } from '@nohotfix/shared';
 
 export class Email {
   private constructor(readonly value: string) {}

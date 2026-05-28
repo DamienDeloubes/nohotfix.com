@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorSpecTitleInvalidError } from '../../errors/index.js';
 import { SpecTitle } from '../value-objects/spec-title.js';

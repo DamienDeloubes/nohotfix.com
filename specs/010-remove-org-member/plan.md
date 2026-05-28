@@ -25,7 +25,7 @@ Allow admins/owners to remove members from the organization (hard delete of memb
 
 | # | Principle | Check |
 |---|-----------|-------|
-| I | **Bounded Context Integrity** — Feature lives entirely in **Identity** context. No cross-domain imports. Domain pkg (`@releasepilot/domain-identity`) depends only on `@releasepilot/shared` and `zod`. UI subpath exports hook; API imports logic subpath only. | ✅ |
+| I | **Bounded Context Integrity** — Feature lives entirely in **Identity** context. No cross-domain imports. Domain pkg (`@nohotfix/domain-identity`) depends only on `@nohotfix/shared` and `zod`. UI subpath exports hook; API imports logic subpath only. | ✅ |
 | II | **Code Quality & Simplicity** — Hexagonal maintained: use case is pure function accepting `Deps` + `Command`; repository port in domain, Kysely adapter in `apps/api/src/adapters/`. HTTP status codes only in global error handler. All queries include `org_id`. Error taxonomy codes used. Named exports. | ✅ |
 | III | **Testing Discipline** — Unit tests for `removeMember` use case covering: happy path, owner protection, self-removal, member-removes-other rejection, not-found. Integration tests for DELETE endpoint covering: happy path, 403, 404, org_id boundary. | ✅ |
 | IV | **UX Consistency** — Confirmation dialog before destructive action. Remove action hidden from non-admins and from owner row. Domain UI in `packages/domains/identity/src/ui/`. Query keys centralised in `apps/app/src/api/query-keys.ts`. Hook accepts `invalidateKeys` parameter. No polling changes needed. | ✅ |

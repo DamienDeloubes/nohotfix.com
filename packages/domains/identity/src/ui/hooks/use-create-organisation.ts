@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { CreateOrganisationRequest, OrganisationDto } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { CreateOrganisationRequest, OrganisationDto } from '@nohotfix/shared';
 
 interface UseCreateOrganisationOptions {
   invalidateKeys: readonly (readonly unknown[])[];

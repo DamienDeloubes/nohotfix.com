@@ -5,7 +5,7 @@
 
 ## Summary
 
-Append-only changelog for all playbook mutations (15 action types), surfaced as a read-only History tab on the playbook editor/detail page. Uses the existing `changelog` table with `entity_type='playbook'`. Records one entry per mutation (one per field for metadata changes). Follows the established spec history pattern: shared types in `@releasepilot/shared`, use cases in `@releasepilot/domain-audit`, changelog writes co-transactional with mutations, removed-member detection via LEFT JOIN, and domain UI hooks accepting centralised query keys.
+Append-only changelog for all playbook mutations (15 action types), surfaced as a read-only History tab on the playbook editor/detail page. Uses the existing `changelog` table with `entity_type='playbook'`. Records one entry per mutation (one per field for metadata changes). Follows the established spec history pattern: shared types in `@nohotfix/shared`, use cases in `@nohotfix/domain-audit`, changelog writes co-transactional with mutations, removed-member detection via LEFT JOIN, and domain UI hooks accepting centralised query keys.
 
 ## Technical Context
 
@@ -25,7 +25,7 @@ Append-only changelog for all playbook mutations (15 action types), surfaced as 
 
 | # | Principle | Check |
 |---|-----------|-------|
-| I | **Bounded Context Integrity** — Primary context: **Audit** (use cases, types). Recording is triggered from **Authoring** routes (API-layer orchestration). Domain packages have no infrastructure deps. Dual entry-point rules respected: `@releasepilot/domain-audit` for logic, `/ui` for hooks/components. | ✅ |
+| I | **Bounded Context Integrity** — Primary context: **Audit** (use cases, types). Recording is triggered from **Authoring** routes (API-layer orchestration). Domain packages have no infrastructure deps. Dual entry-point rules respected: `@nohotfix/domain-audit` for logic, `/ui` for hooks/components. | ✅ |
 | II | **Code Quality & Simplicity** — Hexagonal maintained: use cases are pure functions accepting repository ports. Composition root wires `KyselyChangelogRepository` to `ChangelogRepository` port. HTTP status codes only in error handler. Named exports. `org_id` on all changelog queries. Error taxonomy used (`AUDIT_PLAYBOOK_NOT_FOUND`). | ✅ |
 | III | **Testing Discipline** — Unit tests: `record-playbook-changes` diff detection for all 15 actions, edge cases (no changes, null→value, value→null). Integration tests: history endpoint happy path + `org_id` boundary + removed member display. No E2E needed (passive read-only tab, not a critical user journey). | ✅ |
 | IV | **UX Consistency** — History tab is read-only (no terminal state editing concern). No polling needed (on-demand fetch, per constitution table: playbook editor = no polling). Domain UI in `packages/domains/audit/src/ui/`. Query keys centralised in `apps/app/src/api/query-keys.ts`. Domain hooks accept `queryKey` as parameter. | ✅ |

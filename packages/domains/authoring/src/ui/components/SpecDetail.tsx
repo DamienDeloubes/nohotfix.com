@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { LibrarySpec } from '@releasepilot/shared';
+import type { LibrarySpec } from '@nohotfix/shared';
 
 import { useSpecDetail } from '../hooks/use-spec-detail.js';
 import { ArtifactRequirementsDisplay } from './ArtifactRequirementsDisplay.js';

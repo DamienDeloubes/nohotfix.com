@@ -3,7 +3,7 @@ import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, v
 import { CSS } from '@dnd-kit/utilities';
 import { useId, useRef } from 'react';
 
-import type { TestStep } from '@releasepilot/shared';
+import type { TestStep } from '@nohotfix/shared';
 
 const MAX_TEST_STEPS = 50;
 const MAX_INSTRUCTION_LENGTH = 500;

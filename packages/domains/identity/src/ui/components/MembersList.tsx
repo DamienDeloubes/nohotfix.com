@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { OrgMemberDto } from '@releasepilot/shared';
+import type { OrgMemberDto } from '@nohotfix/shared';
 
 interface MembersListProps {
   members: OrgMemberDto[] | undefined;

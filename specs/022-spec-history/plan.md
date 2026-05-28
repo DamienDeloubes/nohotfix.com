@@ -25,7 +25,7 @@ Add a complete audit trail for spec changes by leveraging the existing `changelo
 
 | # | Principle | Check |
 |---|-----------|-------|
-| I | **Bounded Context Integrity** — Primary context: **Audit** (history recording + retrieval). Cross-domain coordination via API-layer orchestration (route handler calls Authoring use case then Audit use case). No cross-domain imports. Domain packages depend only on `@releasepilot/shared`. | ✅ |
+| I | **Bounded Context Integrity** — Primary context: **Audit** (history recording + retrieval). Cross-domain coordination via API-layer orchestration (route handler calls Authoring use case then Audit use case). No cross-domain imports. Domain packages depend only on `@nohotfix/shared`. | ✅ |
 | II | **Code Quality & Simplicity** — Hexagonal Architecture maintained: change detection is a pure function in Audit domain; Kysely query lives in adapter. Composition root wires repos. `org_id` on all changelog queries. Error taxonomy used (reuses `AUTHOR_SPEC_NOT_FOUND`). Named exports. | ✅ |
 | III | **Testing Discipline** — Unit tests: `recordSpecChanges` change detection (all action types + no-op). Integration tests: history endpoint happy path + `org_id` boundary + removed member display. No state machine or immutability changes. | ✅ |
 | IV | **UX Consistency** — History tab is read-only (no edit affordances). No polling needed (on-demand fetch per constitution table — history is not time-critical). Domain UI in `packages/domains/authoring/src/ui/`. Query keys centralised in `apps/app/src/api/query-keys.ts`. Domain hooks accept `queryKey` as parameter. | ✅ |

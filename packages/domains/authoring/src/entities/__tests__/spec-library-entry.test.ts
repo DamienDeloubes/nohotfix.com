@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ErrorCode } from '@releasepilot/shared';
+import { ErrorCode } from '@nohotfix/shared';
 
 import { AuthorSpecDurationInvalidError, AuthorSpecFieldTooLongError, AuthorSpecTitleInvalidError } from '../../errors/index.js';
 import { SpecLibraryEntryEntity } from '../spec-library-entry.js';

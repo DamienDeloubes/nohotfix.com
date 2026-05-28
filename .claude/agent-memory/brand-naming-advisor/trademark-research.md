@@ -9,14 +9,14 @@
    - Features: smart planning, real-time tracking, team alignment, GitHub/GitLab/Jira/Slack/Linear/Azure DevOps integrations
    - Pricing: Free forever + paid from ₹1,000/month
    - Status: Officially live ("🎉 Finally, We Live!")
-   - Overlap with NoHotfix.io: HIGH — both target software release workflows
+   - Overlap with NoHotfix.com: HIGH — both target software release workflows
 
 2. **nohotfix.net** — AI-powered release notes + code review
    - Features: GPT-4 release notes, automated code review, semantic versioning, GitHub Actions/Azure DevOps integration
    - Pricing: $19–$199/month
    - Distribution: GitHub Marketplace
    - Status: Active with 7-day free trial
-   - Overlap with NoHotfix.io: HIGH — same developer tooling space
+   - Overlap with NoHotfix.com: HIGH — same developer tooling space
 
 ### Legal Implications for NoHotfix Name
 

@@ -1,4 +1,4 @@
-import type { UpdateUserProfileDto } from '@releasepilot/shared';
+import type { UpdateUserProfileDto } from '@nohotfix/shared';
 
 import { AuthUserNotFoundError } from '../errors/index.js';
 import type { UserRepository } from '../ports/repositories.js';

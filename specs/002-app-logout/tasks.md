@@ -36,7 +36,7 @@
 
 ### Implementation for User Story 1
 
-- [x] T004 [US1] Add exported `logout(queryClient: QueryClient)` function to `apps/app/src/lib/session.ts` — fire-and-forget `POST {API_URL}/auth/logout` with `credentials: 'include'` in try/catch (ignore errors), set module-level `accessToken = null`, call `queryClient.clear()`, then `window.location.replace(import.meta.env.VITE_WEB_URL ?? 'https://releasepilot.io')`
+- [x] T004 [US1] Add exported `logout(queryClient: QueryClient)` function to `apps/app/src/lib/session.ts` — fire-and-forget `POST {API_URL}/auth/logout` with `credentials: 'include'` in try/catch (ignore errors), set module-level `accessToken = null`, call `queryClient.clear()`, then `window.location.replace(import.meta.env.VITE_WEB_URL ?? 'https://nohotfix.io')`
 - [x] T005 [US1] Add an unstyled logout button to `apps/app/src/components/layout/Sidebar.tsx` — import `logout` from `session.ts`, get `queryClient` via `useQueryClient()` from `@tanstack/react-query`, wire `onClick` to call `logout(queryClient)`. Button text: "Log out"
 
 **Checkpoint**: User Story 1 fully functional — clicking the sidebar button logs user out and redirects to apps/web

@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import { PlaybookArchiveInfoResponseSchema, type PlaybookArchiveInfoResponse } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import { PlaybookArchiveInfoResponseSchema, type PlaybookArchiveInfoResponse } from '@nohotfix/shared';
 
 interface UsePlaybookArchiveInfoOptions {
   orgSlug: string;

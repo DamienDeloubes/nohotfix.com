@@ -1,4 +1,4 @@
-import type { PlaybookHistoryAction } from '@releasepilot/shared';
+import type { PlaybookHistoryAction } from '@nohotfix/shared';
 
 import type { ChangelogRepository } from '../ports/changelog-repository.js';
 

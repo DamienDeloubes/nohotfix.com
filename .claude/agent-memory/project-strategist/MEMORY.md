@@ -1,10 +1,10 @@
 # Project Strategist — Persistent Memory
 
-_NoHotfix.io — Last updated: 2026-03-11_
+_NoHotfix.com — Last updated: 2026-03-11_
 
 ## Project Identity
 
-- **Product**: NoHotfix.io — release readiness platform (rebranded from NoHotfix.io on 2026-03-11)
+- **Product**: NoHotfix.com — release readiness platform (rebranded from NoHotfix.com on 2026-03-11)
 - **Domain**: nohotfix.com (acquired). Auth subdomain: auth.nohotfix.com. AuthKit subdomain: nohotfix.authkit.app.
 - **Core question it answers**: "Are we ready to ship, and can we prove it?"
 - **Core defensibility triad**: artifact enforcement + go/no-go gate + run immutability

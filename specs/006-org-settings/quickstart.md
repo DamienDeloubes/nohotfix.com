@@ -47,7 +47,7 @@ pnpm --filter app dev
 
 ```bash
 # Unit tests (domain)
-pnpm --filter @releasepilot/domain-identity test
+pnpm --filter @nohotfix/domain-identity test
 
 # Integration tests (API)
 pnpm --filter api test

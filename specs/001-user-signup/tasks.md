@@ -18,7 +18,7 @@
 
 **Purpose**: Add new environment variables required by WorkOS AuthKit and the cross-origin session endpoint.
 
-- [x] T001 Update `.env.example` at repo root — add `WORKOS_CLIENT_ID=`, `WORKOS_API_KEY=`, `WORKOS_REDIRECT_URI=https://releasepilot.io/auth/callback`, `NEXT_PUBLIC_APP_URL=https://app.releasepilot.io`, `VITE_WEB_URL=https://releasepilot.io` with inline comments describing each
+- [x] T001 Update `.env.example` at repo root — add `WORKOS_CLIENT_ID=`, `WORKOS_API_KEY=`, `WORKOS_REDIRECT_URI=https://nohotfix.com/auth/callback`, `NEXT_PUBLIC_APP_URL=https://app.nohotfix.com`, `VITE_WEB_URL=https://nohotfix.com` with inline comments describing each
 
 ---
 
@@ -32,7 +32,7 @@
 
 - [x] T003 [P] Create `apps/web/src/app/api/auth/session/route.ts` — implement `GET` handler that calls `getSession()` from `@workos-inc/authkit-nextjs` and returns `NextResponse.json(session?.user ?? null)` with `Access-Control-Allow-Origin` set to `process.env.NEXT_PUBLIC_APP_URL` and `Access-Control-Allow-Credentials: true`; implement matching `OPTIONS` handler for CORS preflight with same headers and `Access-Control-Allow-Methods: GET, OPTIONS`
 
-- [x] T004 [P] Modify `apps/app/src/lib/session.ts` — replace the stub `useSession()` function with a real implementation that uses `useQuery` from `@tanstack/react-query` with `queryKey: ['session']`, fetches `${import.meta.env.VITE_WEB_URL ?? 'https://releasepilot.io'}/api/auth/session` with `credentials: 'include'`, returns `null` on non-OK response, sets `staleTime: 5 * 60 * 1000` and `retry: false`; return type for `user` must be `unknown` (not `SessionUser`) to match verbatim render requirement
+- [x] T004 [P] Modify `apps/app/src/lib/session.ts` — replace the stub `useSession()` function with a real implementation that uses `useQuery` from `@tanstack/react-query` with `queryKey: ['session']`, fetches `${import.meta.env.VITE_WEB_URL ?? 'https://nohotfix.com'}/api/auth/session` with `credentials: 'include'`, returns `null` on non-OK response, sets `staleTime: 5 * 60 * 1000` and `retry: false`; return type for `user` must be `unknown` (not `SessionUser`) to match verbatim render requirement
 
 - [x] T005 Modify `apps/app/src/routes/_authenticated.tsx` — remove or disable any session-based redirect logic so the layout becomes a passthrough; this is required by FR-007/FR-009 (apps/app MUST NOT redirect unauthenticated visitors for this feature); the component should render `<Outlet />` without any `beforeLoad` guard or redirect
 
@@ -48,17 +48,17 @@
 
 ### E2E Test (constitutionally required — auth flows MUST have Playwright coverage)
 
-- [x] T006 [US1] Create `apps/web-e2e/tests/signup.spec.ts` — Playwright test that: (1) navigates to `/`, (2) asserts an unstyled `button[type="submit"]` is visible with no `class` or `style` attributes, (3) clicks it, (4) asserts redirect to WorkOS AuthKit URL (verify URL contains `workos.com` or configured AuthKit domain), (5) stubs or skips the WorkOS form step with a test account, (6) asserts final URL is `app.releasepilot.io` or `localhost:5173`, (7) asserts a `<pre>` element on the page contains parseable JSON with an `id` or `email` field
+- [x] T006 [US1] Create `apps/web-e2e/tests/signup.spec.ts` — Playwright test that: (1) navigates to `/`, (2) asserts an unstyled `button[type="submit"]` is visible with no `class` or `style` attributes, (3) clicks it, (4) asserts redirect to WorkOS AuthKit URL (verify URL contains `workos.com` or configured AuthKit domain), (5) stubs or skips the WorkOS form step with a test account, (6) asserts final URL is `app.nohotfix.com` or `localhost:5173`, (7) asserts a `<pre>` element on the page contains parseable JSON with an `id` or `email` field
 
 ### Implementation
 
 - [x] T007 [P] [US1] Modify `apps/web/src/app/page.tsx` — replace placeholder content with a Server Component that: (1) defines a `handleSignUp` async function marked with `'use server'` that calls `signIn({ screenHint: 'sign-up' })` from `@workos-inc/authkit-nextjs`, (2) renders a `<form action={handleSignUp}>` containing a `<button type="submit">Sign up</button>` with **no** `className`, **no** `style` prop, and no CSS module reference — browser-default styling only
 
-- [x] T008 [US1] Modify `apps/web/src/app/auth/callback/route.ts` — replace the entire skeleton with `export const GET = handleAuth({ returnPathname: process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.releasepilot.io' })` imported from `@workos-inc/authkit-nextjs`; remove the TODO comment, the manual `code` parsing, and the hard-coded redirect
+- [x] T008 [US1] Modify `apps/web/src/app/auth/callback/route.ts` — replace the entire skeleton with `export const GET = handleAuth({ returnPathname: process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.nohotfix.com' })` imported from `@workos-inc/authkit-nextjs`; remove the TODO comment, the manual `code` parsing, and the hard-coded redirect
 
 - [x] T009 [US1] Modify `apps/app/src/routes/_authenticated/index.tsx` — import `useSession` from `../../lib/session.js`; render a loading state (`<pre>Loading...</pre>`) while `isLoading` is true; render `<pre>{JSON.stringify(user, null, 2)}</pre>` once loaded; no conditional checks on `user` content — render null verbatim when no session
 
-- [x] T010 [US1] Complete and verify E2E test `apps/web-e2e/tests/signup.spec.ts` — run `pnpm turbo run test:e2e --filter=@releasepilot/web-e2e` and confirm all assertions in T006 pass end-to-end; document any WorkOS test account setup required in a comment at the top of the spec file
+- [x] T010 [US1] Complete and verify E2E test `apps/web-e2e/tests/signup.spec.ts` — run `pnpm turbo run test:e2e --filter=@nohotfix/web-e2e` and confirm all assertions in T006 pass end-to-end; document any WorkOS test account setup required in a comment at the top of the spec file
 
 **Checkpoint**: US1 fully functional. A new visitor can sign up and see their user data on apps/app.
 
@@ -76,7 +76,7 @@
 
 ### E2E Test
 
-- [x] T012 [US2] Add test case to `apps/web-e2e/tests/signup.spec.ts` — after completing the signup flow (reuse session or use a pre-authenticated state), navigate back to `/` and assert: (1) the page title or heading is visible, (2) the signup `<button>` is still present, (3) the current URL has NOT changed to `app.releasepilot.io`, (4) no redirect has occurred
+- [x] T012 [US2] Add test case to `apps/web-e2e/tests/signup.spec.ts` — after completing the signup flow (reuse session or use a pre-authenticated state), navigate back to `/` and assert: (1) the page title or heading is visible, (2) the signup `<button>` is still present, (3) the current URL has NOT changed to `app.nohotfix.com`, (4) no redirect has occurred
 
 **Checkpoint**: US2 verified. Signed-in users visiting the marketing site see the same page as visitors.
 

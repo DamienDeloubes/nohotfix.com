@@ -123,9 +123,9 @@
 
 ## Phase 5: User Story 3 — Email & Password Change Guidance (Priority: P2)
 
-**Goal**: Add an "Email & Password" section to the Account Settings page with explanatory text and a "View guide" button linking to releasepilot.io.
+**Goal**: Add an "Email & Password" section to the Account Settings page with explanatory text and a "View guide" button linking to nohotfix.io.
 
-**Independent Test**: Navigate to `/$orgSlug/settings/account`, verify the Email & Password section is visible with a "View guide" button that opens the releasepilot.io guide in a new tab.
+**Independent Test**: Navigate to `/$orgSlug/settings/account`, verify the Email & Password section is visible with a "View guide" button that opens the nohotfix.io guide in a new tab.
 
 ### Implementation for US3
 

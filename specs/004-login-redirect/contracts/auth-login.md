@@ -36,7 +36,7 @@ Before redirecting to WorkOS, the handler checks for an existing valid session v
 
 | Scenario                  | Status | Location Header        |
 |---------------------------|--------|------------------------|
-| Valid session detected    | 302    | `APP_URL` (e.g., `https://app.releasepilot.io`) |
+| Valid session detected    | 302    | `APP_URL` (e.g., `https://app.nohotfix.io`) |
 | No session / expired      | 302    | WorkOS AuthKit URL     |
 
 ### Cookies (on valid session redirect)

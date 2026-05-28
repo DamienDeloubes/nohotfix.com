@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import type { Playbook } from '@releasepilot/shared';
+import type { Playbook } from '@nohotfix/shared';
 
 import { useCreatePlaybook } from '../hooks/use-create-playbook.js';
 

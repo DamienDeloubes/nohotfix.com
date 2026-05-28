@@ -70,7 +70,7 @@ Register `AUTH_OWNER_CANNOT_BE_REMOVED` in `packages/shared/src/errors/codes.ts`
 
 ```bash
 # Run unit tests
-pnpm --filter @releasepilot/domain-identity test
+pnpm --filter @nohotfix/domain-identity test
 
 # Run integration tests
 pnpm --filter api test

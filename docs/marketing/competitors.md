@@ -1,4 +1,4 @@
-# Competitive Landscape — NoHotfix.io
+# Competitive Landscape — NoHotfix.com
 
 _Last updated: 2026-02-26 (rebranded 2026-03-11)_
 

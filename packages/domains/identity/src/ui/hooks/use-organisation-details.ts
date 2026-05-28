@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import type { OrganisationDto } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import type { OrganisationDto } from '@nohotfix/shared';
 
 interface UseOrganisationDetailsOptions {
   orgSlug: string;

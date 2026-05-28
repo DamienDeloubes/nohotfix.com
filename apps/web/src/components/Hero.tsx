@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 const DarkVeil = dynamic(() => import('./DarkVeil'), { ssr: false });
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.io';
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
 export function Hero() {
   const [loaded, setLoaded] = useState(false);
@@ -142,7 +142,7 @@ function ProductPreview() {
           <div className="w-3 h-3 rounded-full bg-[#22C55E]" />
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="px-4 py-1 rounded-full bg-[rgba(0,0,0,0.06)] text-[12px] font-mono text-[rgba(0,0,0,0.40)]">nohotfix.io/runs/release-v2.4.1</div>
+          <div className="px-4 py-1 rounded-full bg-[rgba(0,0,0,0.06)] text-[12px] font-mono text-[rgba(0,0,0,0.40)]">nohotfix.com/runs/release-v2.4.1</div>
         </div>
         <div className="w-[52px]" />
       </div>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { extractPlainTextLength, type CreateLibrarySpecRequest, type TestStep } from '@releasepilot/shared';
+import { extractPlainTextLength, type CreateLibrarySpecRequest, type TestStep } from '@nohotfix/shared';
 
 import { useTagsSuggestions } from '../hooks/use-tags-suggestions.js';
 import { isEmptyRichText } from '../lib/rich-text.js';

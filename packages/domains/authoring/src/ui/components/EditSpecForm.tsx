@@ -1,4 +1,4 @@
-import type { ArtifactRequirementResponse, LibrarySpec } from '@releasepilot/shared';
+import type { ArtifactRequirementResponse, LibrarySpec } from '@nohotfix/shared';
 
 import { useUpdateSpec } from '../hooks/use-update-spec.js';
 import type { ArtifactFormData } from './ArtifactRequirementsList.js';

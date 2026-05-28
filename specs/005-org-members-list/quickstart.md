@@ -19,7 +19,7 @@ pnpm install
 docker-compose up -d postgres
 
 # Run migrations
-pnpm --filter @releasepilot/db migrate
+pnpm --filter @nohotfix/db migrate
 
 # Start API (port 3001)
 pnpm --filter api dev

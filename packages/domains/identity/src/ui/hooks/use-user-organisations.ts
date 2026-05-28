@@ -1,5 +1,5 @@
-import { useApiQuery } from '@releasepilot/api-client';
-import type { UserOrganisationDto } from '@releasepilot/shared';
+import { useApiQuery } from '@nohotfix/api-client';
+import type { UserOrganisationDto } from '@nohotfix/shared';
 
 interface UseUserOrganisationsOptions {
   queryKey: readonly unknown[];

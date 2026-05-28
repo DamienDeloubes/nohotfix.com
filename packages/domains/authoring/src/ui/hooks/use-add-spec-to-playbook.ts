@@ -1,5 +1,5 @@
-import { useApiMutation } from '@releasepilot/api-client';
-import type { AddSpecFromLibraryRequest } from '@releasepilot/shared';
+import { useApiMutation } from '@nohotfix/api-client';
+import type { AddSpecFromLibraryRequest } from '@nohotfix/shared';
 
 interface AddSpecResponse {
   id: string;

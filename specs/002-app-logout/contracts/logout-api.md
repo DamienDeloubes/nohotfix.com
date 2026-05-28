@@ -25,7 +25,7 @@ Clears the refresh token cookie, effectively terminating the server-side session
 
 Clears the `__rp_refresh` cookie:
 - Path: `/auth`
-- Domain: API origin (e.g., `api.releasepilot.io`)
+- Domain: API origin (e.g., `api.nohotfix.io`)
 
 ### Client-Side Contract
 

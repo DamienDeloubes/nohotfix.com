@@ -1,4 +1,4 @@
-import type { LibrarySpec } from '@releasepilot/shared';
+import type { LibrarySpec } from '@nohotfix/shared';
 
 import { AuthorSpecNotFoundError } from '../errors/index.js';
 import type { PlaybookSpecRepository } from '../ports/playbook-spec-repository.js';

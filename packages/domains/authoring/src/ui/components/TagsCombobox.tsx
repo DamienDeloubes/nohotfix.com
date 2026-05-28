@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { toKebabCase } from '@releasepilot/shared';
+import { toKebabCase } from '@nohotfix/shared';
 
 const MAX_TAG_LENGTH = 30;
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.io';
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);

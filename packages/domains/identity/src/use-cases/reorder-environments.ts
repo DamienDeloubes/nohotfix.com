@@ -1,4 +1,4 @@
-import type { EnvironmentDto } from '@releasepilot/shared';
+import type { EnvironmentDto } from '@nohotfix/shared';
 
 import type { EnvironmentRepository } from '../ports/environment-repository.js';
 
