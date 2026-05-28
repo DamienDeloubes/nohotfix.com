@@ -40,7 +40,7 @@ export function Navigation(): React.ReactElement {
 
         {/* Desktop nav links */}
         <div className="hidden lg:flex items-center gap-8">
-          {['How It Works', 'Features', 'Pricing', 'Changelog'].map((item) => (
+          {['How It Works', 'Features', 'Platform', 'Pricing', 'Changelog'].map((item) => (
             <a
               key={item}
               href={item === 'Pricing' ? '/pricing' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
@@ -95,7 +95,7 @@ export function Navigation(): React.ReactElement {
             backdrop-blur-xl"
           style={{ background: 'var(--nav-bg)' }}
         >
-          {['How It Works', 'Features', 'Pricing', 'Changelog'].map((item) => (
+          {['How It Works', 'Features', 'Platform', 'Pricing', 'Changelog'].map((item) => (
             <a
               key={item}
               href={item === 'Pricing' ? '/pricing' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}

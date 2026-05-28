@@ -6,29 +6,25 @@ const steps = [
   {
     number: '01',
     name: 'Build a playbook',
-    description:
-      'Create reusable specs in the Spec Library. Assemble them into playbook sections. Define exactly what evidence each spec requires.',
+    description: 'Assemble reusable specs into a template your whole team runs.',
     icon: 'layers',
   },
   {
     number: '02',
-    name: 'Start a run',
-    description:
-      "The playbook is frozen at start time — a snapshot. Template changes don't affect the in-progress run.",
-    icon: 'play',
+    name: 'Declare the evidence',
+    description: 'Each spec names the artifact it requires. The tester has no path around it.',
+    icon: 'file',
   },
   {
     number: '03',
-    name: 'Execute with evidence',
-    description:
-      'Testers work through specs. Each one requires the declared evidence before the pass action unlocks.',
-    icon: 'upload',
+    name: 'Execute, and get blocked',
+    description: 'Pass stays blocked until the evidence is attached. Each run is a frozen snapshot.',
+    icon: 'lock',
   },
   {
     number: '04',
-    name: 'Make the call',
-    description:
-      'The Admin reviews every outcome, makes the go/no-go decision, and the run locks permanently.',
+    name: 'Make the call, seal the run',
+    description: 'An Admin reviews every outcome, decides go or no-go, and the record locks.',
     icon: 'check',
   },
 ];
@@ -138,7 +134,7 @@ function StepIcon({ type }: { type: string }) {
       </svg>
     );
   }
-  if (type === 'play') {
+  if (type === 'file') {
     return (
       <svg
         width="24"
@@ -150,11 +146,14 @@ function StepIcon({ type }: { type: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <polygon points="5 3 19 12 5 21 5 3" />
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="8" y1="13" x2="16" y2="13" />
+        <line x1="8" y1="17" x2="13" y2="17" />
       </svg>
     );
   }
-  if (type === 'upload') {
+  if (type === 'lock') {
     return (
       <svg
         width="24"
@@ -166,9 +165,8 @@ function StepIcon({ type }: { type: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <polyline points="16 16 12 12 8 16" />
-        <line x1="12" y1="12" x2="12" y2="21" />
-        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </svg>
     );
   }

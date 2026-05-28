@@ -7,12 +7,13 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 export function FinalCTA(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-[120px] px-6 overflow-hidden bg-[var(--bg-section-alt)]">
-      {/* Subtle radial glow — orange-tinted per brand */}
+      {/* The single sanctioned atmospheric wash — static (not animated). If it
+          reads as a discernible shape rather than ambient warmth, it's too strong. */}
       <div
-        className="absolute inset-0 pointer-events-none animate-glow-pulse"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 800px 400px at 50% 50%, rgba(234,106,4,0.06) 0%, transparent 70%)',
+            'radial-gradient(ellipse 800px 400px at 50% 50%, rgba(234,106,4,0.08) 0%, transparent 70%)',
         }}
         aria-hidden="true"
       />
@@ -44,14 +45,14 @@ export function FinalCTA(): React.ReactElement {
             className="font-display font-semibold text-[48px] sm:text-[64px] leading-[56px] sm:leading-[72px]
               tracking-[-0.04em] text-[var(--text-primary)]"
           >
-            Ship it once.
+            Start for free.
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
           <p className="mt-6 text-lg leading-7 text-[var(--text-secondary)] max-w-[480px] mx-auto">
-            Start building your first playbook today. No credit card required. No time limit on
-            the Free plan.
+            One seat, full enforcement. No credit card. No implementation project. The gate is live
+            in an afternoon.
           </p>
         </ScrollReveal>
 
@@ -72,15 +73,23 @@ export function FinalCTA(): React.ReactElement {
                 ((e.currentTarget as HTMLElement).style.background = 'var(--color-primary)')
               }
             >
-              Start free
+              Start for free
             </a>
           </div>
           <a
-            href="/how-it-works"
+            href="/contact"
             className="inline-block mt-4 text-sm text-[var(--text-link)] no-underline hover:text-[var(--text-link-hover)] transition-colors duration-150"
           >
-            See how it works &rarr;
+            Talk to us &rarr;
           </a>
+        </ScrollReveal>
+
+        <ScrollReveal delay={400}>
+          <p
+            className="mt-12 font-display font-semibold text-2xl sm:text-[28px] tracking-[-0.02em] text-[var(--text-primary)]"
+          >
+            Ship it once.
+          </p>
         </ScrollReveal>
       </div>
     </section>

@@ -26,15 +26,21 @@ export function Hero(): React.ReactElement {
   }, []);
 
   return (
-    <>
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-6 bg-[var(--bg-page)] transition-colors duration-300">
-        {/*
-         * Background effects.
-         * DarkVeil is a WebGL canvas — rendered ONLY in dark mode.
-         * Light mode: clean warm-white surface with no background effects (per brand spec).
-         */}
+    <section className="relative bg-[var(--bg-page)] p-3 sm:p-4 transition-colors duration-300">
+      {/*
+       * Inset rounded hero panel (Scalora pattern): a floating card with a ~16px
+       * gutter so the page background frames it. overflow-hidden clips the bottom
+       * glow (and the dark-mode WebGL veil) to the rounded corners.
+       */}
+      <div
+        className="relative overflow-hidden rounded-[20px] sm:rounded-[28px]
+          bg-[var(--bg-card)] border border-[var(--border-default)] shadow-[var(--shadow-card)]
+          sm:min-h-[calc(100svh-2rem)]
+          flex flex-col items-center justify-center pt-28 pb-20 sm:pt-32 sm:pb-24 px-6"
+      >
+        {/* Dark mode: WebGL veil, clipped to the panel's rounded corners */}
         {isDark && (
-          <div className="absolute top-0 left-0 w-full h-screen z-0" aria-hidden="true">
+          <div className="absolute inset-0 z-0" aria-hidden="true">
             <DarkVeil
               beamWidth={3}
               beamHeight={80}
@@ -45,24 +51,23 @@ export function Hero(): React.ReactElement {
               scale={0.2}
               rotation={30}
             />
-            {/* Fade overlay to blend into the page background below */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg-page)]" />
+            {/* Fade overlay to blend the beams into the panel surface below */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg-card)]" />
           </div>
         )}
 
-        {/* Light mode: subtle warm radial gradient accent, no WebGL */}
-        {!isDark && (
-          <div
-            className="absolute inset-0 z-0 pointer-events-none"
-            aria-hidden="true"
-            style={{
-              background:
-                'radial-gradient(ellipse 900px 600px at 50% 0%, rgba(234,106,4,0.06) 0%, transparent 70%)',
-            }}
-          />
-        )}
+        {/* Warm glow rising from the bottom edge — corner-clipped by the panel.
+            The Scalora-style atmospheric touch, kept subtle. */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[55%] z-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background:
+              'radial-gradient(70% 100% at 50% 118%, rgba(234,106,4,0.12) 0%, transparent 72%)',
+          }}
+        />
 
-        {/* Hero content — z-10 to sit above the canvas */}
+        {/* Hero content — z-10 to sit above the background */}
         <div className="relative z-10 flex flex-col items-center">
           {/* Pre-headline badge */}
           <div
@@ -70,7 +75,7 @@ export function Hero(): React.ReactElement {
               border-[var(--border-default)] bg-[var(--bg-section-alt)] text-[var(--text-secondary)]
               ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
           >
-            Release readiness — built for engineering teams
+            QA &amp; release readiness
           </div>
 
           {/* Main headline */}
@@ -80,7 +85,7 @@ export function Hero(): React.ReactElement {
               transition-all duration-700 delay-200
               ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
-            Ship it once.
+            The release gate that holds.
           </h1>
 
           {/* Sub-headline */}
@@ -113,7 +118,7 @@ export function Hero(): React.ReactElement {
                 ((e.currentTarget as HTMLElement).style.background = 'var(--color-primary)')
               }
             >
-              Start free — no credit card <span className="arrow">&rarr;</span>
+              Start for free <span className="arrow">&rarr;</span>
             </a>
             <a
               href="/how-it-works"
@@ -133,7 +138,7 @@ export function Hero(): React.ReactElement {
               transition-all duration-600 delay-[900ms]
               ${loaded ? 'opacity-100' : 'opacity-0'}`}
           >
-            Free tier available. No credit card required. Full enforcement on every plan.
+            Free tier, one seat, full enforcement. No credit card.
           </p>
 
           {/* Product Preview */}
@@ -144,23 +149,28 @@ export function Hero(): React.ReactElement {
             <ProductPreview />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
 function ProductPreview() {
   const [activeTab, setActiveTab] = useState(0);
-  const tabs = ['Execute specs', 'Go/No-Go', 'Record'];
+  const [paused, setPaused] = useState(false);
+  const tabs = ['Execute specs', 'Go/No-Go', 'Immutable record'];
 
-  const advanceTab = useCallback(() => {
-    setActiveTab((prev) => (prev + 1) % 3);
+  // Manual selection overrides (and permanently stops) the auto-cycle.
+  const selectTab = useCallback((i: number) => {
+    setPaused(true);
+    setActiveTab(i);
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(advanceTab, 600000);
+    if (paused) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const interval = setInterval(() => setActiveTab((prev) => (prev + 1) % 3), 6000);
     return () => clearInterval(interval);
-  }, [advanceTab]);
+  }, [paused]);
 
   return (
     <div
@@ -194,7 +204,7 @@ function ProductPreview() {
         {tabs.map((tab, i) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(i)}
+            onClick={() => selectTab(i)}
             className={`py-3 text-sm font-medium border-b-2 transition-all duration-200 ${
               activeTab === i
                 ? 'text-[var(--text-primary)] border-[var(--color-primary)]'
@@ -260,7 +270,10 @@ function SpecRow({
           </span>
         )}
         {blocked ? (
-          <span className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-[var(--bg-section-alt)] text-[var(--text-muted)] text-xs font-medium cursor-not-allowed animate-lock-glow border border-[var(--border-default)]">
+          <span
+            title="Attach the required screenshot to enable"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-[var(--bg-section-alt)] text-[var(--text-muted)] text-xs font-medium cursor-not-allowed animate-lock-glow border border-[var(--border-default)]"
+          >
             <LockIcon /> Pass
           </span>
         ) : status === 'Passed' ? (

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Inter, Geist_Mono } from 'next/font/google';
 
+import { SmoothScroll } from '@/components/SmoothScroll';
+
 import '@nohotfix/design-tokens/tokens.css';
 import './globals.css';
 
@@ -24,13 +26,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'NoHotfix — Ship it once.',
+  title: 'NoHotfix — The release gate that holds.',
   description:
-    'Catch every issue before production does. Artifact-gated specs, formal go/no-go decisions, and immutable run records. Start free.',
+    'Specs don’t pass until the evidence does. The go/no-go call is permanent. The record writes itself. Start free — full enforcement on every plan.',
   openGraph: {
-    title: 'NoHotfix — Ship it once.',
+    title: 'NoHotfix — The release gate that holds.',
     description:
-      'Artifact-gated specs, formal go/no-go decisions, and immutable run records for engineering teams.',
+      'The release gate that enforces evidence, gates the go/no-go decision, and seals the record. Built for QA and engineering teams.',
     type: 'website',
   },
 };
@@ -74,6 +76,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased bg-[var(--bg-page)] text-[var(--text-primary)] transition-colors duration-300">
+        <SmoothScroll />
         {children}
       </body>
     </html>

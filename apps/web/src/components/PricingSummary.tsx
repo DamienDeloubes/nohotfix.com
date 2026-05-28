@@ -11,27 +11,27 @@ const tiers = [
     priceNote: '',
     tagline: 'For solo evaluation',
     features: ['Full enforcement triad', '1 seat', 'Unlimited playbooks + runs'],
-    ctaText: 'Start free',
+    ctaText: 'Start for free',
     ctaStyle: 'secondary' as const,
   },
   {
     name: 'Growth',
     price: '$29/mo',
-    priceNote: 'early bird',
+    priceNote: 'early bird · $49 standard',
     tagline: 'For QA teams',
     badge: 'Most popular',
     features: ['Everything in Free', 'Up to 10 seats', 'Audit-grade export (PDF/JSON)', 'Email notifications'],
-    ctaText: 'Start free',
+    ctaText: 'Start for free',
     ctaStyle: 'primary' as const,
     featured: true,
   },
   {
     name: 'Scale',
     price: '$99/mo',
-    priceNote: 'early bird',
+    priceNote: 'early bird · $149 standard',
     tagline: 'For compliance-driven teams',
-    features: ['Everything in Growth', 'Up to 40 seats', '1-day SLA', 'Priority support'],
-    ctaText: 'Start free',
+    features: ['Everything in Growth', 'Up to 40 seats', 'Viewer role + retention controls', 'Priority support'],
+    ctaText: 'Start for free',
     ctaStyle: 'tertiary' as const,
   },
 ];
@@ -45,10 +45,10 @@ export function PricingSummary(): React.ReactElement {
             className="font-display font-semibold text-[36px] sm:text-[48px] leading-[44px] sm:leading-[52px]
               tracking-[-0.025em] text-[var(--text-primary)]"
           >
-            Start free. Pay when you invite your team.
+            The enforcement triad is free. Seats are what you pay for.
           </h2>
           <p className="mt-4 text-lg leading-7 text-[var(--text-secondary)]">
-            Flat monthly fee per team. No per-seat pricing. The enforcement triad is on every
+            Start for free. Pay when you invite your team. The enforcement triad is on every
             tier — including Free.
           </p>
         </ScrollReveal>
@@ -171,7 +171,7 @@ export function PricingSummary(): React.ReactElement {
 
         <ScrollReveal className="text-center mt-10" delay={400}>
           <p className="text-[15px] text-[var(--text-secondary)]">
-            Need 40+ seats, SSO, or custom data residency?{' '}
+            Annual billing saves 20%. Need 40+ seats, SSO, or custom data residency?{' '}
             <a
               href="/contact"
               className="arrow-link text-[var(--text-link)] no-underline hover:underline hover:text-[var(--text-link-hover)] transition-colors duration-150"
@@ -183,7 +183,7 @@ export function PricingSummary(): React.ReactElement {
             href="/pricing"
             className="arrow-link inline-block mt-4 text-[15px] font-medium text-[var(--text-link)] no-underline hover:underline hover:text-[var(--text-link-hover)] transition-colors duration-150"
           >
-            See full pricing <span className="arrow">&rarr;</span>
+            Compare all plans <span className="arrow">&rarr;</span>
           </a>
         </ScrollReveal>
       </div>

@@ -10,6 +10,15 @@ export function PainHook(): React.ReactElement {
           <span className="text-[13px] font-medium text-[var(--color-primary)] uppercase tracking-[0.08em]">
             THE PROBLEM WITH CHECKLISTS
           </span>
+          <h2
+            className="mt-4 font-display font-semibold text-[36px] sm:text-[48px] leading-[44px] sm:leading-[52px]
+              tracking-[-0.025em] text-[var(--text-primary)] max-w-[640px] mx-auto"
+          >
+            The checklist is a shared lie.
+          </h2>
+          <p className="mt-4 text-lg leading-7 text-[var(--text-secondary)] max-w-[560px] mx-auto">
+            Anyone can tick the box. NoHotfix makes it impossible to tick without the proof.
+          </p>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-0 items-stretch">
@@ -17,7 +26,7 @@ export function PainHook(): React.ReactElement {
           <ScrollReveal delay={0}>
             <div className="h-full">
               <p className="text-[13px] font-medium text-[var(--text-muted)] mb-3">
-                Notion / Confluence checklist
+                The way it works now
               </p>
               <div className="bg-[var(--bg-card)] border border-[var(--border-default)] rounded-xl p-6 sm:p-8 h-[calc(100%-28px)] shadow-[var(--shadow-card)]">
                 <div className="space-y-4">

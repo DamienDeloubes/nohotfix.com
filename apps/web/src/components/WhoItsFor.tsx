@@ -6,35 +6,42 @@ const personas = [
   {
     label: 'For QA Teams',
     heading: 'Stop chasing testers for screenshots.',
-    body: "You own the release process but can't control whether testers actually do the work. NoHotfix makes it impossible to close a spec without the evidence. The process enforces itself.",
+    body: 'The screenshot gets attached before the spec passes. The system enforces it — you don’t chase.',
     painPoints: [
-      'Testers marking specs as passed without running them',
-      'Screenshots uploaded after the fact — or not at all',
-      'Evidence reconstruction before every compliance audit',
+      'Testers mark specs passed without running them',
+      'Screenshots arrive after the fact — or never',
     ],
     link: { text: 'For QA teams', href: '/use-cases/qa-teams' },
-    // primary-orange accent
-    accentStart: 'var(--color-primary)',
+    accentColor: 'var(--color-primary)',
   },
   {
     label: 'For Engineering Managers',
-    heading: 'Know your release is ready before you ship.',
-    body: "The go/no-go call happens in a Slack thread. You trust the QA spreadsheet is current. If something goes wrong, there's no record of what you knew. NoHotfix gives you a formal decision interface and an immutable record of every call you make.",
+    heading: 'Make the call on the record.',
+    body: 'One decision screen. Every outcome visible. The record is permanent.',
     painPoints: [
-      'Go/no-go decisions with no documented basis',
-      'No single view of what has been tested and what failed',
-      'Post-incident with no record of what was known before shipping',
+      'Go/no-go decided in a Slack thread',
+      'No record of what the team knew before shipping',
     ],
     link: { text: 'For engineering managers', href: '/use-cases/engineering-managers' },
-    // go-green accent
-    accentStart: 'var(--color-go-600)',
+    accentColor: 'var(--color-go-600)',
+  },
+  {
+    label: 'For Compliance Teams',
+    heading: 'The audit package builds itself.',
+    body: 'Every run is an auditable record, automatically. Send the auditor the URL.',
+    painPoints: [
+      'Evidence scattered across Slack, laptops, and tickets',
+      'Reconstruction takes days every cycle',
+    ],
+    link: { text: 'For compliance teams', href: '/use-cases/compliance' },
+    accentColor: 'var(--color-slate-500)',
   },
 ];
 
 export function WhoItsFor(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-32 px-6 bg-[var(--bg-page)]">
-      <div className="max-w-[880px] mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         <ScrollReveal className="text-center mb-16">
           <h2
             className="font-display font-semibold text-[36px] sm:text-[48px] leading-[44px] sm:leading-[52px]
@@ -44,28 +51,31 @@ export function WhoItsFor(): React.ReactElement {
           </h2>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {personas.map((p, i) => (
-            <ScrollReveal key={i} delay={i * 150}>
-              <div className="brand-card brand-card-hover p-8 sm:p-10 h-full flex flex-col relative overflow-hidden">
-                {/* Top accent stripe */}
+            <ScrollReveal key={i} delay={i * 100}>
+              <div className="brand-card brand-card-hover p-8 h-full flex flex-col relative overflow-hidden">
+                {/* Top accent stripe — persona accent */}
                 <div
                   className="absolute top-0 left-8 w-[60px] h-[2px] rounded-full"
-                  style={{ background: `linear-gradient(90deg, ${p.accentStart}, transparent)` }}
+                  style={{ background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }}
                 />
 
-                <span className="text-[13px] font-medium uppercase tracking-[0.08em] mb-4 text-[var(--color-primary)]">
+                <span
+                  className="text-[13px] font-medium uppercase tracking-[0.08em] mb-4"
+                  style={{ color: p.accentColor }}
+                >
                   {p.label}
                 </span>
 
                 <h3
-                  className="text-[var(--text-primary)] text-2xl sm:text-[30px] font-semibold leading-[38px]
+                  className="text-[var(--text-primary)] text-xl sm:text-2xl font-semibold leading-8
                     tracking-[-0.015em] mb-4"
                 >
                   {p.heading}
                 </h3>
 
-                <p className="text-base leading-[26px] text-[var(--text-secondary)] mb-6">{p.body}</p>
+                <p className="text-[15px] leading-6 text-[var(--text-secondary)] mb-6">{p.body}</p>
 
                 <ul className="space-y-3 mb-8 flex-1">
                   {p.painPoints.map((point, j) => (

@@ -369,4 +369,113 @@ All of the above are suppressed under `prefers-reduced-motion`.
 3. **Who it's for** → **three cards** (QA Teams · Engineering Managers · Compliance). Matches the three `/use-cases/*` pages and echoes the triad rhythm; relaxes to 2-up then single-column on smaller breakpoints.
 4. **Final-CTA warm radial** → **approved** as the single sanctioned atmospheric wash, with the guardrail: if it reads as a discernible shape rather than ambient warmth, it's too strong.
 
-No open questions remain for this round. Next step when ready: write the finalized copy per section and produce the product-UI preview assets (hero blocked-button state first).
+No open questions remain for this round. Finalized copy is now in the **Copy deck** below; next step after that is producing the product-UI preview assets (hero blocked-button state first).
+
+---
+
+# Copy deck (finalized — v1)
+
+**Voice source of truth**: docs/marketing/messaging.md (approved vocabulary, banned words, voice rules). Canonical lines (hero H1/subhead, the triad, the manifesto, the pricing headline, the final CTA) are reused **verbatim** from messaging.md; the rest is written to the same voice — *mechanic before benefit, ≤10 words per hero sentence, no banned words (streamline, seamless, powerful, easy, solution, leverage, ensure, help-as-verb, robust, end-to-end)*. The bracketed *[working: …]* lines earlier in this document are superseded by what follows.
+
+**CTA label convention**: persistent nav button = **"Start free"** (compact); all in-body action CTAs = **"Start for free"** (per messaging.md). Secondary CTA = **"See how it works"** / **"Talk to us"** by context.
+
+---
+
+### 0 · Navigation
+- **Links**: How It Works · Features ▾ · Use Cases ▾ · Platform · Pricing · Changelog
+- **Features dropdown**: Artifact Enforcement · Go/No-Go Gate · Audit Trail
+- **Use Cases dropdown**: For QA Teams · For Compliance Teams · For Engineering Managers
+- **Right**: Log in · **Start free**
+
+### 1 · Hero
+- **Eyebrow pill**: `QA & RELEASE READINESS`
+- **H1**: **The release gate that holds.**
+- **Subhead**: Specs don't pass until the evidence does. The go/no-go call is Admin-only and permanent. When the decision is made, the run is sealed.
+- **Primary CTA**: Start for free  ·  **Secondary CTA**: See how it works
+- **Trust micro-line**: Free tier, one seat, full enforcement. No credit card.
+- **Preview tab labels**: Execute specs · Go/no-go · Immutable record
+- **Blocked-button tooltip**: Attach the required screenshot to enable.
+
+### 2 · Honest trust strip
+- **Numbers + captions**:
+  - **6** — Artifact types. Every kind of evidence a release needs.
+  - **3** — Layers of immutability: API, service, and database.
+  - **0** — Ways to bypass the gate. By design.
+  - **1** — Free seat, forever. Full enforcement included.
+- **Credibility line**: We run our own releases through NoHotfix before we ship them.
+- **Compliance posture (optional)**: Tamper-evident records built for SOC2 and PCI-DSS evidence.
+
+### 3 · Pain hook (carries the single-use manifesto)
+- **H2 (manifesto)**: The checklist is a shared lie.
+- **Supporting line**: Anyone can tick the box. NoHotfix makes it impossible to tick without the proof.
+- **Before card** — label: *The way it works now* · caption: Anyone can tick this. No evidence required.
+- **After card** — label: *NoHotfix* · caption: The pass action is blocked. Not warned. Blocked.
+- **Divider pill**: vs
+
+### 4 · The enforcement triad
+- **H2**: Three guarantees, enforced every time.
+- **Subhead**: Not reminders. Not suggestions. Constraints built into the release itself.
+- **Card 1** — eyebrow *Artifact enforcement* · heading **No artifact, no pass. Full stop.** · body: The pass action is blocked until the required artifact is attached — screenshot, log, measurement, URL, or table. Six types. No workarounds. · link: How enforcement works →
+- **Card 2** — eyebrow *Go/no-go gate* · heading **The release decision, made once and locked.** · body: Only an Admin can make the call, and only after every spec is terminal. A Go with failures requires a written justification, recorded permanently. · link: Inside the decision →
+- **Card 3** — eyebrow *Immutable record* · heading **The record is sealed when the call is made.** · body: Sealed at three layers — API, service, and database. No edits. No overwrites. Send the URL. · link: See the audit trail →
+
+### 5 · How it works (compressed)
+- **H2**: Build once. Enforce every time.
+- **Step 1 — Build a playbook**: Assemble reusable specs into a template your whole team runs.
+- **Step 2 — Declare the evidence**: Each spec names the artifact it requires. The tester has no path around it.
+- **Step 3 — Execute, and get blocked**: Pass stays blocked until the evidence is attached. Each run is a frozen snapshot.
+- **Step 4 — Make the call, seal the run**: An Admin reviews every outcome, decides go or no-go, and the record locks.
+- **Closing link**: See the full walkthrough →
+
+### 6 · Comparison
+- **H2**: This isn't a checklist tool.
+- **Column headers**: Notion / checklist · Test management · **NoHotfix**
+- **Rows** (✗ / ✗ / ✓ unless noted):
+  1. Evidence required before a spec can pass
+  2. Pass action blocked at the system level — not a reminder
+  3. Role-gated go/no-go decision, recorded permanently
+  4. Run sealed and tamper-evident after the decision
+  5. Audit-ready record without reconstruction *(test management: partial)*
+- **Footnote**: Comparison reflects the release-gate workflow, not each tool's full feature set.
+
+### 7 · Platform thread
+- **Line**: Anchored by the gate. Built to grow around it — UAT sign-off, Jira, and release-level gating are next.
+- **Link**: See where we're going →
+
+### 8 · Who it's for
+- **H2**: Built for the people who own the release.
+- **For QA Teams** — pains: *Testers mark specs passed without running them. Screenshots arrive after the fact — or never.* · resolves: The screenshot gets attached before the spec passes. The system enforces it — you don't chase. · link: For QA teams →
+- **For Engineering Managers** — pains: *You make the go/no-go call in a Slack thread. No record of what the team knew before shipping.* · resolves: One decision screen. Every outcome visible. The record is permanent. · link: For engineering managers →
+- **For Compliance Teams** — pains: *Audit evidence scattered across Slack, laptops, and tickets. Reconstruction takes days every cycle.* · resolves: Every run is an auditable record, automatically. Send the auditor the URL. · link: For compliance teams →
+
+### 9 · Pricing summary
+- **H2**: The enforcement triad is free. Seats are what you pay for.
+- **Subhead**: Start for free. Pay when you invite your team.
+- **Free** — **$0** · 1 seat · full enforcement · go/no-go · sealed records · CTA: Start for free
+- **Growth** *(Most popular)* — **$29/mo** early-bird *(first 100 orgs)* · $49 standard · up to 10 seats · audit-grade export · everything in Free · CTA: Start for free
+- **Scale** — **$99/mo** early-bird · $149 standard · up to 40 seats · viewer role · retention controls · priority support · CTA: Start for free
+- **Footer line**: Annual billing saves 20%. Need 40+ seats or SSO? Talk to us. · **Link**: Compare all plans →
+
+### 10 · FAQ
+1. **Is the free tier really free?** — Yes. One seat, full enforcement, no credit card, no time limit. The moment you invite a teammate you move to Growth — that's the only gate.
+2. **Can the gate be turned off or bypassed?** — No. The pass action is blocked at the system level until the required artifact is attached. There is no setting that makes enforcement advisory.
+3. **Does this replace TestRail, Jira, or our CI?** — No. Keep your test library and pipeline. NoHotfix gates the final release decision and seals the record.
+4. **Is the early-bird price locked forever?** — Yes. The first 100 paying organisations keep their early-bird price for life.
+5. **How long does setup take?** — A playbook is live in an afternoon. No implementation project, no dedicated admin, no onboarding call.
+6. **What happens to my data if I downgrade?** — Your sealed run records stay readable. Seat limits apply going forward; your history is never deleted on a downgrade.
+
+### 11 · Final CTA
+- **H2**: Start for free.
+- **Body**: One seat, full enforcement. No credit card. No implementation project. The gate is live in an afternoon.
+- **Primary CTA**: Start for free  ·  **Secondary CTA**: Talk to us
+- **Tagline close**: Ship it once.
+
+### 12 · Footer
+- **Tagline**: Ship it once.
+- **Product**: How It Works · Artifact Enforcement · Go/No-Go Gate · Audit Trail · Platform
+- **Use Cases**: For QA Teams · For Compliance Teams · For Engineering Managers
+- **Company**: About · Blog · Changelog · Contact
+- **Resources**: Pricing · Documentation · Privacy · Terms
+- **Legal line**: © NoHotfix. All rights reserved.
+
+> **Copy review checklist**: no banned words present · every hero sentence ≤10 words · mechanic stated before benefit in every body line · approved vocabulary used precisely (gate, blocked, artifact, sealed, terminal, immutable, run, playbook, go/no-go, enforcement, the record) · the manifesto line appears exactly once (Pain hook) · "Ship it once." appears only at the final-CTA close and footer tagline.

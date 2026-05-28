@@ -8,9 +8,10 @@ const guarantees = [
     iconColorVar: 'var(--color-primary)',
     iconBgVar: 'rgba(234,106,4,0.08)',
     iconBorderVar: 'rgba(234,106,4,0.18)',
-    heading: "Specs don't pass until the evidence does.",
-    body: 'Every spec declares exactly what evidence is required — a file, a log, a measurement, a URL. The pass action is blocked until every requirement is satisfied. No exceptions, no workarounds.',
-    link: { text: 'Artifact enforcement', href: '/features/artifact-enforcement' },
+    eyebrow: 'Artifact enforcement',
+    heading: 'No artifact, no pass. Full stop.',
+    body: 'The pass action is blocked until the required artifact is attached — screenshot, log, measurement, URL, or table. Six types. No workarounds.',
+    link: { text: 'How enforcement works', href: '/features/artifact-enforcement' },
     visual: 'enforcement',
   },
   {
@@ -18,19 +19,21 @@ const guarantees = [
     iconColorVar: 'var(--color-go-700)',
     iconBgVar: 'rgba(0,204,128,0.08)',
     iconBorderVar: 'rgba(0,204,128,0.18)',
-    heading: 'One screen. One decision. The record is sealed.',
-    body: 'The release decision is formal: role-gated to Admins, only available after every spec reaches a terminal state. A Go with failures requires mandatory written justification — permanently recorded.',
-    link: { text: 'Go/No-Go gate', href: '/features/go-no-go' },
+    eyebrow: 'Go/no-go gate',
+    heading: 'The release decision, made once and locked.',
+    body: 'Only an Admin can make the call, and only after every spec is terminal. A Go with failures requires a written justification, recorded permanently.',
+    link: { text: 'Inside the decision', href: '/features/go-no-go' },
     visual: 'decision',
   },
   {
     icon: 'shield',
-    iconColorVar: 'var(--color-primary)',
-    iconBgVar: 'rgba(234,106,4,0.08)',
-    iconBorderVar: 'rgba(234,106,4,0.18)',
-    heading: 'After the decision, nothing changes.',
-    body: 'Once the go/no-go decision is recorded, the run is locked — permanently. No edits, no overwrites. The record contains every artifact submitted, the decision with decider identity and timestamp, and any written justification. Send the URL to your auditor.',
-    link: { text: 'Immutable audit trail', href: '/features/audit-trail' },
+    iconColorVar: 'var(--color-slate-500)',
+    iconBgVar: 'rgba(148,163,184,0.12)',
+    iconBorderVar: 'rgba(148,163,184,0.24)',
+    eyebrow: 'Immutable record',
+    heading: 'The record is sealed when the call is made.',
+    body: 'Sealed at three layers — API, service, and database. No edits. No overwrites. Send the URL.',
+    link: { text: 'See the audit trail', href: '/features/audit-trail' },
     visual: 'immutable',
   },
 ];
@@ -44,10 +47,10 @@ export function ThreeGuarantees(): React.ReactElement {
             className="font-display font-semibold text-[36px] sm:text-[48px] leading-[44px] sm:leading-[52px]
               tracking-[-0.025em] text-[var(--text-primary)] max-w-[600px] mx-auto"
           >
-            Three things we guarantee every time.
+            Three guarantees, enforced every time.
           </h2>
           <p className="mt-4 text-lg leading-7 text-[var(--text-secondary)] max-w-[520px] mx-auto">
-            Not reminders. Not suggestions. Hard constraints built into the release workflow.
+            Not reminders. Not suggestions. Constraints built into the release itself.
           </p>
         </ScrollReveal>
 
@@ -64,6 +67,13 @@ export function ThreeGuarantees(): React.ReactElement {
                 >
                   <GuaranteeIcon type={g.icon} colorVar={g.iconColorVar} />
                 </div>
+
+                <span
+                  className="text-[12px] font-medium uppercase tracking-[0.08em] mb-2"
+                  style={{ color: g.iconColorVar }}
+                >
+                  {g.eyebrow}
+                </span>
 
                 <h3
                   className="text-[var(--text-primary)] text-xl sm:text-2xl font-semibold leading-8
