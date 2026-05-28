@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Dominant diagonal: (36,8) → (12,36) — 24px canvas ×2 -->
+  <line x1="36" y1="8" x2="12" y2="36" stroke="#0036FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Upper horizontal bar: (6,26) → (20,26) -->
+  <line x1="6" y1="26" x2="20" y2="26" stroke="#0036FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Lower horizontal bar: (6,36) → (16,36) -->
+  <line x1="6" y1="36" x2="16" y2="36" stroke="#0036FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

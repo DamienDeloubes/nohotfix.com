@@ -1,0 +1,9 @@
+node_modules
+dist
+.next
+.vite
+build
+coverage
+*.gen.ts
+pnpm-lock.yaml
+tsconfig.tsbuildinfo

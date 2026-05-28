@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <rect width="32" height="32" fill="#FFFFFF"/>
+  <!-- Diagonal + upper bar — 24x24 coords ×(32/24)=×1.3333 -->
+  <!-- Diagonal: (18,4) → (24, 5.333) ; (6,18) → (8, 24) -->
+  <line x1="24" y1="5.333" x2="8" y2="24" stroke="#0036FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Upper bar: (3,13) → (4, 17.333) ; (10,13) → (13.333, 17.333) -->
+  <line x1="4" y1="17.333" x2="13.333" y2="17.333" stroke="#0036FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

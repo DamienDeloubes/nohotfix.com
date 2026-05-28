@@ -1,0 +1,27 @@
+<!-- NoHotfix — Concept 2: The Negation Mark -->
+<!-- Mark only, 24×24 base canvas -->
+<!-- Two elements: patch rectangle (Ink-400) + diagonal bar (Brand-500) -->
+<!-- The patch is a rounded rectangle; the bar cuts through it diagonally -->
+<!-- Monochrome: both elements collapse to single color -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- The patch: a rounded rectangle suggesting a "patch" being applied -->
+  <!-- Stroke only — institutional, subdued — the thing being eliminated -->
+  <rect
+    x="3" y="5"
+    width="18" height="14"
+    rx="2.5"
+    stroke="#5E6E9E"
+    stroke-width="1.75"
+    stroke-linejoin="round"
+  />
+  <!-- The elimination bar: a thick diagonal from upper-right to lower-left -->
+  <!-- This is the product's authority crossing out the patch -->
+  <!-- Slightly overshoots the rect on both ends for visual strength -->
+  <line
+    x1="18.5" y1="4"
+    x2="5.5" y2="20"
+    stroke="#1A3FFF"
+    stroke-width="2.75"
+    stroke-linecap="round"
+  />
+</svg>

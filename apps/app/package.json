@@ -1,0 +1,61 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "vitest run --passWithNoTests",
+    "format": "prettier --write . --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@fontsource-variable/geist-mono": "^5.2.7",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@heroui/react": "3.0.0-beta.8",
+    "@heroui/styles": "3.0.0-beta.8",
+    "@hookform/resolvers": "^3.9.1",
+    "@lordicon/react": "^1.6.0",
+    "@nohotfix/api-client": "workspace:*",
+    "@nohotfix/domain-audit": "workspace:^",
+    "@nohotfix/domain-authoring": "workspace:^",
+    "@nohotfix/domain-identity": "workspace:^",
+    "@nohotfix/shared": "workspace:*",
+    "@tanstack/react-query": "^5.62.3",
+    "@tanstack/react-query-devtools": "^5.62.3",
+    "@tanstack/react-router": "^1.91.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.36.0",
+    "lottie-web": "5.12.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-hook-form": "^7.54.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
+    "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/router-plugin": "^1.91.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/ui": "^2.1.8",
+    "jsdom": "^25.0.1",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8"
+  }
+}

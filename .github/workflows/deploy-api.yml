@@ -1,0 +1,19 @@
+name: Deploy API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to DigitalOcean App Platform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to DigitalOcean App Platform
+        uses: digitalocean/app_action@v1.1.5
+        with:
+          app_name: nohotfix-api
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

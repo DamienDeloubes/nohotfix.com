@@ -1,0 +1,15 @@
+node_modules
+dist
+.next
+.vite
+.turbo
+.env
+.env.local
+.env.production.local
+.env.development.local
+*.log
+coverage
+.DS_Store
+.tanstack
+
+tsconfig.tsbuildinfo

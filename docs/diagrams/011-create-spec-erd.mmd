@@ -1,0 +1,65 @@
+---
+title: "Create Spec — Entity Relationships"
+---
+erDiagram
+    organisations ||--o{ spec_library : "owns (org_id)"
+    users ||--o{ spec_library : "creates (created_by)"
+    users ||--o{ memberships : "belongs to"
+    organisations ||--o{ memberships : "has members"
+    spec_library ||--o{ changelog : "tracked by (entity_id)"
+
+    organisations {
+        uuid id PK
+        string name
+        string slug UK
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    users {
+        uuid id PK
+        string workos_user_id UK
+        string email
+        string first_name
+        string last_name
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    memberships {
+        uuid id PK
+        uuid org_id FK
+        uuid user_id FK
+        enum role "owner | admin | member"
+        timestamptz created_at
+    }
+
+    spec_library {
+        uuid id PK
+        uuid org_id FK
+        string title "1-500 chars, required"
+        string system_under_test "nullable, combobox"
+        enum severity "critical | high | medium | low"
+        jsonb preconditions "TipTap JSON, nullable"
+        jsonb description "TipTap JSON, nullable"
+        jsonb test_steps "TestStep[], max 50"
+        jsonb expected_result "TipTap JSON, nullable"
+        jsonb artifact_requirements "out of scope"
+        string tester_notes "nullable"
+        boolean is_archived "default false"
+        uuid created_by FK
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    changelog {
+        uuid id PK
+        uuid org_id FK
+        enum entity_type "playbook | spec_library"
+        uuid entity_id FK
+        string action "e.g. created"
+        jsonb field_changes "nullable"
+        uuid actor_id FK
+        string actor_name "denormalized"
+        timestamptz created_at
+    }

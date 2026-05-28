@@ -1,0 +1,16 @@
+<!-- NoHotfix — Concept 3: The Seal -->
+<!-- Monochrome — single-color print, embossing, B&W contexts -->
+<!-- Filled octagon with white/knockout bar. In single-ink contexts, the bar is the paper showing through. -->
+<!-- This is the strongest embossing mark of all concepts. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <path
+    d="M 16.0 4.6 L 32.0 4.6 L 43.4 16.0 L 43.4 32.0 L 32.0 43.4 L 16.0 43.4 L 4.6 32.0 L 4.6 16.0 Z"
+    fill="#000000"
+  />
+  <rect
+    x="10" y="21.5"
+    width="28" height="5"
+    rx="2.5"
+    fill="#FFFFFF"
+  />
+</svg>

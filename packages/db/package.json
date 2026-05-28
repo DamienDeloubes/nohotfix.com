@@ -1,0 +1,38 @@
+{
+  "name": "@nohotfix/db",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "db:create": "createdb -U $(whoami) nohotfix 2>/dev/null || echo 'Database already exists'",
+    "db:migrate": "set -a && . ../../apps/api/.env && set +a && node dist/migrate.js",
+    "db:setup": "pnpm db:create && pnpm db:migrate",
+    "dev": "docker compose -f ../../docker-compose.yml up -d --wait && pnpm build && pnpm db:migrate",
+    "format": "prettier --write . --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "kysely": "^0.27.4",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/shared": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
+    "@types/pg": "^8.11.10",
+    "typescript": "^5.7.2"
+  }
+}

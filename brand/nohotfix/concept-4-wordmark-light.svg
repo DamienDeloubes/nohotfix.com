@@ -1,0 +1,45 @@
+<!-- NoHotfix — Concept 4: The Two-Weight Wordmark -->
+<!-- Wordmark only — no separate mark element -->
+<!-- "No" Inter 800 italic Ember-500, "hotfix" Inter 300 Ink-600 italic -->
+<!-- Baseline rule in Brand-500 below full wordmark -->
+<!-- Canvas: 240×48. Pure typographic. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none">
+
+  <!-- "No" — Inter 800, italic, Ember-500 — the negation, heavy, forward-leaning -->
+  <!-- This is the brand's personality in two letters: absolute, energized, categorical -->
+  <text
+    x="16"
+    y="32"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="22"
+    font-weight="800"
+    font-style="italic"
+    fill="#FF6B2B"
+    letter-spacing="-0.02em"
+  >No</text>
+
+  <!-- "hotfix" — Inter 300, italic, Ink-600 — the thing being prevented, diminished, fading -->
+  <!-- Italic matches "No" to keep typographic family unity; the weight drop is the contrast -->
+  <!-- x=50: "No" at 800/italic/22px ≈ 32px wide, +2px kerning gap -->
+  <text
+    x="50"
+    y="32"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="22"
+    font-weight="300"
+    font-style="italic"
+    fill="#2C3760"
+    letter-spacing="-0.01em"
+  >hotfix</text>
+
+  <!-- Baseline rule — Brand-500, 1px, runs under full wordmark -->
+  <!-- "hotfix" at 300/italic/22px ≈ 66px wide. Total wordmark: 16 + 32 + 2 + 66 = ~116px. -->
+  <!-- Rule from x=16 to x=118 -->
+  <line
+    x1="16" y1="38"
+    x2="118" y2="38"
+    stroke="#1A3FFF"
+    stroke-width="1"
+    stroke-linecap="square"
+  />
+</svg>

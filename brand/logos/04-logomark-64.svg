@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Dominant diagonal: coords ×(64/24) = ×2.6667 -->
+  <!-- (18,4) → (48,10.667) ; (6,18) → (16,48) -->
+  <line x1="48" y1="10.667" x2="16" y2="48" stroke="#0036FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Upper horizontal bar: (3,13) → (8,34.667) ; (10,13) → (26.667,34.667) -->
+  <line x1="8" y1="34.667" x2="26.667" y2="34.667" stroke="#0036FF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Lower horizontal bar: (3,18) → (8,48) ; (8,18) → (21.333,48) -->
+  <line x1="8" y1="48" x2="21.333" y2="48" stroke="#0036FF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,64 @@
+{
+  "name": "@releasepilot/domain-authoring",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "default": "./dist/ui/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "vitest run --passWithNoTests",
+    "format": "prettier --write . --ignore-path ../../../.prettierignore"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hookform/resolvers": "^3.9.1",
+    "@releasepilot/shared": "workspace:*",
+    "@tanstack/react-table": "^8.21.3",
+    "@tiptap/pm": "^3.20.1",
+    "@tiptap/react": "^3.20.1",
+    "@tiptap/starter-kit": "^3.20.1",
+    "react-hook-form": "^7.54.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@releasepilot/eslint-config": "workspace:*",
+    "@releasepilot/prettier-config": "workspace:*",
+    "@releasepilot/typescript-config": "workspace:*",
+    "@types/react": "^19.2.14",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "@releasepilot/api-client": "workspace:*",
+    "@tanstack/react-query": "^5.0.0",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@releasepilot/api-client": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "@tanstack/react-query": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: nohotfix
+      POSTGRES_USER: nohotfix
+      POSTGRES_PASSWORD: nohotfix
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U nohotfix']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: ['--config=/etc/otel/config.yaml']
+    ports:
+      - '4317:4317' # OTLP gRPC
+      - '4318:4318' # OTLP HTTP
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel/config.yaml
+    depends_on:
+      - jaeger
+      # - prometheus
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - '16686:16686' # Jaeger UI
+    environment:
+      COLLECTOR_OTLP_ENABLED: 'true'
+
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   ports:
+  #     - '9090:9090'  # Prometheus UI
+  #   volumes:
+  #     - prometheus_data:/prometheus
+  #   command:
+  #     - '--config.file=/etc/prometheus/prometheus.yml'
+  #     - '--storage.tsdb.path=/prometheus'
+
+volumes:
+  postgres_data:
+  # prometheus_data:

@@ -1,0 +1,37 @@
+<!-- NoHotfix — Concept 4: The Two-Weight Wordmark — dark background -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none">
+  <rect width="240" height="48" fill="#090B14"/>
+
+  <!-- "No" — Ember-400 on dark -->
+  <text
+    x="16"
+    y="32"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="22"
+    font-weight="800"
+    font-style="italic"
+    fill="#FF8C57"
+    letter-spacing="-0.02em"
+  >No</text>
+
+  <!-- "hotfix" — Ink-200 on dark, subdued -->
+  <text
+    x="50"
+    y="32"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="22"
+    font-weight="300"
+    font-style="italic"
+    fill="#A8B4CC"
+    letter-spacing="-0.01em"
+  >hotfix</text>
+
+  <!-- Baseline rule — Brand-300 on dark -->
+  <line
+    x1="16" y1="38"
+    x2="118" y2="38"
+    stroke="#7F97FF"
+    stroke-width="1"
+    stroke-linecap="square"
+  />
+</svg>

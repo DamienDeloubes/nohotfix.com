@@ -1,0 +1,241 @@
+---
+title: NoHotfix Database ERD
+---
+erDiagram
+    %% ---- Identity Context ----
+
+    organisations {
+        uuid id PK
+        varchar name
+        varchar slug UK
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    users {
+        uuid id PK
+        varchar workos_user_id UK
+        varchar email
+        varchar display_name "nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    memberships {
+        uuid id PK
+        uuid org_id FK
+        uuid user_id FK
+        enum role "owner | admin | member"
+        timestamp created_at
+    }
+
+    %% ---- Billing Context ----
+
+    subscriptions {
+        uuid id PK
+        uuid org_id FK
+        varchar stripe_customer_id "nullable"
+        varchar stripe_subscription_id "nullable"
+        enum status "trialing | grace_period | past_due | active | cancelled | expired"
+        timestamp trial_ends_at "nullable"
+        timestamp current_period_start "nullable"
+        timestamp current_period_end "nullable"
+        timestamp cancel_at "nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    stripe_webhook_events {
+        uuid id PK
+        varchar stripe_event_id UK
+        varchar event_type
+        timestamp processed_at "nullable"
+        timestamp created_at
+    }
+
+    %% ---- Authoring Context ----
+
+    spec_library {
+        uuid id PK
+        uuid org_id FK
+        varchar title
+        varchar system_under_test "nullable"
+        enum severity "critical | high | medium | low | null"
+        jsonb preconditions
+        jsonb description
+        jsonb test_steps
+        jsonb expected_result
+        jsonb artifact_requirements
+        text tester_notes "nullable"
+        boolean is_archived
+        uuid created_by FK
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    playbooks {
+        uuid id PK
+        uuid org_id FK
+        varchar name
+        text description "nullable"
+        varchar environment "nullable"
+        boolean is_archived
+        uuid created_by FK
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    playbook_sections {
+        uuid id PK
+        uuid playbook_id FK
+        uuid org_id FK
+        varchar name
+        integer position
+        timestamp created_at
+    }
+
+    playbook_specs {
+        uuid id PK
+        uuid section_id FK
+        uuid playbook_id FK
+        uuid org_id FK
+        uuid spec_library_id FK "nullable"
+        varchar title
+        varchar system_under_test "nullable"
+        enum severity "critical | high | medium | low | null"
+        jsonb preconditions
+        jsonb description
+        jsonb test_steps
+        jsonb expected_result
+        jsonb artifact_requirements
+        text tester_notes "nullable"
+        integer position
+        timestamp created_at
+    }
+
+    %% ---- Execution Context ----
+
+    runs {
+        uuid id PK
+        uuid org_id FK
+        uuid playbook_id FK
+        varchar name
+        text description "nullable"
+        varchar environment "nullable"
+        enum status "in_progress | awaiting_decision | go | no_go | abandoned"
+        date target_date "nullable"
+        uuid started_by FK
+        uuid decision_by FK "nullable"
+        timestamp decision_at "nullable"
+        text decision_statement "nullable"
+        jsonb failed_specs_at_decision "nullable"
+        text abandonment_reason "nullable"
+        timestamp started_at
+        timestamp completed_at "nullable"
+        timestamp created_at
+    }
+
+    run_sections {
+        uuid id PK
+        uuid run_id FK
+        uuid org_id FK
+        varchar name
+        integer position
+        uuid assigned_to FK "nullable"
+        boolean is_skipped
+        text skip_reason "nullable"
+        uuid skipped_by FK "nullable"
+        timestamp skipped_at "nullable"
+    }
+
+    run_specs {
+        uuid id PK
+        uuid run_section_id FK
+        uuid run_id FK
+        uuid org_id FK
+        varchar title
+        varchar system_under_test "nullable"
+        enum severity "critical | high | medium | low | null"
+        jsonb preconditions
+        jsonb description
+        jsonb test_steps
+        jsonb expected_result
+        jsonb artifact_requirements
+        text tester_notes "nullable"
+        enum status "pending | in_progress | passed | failed | skipped"
+        uuid claimed_by FK "nullable"
+        uuid executed_by FK "nullable"
+        timestamp executed_at "nullable"
+        text failure_reason "nullable"
+        text skip_reason "nullable"
+        text notes "nullable"
+        integer position
+    }
+
+    run_spec_artifacts {
+        uuid id PK
+        uuid run_spec_id FK
+        uuid run_id FK
+        uuid org_id FK
+        integer requirement_index
+        enum type "file | table | measured_value | url"
+        varchar file_key "nullable"
+        varchar file_name "nullable"
+        varchar file_type "nullable"
+        integer file_size "nullable"
+        jsonb table_data "nullable"
+        numeric measured_value "nullable"
+        varchar measured_unit "nullable"
+        enum measured_threshold_operator "lte | gte | eq | null"
+        numeric measured_threshold_value "nullable"
+        varchar url_value "nullable"
+        uuid uploaded_by FK
+        timestamp created_at
+    }
+
+    %% ---- Audit Context ----
+
+    changelog {
+        uuid id PK
+        uuid org_id FK
+        enum entity_type "playbook | spec_library"
+        uuid entity_id
+        varchar action
+        jsonb field_changes
+        uuid actor_id FK
+        varchar actor_name
+        timestamp created_at
+    }
+
+    %% ---- Relationships ----
+
+    %% Identity
+    organisations ||--o{ memberships : "has members"
+    users ||--o{ memberships : "belongs to orgs"
+
+    %% Billing
+    organisations ||--o| subscriptions : "has subscription"
+
+    %% Authoring
+    organisations ||--o{ spec_library : "owns specs"
+    organisations ||--o{ playbooks : "owns playbooks"
+    users ||--o{ spec_library : "created_by"
+    users ||--o{ playbooks : "created_by"
+    playbooks ||--o{ playbook_sections : "contains"
+    playbook_sections ||--o{ playbook_specs : "contains"
+    playbooks ||--o{ playbook_specs : "contains"
+    spec_library ||--o{ playbook_specs : "referenced by"
+
+    %% Execution
+    playbooks ||--o{ runs : "instantiated as"
+    organisations ||--o{ runs : "owns"
+    users ||--o{ runs : "started_by"
+    runs ||--o{ run_sections : "contains"
+    run_sections ||--o{ run_specs : "contains"
+    runs ||--o{ run_specs : "contains"
+    run_specs ||--o{ run_spec_artifacts : "has evidence"
+    runs ||--o{ run_spec_artifacts : "contains"
+
+    %% Audit
+    organisations ||--o{ changelog : "audit trail"
+    users ||--o{ changelog : "actor"

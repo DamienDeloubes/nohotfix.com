@@ -1,0 +1,48 @@
+<!-- NoHotfix — Concept 3: The Seal -->
+<!-- Horizontal lockup — light background -->
+<!-- Canvas: 300×48. Mark scaled to 32px (from 48px base, factor 0.6667). -->
+<!-- Mark group: translate(8, 8) scale(0.6667) → mark occupies x:8→40 (32px), centered in 48px height -->
+<!-- Gap: 12px. Wordmark begins at x=52. -->
+<!-- Wordmark: "No" Inter 600 Brand-500, "Hotfix" Inter 400 Ink-600 wide-spaced -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 48" fill="none">
+  <!-- Mark group: scaled to 32px, centered vertically in 48px canvas -->
+  <!-- translate(8, 8): 8px left margin, 8px top (centers 32px mark in 48px height) -->
+  <g transform="translate(8, 8) scale(0.6667)">
+    <!-- Filled octagon -->
+    <path
+      d="M 16.0 4.6 L 32.0 4.6 L 43.4 16.0 L 43.4 32.0 L 32.0 43.4 L 16.0 43.4 L 4.6 32.0 L 4.6 16.0 Z"
+      fill="#1A3FFF"
+    />
+    <!-- Gate bar cutout -->
+    <rect
+      x="10" y="21.5"
+      width="28" height="5"
+      rx="2.5"
+      fill="#FFFFFF"
+    />
+  </g>
+
+  <!-- Wordmark — baseline y=30 -->
+  <!-- "No" — Inter 600, Brand-500, not italic here — the seal concept reads as institutional, not reactive -->
+  <text
+    x="52"
+    y="30"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="18"
+    font-weight="600"
+    fill="#1A3FFF"
+    letter-spacing="-0.01em"
+  >No</text>
+
+  <!-- "Hotfix" — Inter 400, Ink-600, wider letter-spacing (institutional feel) -->
+  <!-- "No" at Inter 600/18px ≈ 24px wide. Gap ≈ 0 (tight coupling as single word) -->
+  <text
+    x="76"
+    y="30"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="18"
+    font-weight="400"
+    fill="#2C3760"
+    letter-spacing="0.02em"
+  >Hotfix</text>
+</svg>

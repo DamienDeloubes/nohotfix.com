@@ -1,0 +1,65 @@
+{
+  "name": "@releasepilot/domain-identity",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "default": "./dist/ui/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "vitest run --passWithNoTests",
+    "format": "prettier --write . --ignore-path ../../../.prettierignore"
+  },
+  "dependencies": {
+    "@releasepilot/shared": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@releasepilot/eslint-config": "workspace:*",
+    "@releasepilot/prettier-config": "workspace:*",
+    "@releasepilot/typescript-config": "workspace:*",
+    "@types/react": "^19.2.14",
+    "react-hook-form": "^7.54.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "@releasepilot/api-client": "workspace:*",
+    "@hookform/resolvers": "^3.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-hook-form": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@releasepilot/api-client": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "@tanstack/react-query": {
+      "optional": true
+    },
+    "@hookform/resolvers": {
+      "optional": true
+    },
+    "react-hook-form": {
+      "optional": true
+    }
+  }
+}

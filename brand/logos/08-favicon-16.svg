@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="none">
+  <rect width="16" height="16" fill="#FFFFFF"/>
+  <!-- Diagonal only — 24x24 coords ×(16/24)=×0.6667 -->
+  <!-- (18,4) → (12, 2.667) ; (6,18) → (4, 12) -->
+  <line x1="12" y1="2.667" x2="4" y2="12" stroke="#0036FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
