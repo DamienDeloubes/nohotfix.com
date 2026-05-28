@@ -1,9 +1,10 @@
 # NoHotfix.com — Website Design Vision
 
 **Product**: NoHotfix
-**Version**: 2.0
+**Version**: 3.0
 **Date**: 2026-05-28
-**Source documents**: docs/design/brand-identity.md, docs/marketing/positioning.md, docs/marketing/messaging.md, docs/product-vision.md, docs/marketing/sitemap.md
+**Scope**: Whole site. Phases 1–11 define the design system and the homepage; **Phase 12** extends the design direction to every other page in the sitemap.
+**Source documents**: docs/design/brand-identity.md, docs/marketing/positioning.md, docs/marketing/messaging.md, docs/product-vision.md, docs/marketing/sitemap.md (rebuilt v1.0), docs/design/pages/homepage.md
 
 ---
 
@@ -247,6 +248,146 @@ No:
 
 ---
 
+## Phase 12: Per-Page Design Vision
+
+Phases 1–11 are the law for every page. This phase says how each page *applies* them — its layout
+archetype, which product-UI fragment carries the argument, its section rhythm, and any page-specific
+treatment. The homepage is fully specified in [pages/homepage.md](pages/homepage.md); content and IA
+for every page live in [../marketing/sitemap.md](../marketing/sitemap.md). No page introduces a new
+color, motion token, or component recipe — only the existing system.
+
+**Shared across all pages** (do not re-specify per page): sticky glass-on-scroll nav (Phase 7,
+Phase 10); section label pills (Phase 10); the closing "Ship it once." final-CTA section (Phase 10);
+the always-dark footer (Phase 10); section entrances (Phase 6); 120–160px section padding (Phase 9);
+one visual hero per section; product UI as the only imagery (Phase 8, Phase 11).
+
+### How It Works
+
+- **Archetype**: a single vertical spine — a six-step sequence read top to bottom, one step per
+  band, alternating text-left / fragment-right (desktop) and stacked (mobile). A thin connector
+  between bands carries the eye; it is structural, not decorative.
+- **Product-UI fragments**: each step shows the real mechanic for that step — playbook editor (1),
+  a spec with artifact requirements (2), the run snapshot (3), the **blocked pass action** (4, the
+  page's single most important crop), the go/no-go decision screen (5), the sealed read-only record
+  (6). Geist Mono on all data; Inter on labels; light-mode screenshot treatment from Phase 4.
+- **Rhythm**: the six steps are the whole page — resist adding feature-grid or comparison detours.
+  Step 4 (blocked) and step 6 (sealed) are the two moments that should feel heaviest.
+- **Page-specific**: the sealed-record fragment in step 6 has no idle animation (Phase 6 — sealed
+  things don't move).
+
+### Platform
+
+- **Archetype**: a confident narrative page, not a conversion funnel. Three movements: *the wedge
+  today* (three solid cards in the standard recipe) → *the thesis* (a typographic, full-width
+  moment built from the product-vision pyramid) → *where we're going* (roadmap).
+- **The thesis moment**: render the "expand from the wedge" pyramid as type and hairline rules on
+  the warm-white ground — no gradient blobs, no illustration. This is the one place the platform
+  story is allowed to be expansive; keep it typographic and quiet (Phase 9 discipline).
+- **Roadmap treatment — the critical rule**: the "Where we're going" items must read as *future*
+  and be visually subordinate to the shipped wedge above them:
+  - Use the **Slate** neutral family, not orange. No orange CTA, no orange accent, no fire anywhere
+    near roadmap cards (orange marks shipped, actionable things — Phase 3).
+  - Each card carries a small Slate "On the roadmap · not yet available" pill (the section-label
+    pill recipe from Phase 10, recolored to Slate-400 — `rgba(148,163,184,…)`).
+  - **No live product screenshots** for roadmap items — a wireframe-weight line sketch or an icon at
+    most. Shipped features get real UI; unshipped ones never do. This is what keeps the page honest.
+  - Lower contrast, lighter weight, more whitespace than the wedge cards. The eye should land on
+    "today" first and read "next" as clearly secondary.
+- **Rhythm**: wedge cards solid and full-contrast; thesis airy; roadmap muted. The guardrail
+  statement is a single quiet typographic line, not a card.
+
+### Features — Artifact Enforcement / Go/No-Go / Audit Trail
+
+These three share one archetype so they feel like a set:
+
+- **Archetype**: a declarative hero statement (the pillar headline in DM Sans 700) over a large,
+  faithful product-UI crop of the mechanic, then 3–5 explanatory bands beneath. The screenshot is
+  the argument; the copy annotates it.
+- **Per page, the hero fragment**:
+  - *Artifact Enforcement* → the blocked pass action + the six-type requirement panel. The disabled
+    button must read instantly as "blocked," not "loading" (Phase 8).
+  - *Go/No-Go* → the decision screen: spec list sorted by severity, the Go / No-Go action, the
+    justification field. Status badges in their exact semantic colors (Go-500, NoGo-500 yellow,
+    Error-500 crimson, Slate In-Progress).
+  - *Audit Trail* → the sealed read-only record with inline artifacts; a "sealed" lock state badge
+    that does **not** animate (Phase 6).
+- **Page-specific**: Artifact Enforcement may use the one allowed bento moment (Phase 9) for the
+  six-type grid. Audit Trail leans slightly more compliance-formal — show the print-to-PDF layout as
+  a "certified document" in Geist Mono.
+
+### Use Cases — QA Teams / Compliance / Engineering Managers
+
+These three share one archetype, differentiated only by persona accent (Phase 10):
+
+- **Archetype**: pain-first. Open with a tight list of the persona's real pains, then matched
+  pairs (pain → the mechanic that resolves it), then one supporting product fragment, a reserved
+  testimonial slot, and the shared final CTA.
+- **Persona accent** (the only color that varies between them — applied to the section pill, the
+  matched-pair markers, and a top accent stripe on the lead card; never as a background):
+  - QA Teams → **Orange-500**
+  - Engineering Managers → **Go-500** green
+  - Compliance Teams → **Slate-400**
+- **Product-UI fragment per page**: QA Teams → the spec library + enforcement; Engineering Managers
+  → the go/no-go screen + the team dashboard of active runs; Compliance → the sealed record + the
+  print-to-PDF document.
+- **Page-specific**: the testimonial slot renders as a quiet bordered card (standard recipe) with
+  placeholder text until a real quote exists — never a fabricated quote, never a stock face
+  (Phase 11).
+
+### Pricing
+
+- **Archetype**: a section headline ("The enforcement triad is free. Seats are what you pay for."),
+  a four-tier table, an honest feature-gate matrix, then FAQ accordions.
+- **Card treatment**: four solid cards (Free, Growth, Scale, Enterprise). **Growth** is the
+  recommended tier — distinguished by a `rgba(234,107,4,0.10)` warm tint and a small orange "Most
+  popular" pill, **not** an orange background (Phase 3, restraint by volume). Exactly one orange CTA
+  is dominant on the page; the others are quieter secondary buttons.
+- **Matrix**: reuse the comparison-table treatment (Phase 10) — a very subtle warm wash on the
+  NoHotfix-relevant column; competitor-style "advisory" rows stay neutral. Be honest that the triad
+  is on every tier.
+- **Page-specific**: early-bird vs standard price shown together with standard anchored and early
+  bird framed as the saving. FAQ accordions use the standard card border, no glass.
+
+### About
+
+- **Archetype**: a quiet, narrow, mostly-typographic page — the most text-forward surface on the
+  site. Generous measure, DM Sans for the few headings, Inter for prose.
+- **Imagery**: none, or — if ever — a single restrained natural-light workspace photo per Phase 11
+  (not recommended for v1). No stock faces, no team grid with avatars unless real.
+- **Page-specific**: the "internal-validation principle" gets a single emphasized typographic
+  moment; everything else stays plain so that one line lands.
+
+### Changelog
+
+- **Archetype**: a reverse-chronological list. Each entry: a date in Geist Mono, a DM Sans 600
+  title, Inter body. Hairline rules between entries; no cards needed.
+- **Page-specific**: an optional small Go-500 / Slate dot to tag entry type (shipped / fixed) —
+  the only color. A single-field subscribe input at the top or bottom (standard input recipe). Never
+  ship this page empty.
+
+### Blog
+
+- **Archetype**: a post list (title, date, reading time, one-line description) on the warm-white
+  ground; hairline separation, not heavy cards. Article pages: a single readable column, DM Sans
+  headings, Inter body, Geist Mono for any code or product output.
+- **Page-specific**: one contextual orange inline-CTA block per article (standard card, warm tint),
+  never more — restraint by volume (Phase 3).
+
+### Contact
+
+- **Archetype**: a short, calm form on a narrow column. Minimal fields (name, work email, company,
+  team size, one free-text field), standard input recipe, one orange submit button.
+- **Page-specific**: a quiet "just want to try it? Start free — no call required" secondary path so
+  the page never feels like a wall. No false-urgency copy or motion.
+
+### Legal — Privacy & Terms
+
+- **Archetype**: plain document layout — single narrow column, Inter body, clear heading hierarchy,
+  generous line height. No marketing chrome beyond the shared nav and footer.
+- **Page-specific**: these are not design showcases. Legibility and currency over styling.
+
+---
+
 ## Reference Brands: What We're Borrowing (and From Where)
 
 | Reference | Specific element we're referencing | What NOT to take |
@@ -281,3 +422,4 @@ What we are NOT referencing: Notion's light-and-airy consumer aesthetic, GitHub'
 |---|---|---|
 | 1.0 | 2026-05-28 | Initial vision document — orange/dark system, replaces implied blue direction |
 | 2.0 | 2026-05-28 | v5 rebrand — light-first + co-equal dark; DM Sans display; glass model A (nav/overlays only, solid cards); hero headline "The release gate that holds."; orange-on-white guidance; reference brands updated (Cloudflare/Linear/Stripe, retire todesktop); warm near-black replaces violet base |
+| 3.0 | 2026-05-28 | Whole-site extension. Added Phase 12 — Per-Page Design Vision (archetype, product-UI fragment, rhythm, treatment) for every non-homepage page; defined the platform-page roadmap treatment (Slate, no orange, no live screenshots for unshipped items) to keep the hybrid framing honest; repointed source reference to the rebuilt sitemap v1.0 |
