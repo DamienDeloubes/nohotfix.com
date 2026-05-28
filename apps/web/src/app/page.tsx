@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import { ComparisonTable } from '@/components/ComparisonTable';
 import { FinalCTA } from '@/components/FinalCTA';
 import { Footer } from '@/components/Footer';
@@ -9,7 +11,7 @@ import { PricingSummary } from '@/components/PricingSummary';
 import { ThreeGuarantees } from '@/components/ThreeGuarantees';
 import { WhoItsFor } from '@/components/WhoItsFor';
 
-export default function HomePage() {
+export default function HomePage(): ReactElement {
   return (
     <>
       {/* Page gradient background */}

@@ -1,4 +1,6 @@
-export default function TermsPage() {
+import type { ReactElement } from 'react';
+
+export default function TermsPage(): ReactElement {
   return (
     <main>
       <h1>Terms of Service</h1>

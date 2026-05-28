@@ -1,6 +1,6 @@
 # Pricing Model — NoHotfix.com
 
-_Last updated: 2026-03-08 (rebranded 2026-03-11)_
+_Last updated: 2026-05-28_
 
 ---
 
@@ -130,7 +130,7 @@ No per-seat overage on any tier. Hitting the seat ceiling means upgrading to the
 
 **The upgrade trigger for Free**: the moment the user wants to invite a second person. This is the most natural collaboration threshold in any team tool.
 
-**Why the free tier is structured this way**: the free tier is a solo evaluation lane, not a team product. A single-seat limit means it cannot serve as a long-term free alternative to Growth for a real team. It is a discovery tool. The enforcement mechanics — artifact gating, go/no-go, immutability — are fully present because experiencing them is the entire point. A watered-down free tier that hides the core differentiators defeats the purpose. Nothing slips through on even a solo evaluation run.
+**Why the free tier is structured this way**: the free tier is a solo evaluation lane, not a team product. A single-seat limit means it cannot serve as a long-term free alternative to Growth for a real team. It is a discovery tool. The enforcement mechanics — artifact gating, go/no-go, immutability — are fully present because experiencing them is the entire point. A watered-down free tier that hides the core differentiators defeats the purpose. The gate holds even on a solo evaluation run.
 
 ---
 
@@ -159,7 +159,7 @@ No per-seat overage on any tier. Hitting the seat ceiling means upgrading to the
 - Email notifications
 - Standard support (email, 3-day SLA)
 
-**The upgrade trigger for Growth**: the team grows past 10 seats, or they need compliance-grade features (audit-format PDF export, viewer role for auditors, formal SLA).
+**The upgrade trigger for Growth**: the team grows past 10 seats, or they need Scale's compliance-operations features (viewer role for auditors, retention controls, formal SLA). Audit-grade export is **not** a Growth → Scale trigger — it is included in Growth (see Decision 12).
 
 ---
 
@@ -187,7 +187,9 @@ No per-seat overage on any tier. Hitting the seat ceiling means upgrading to the
 - Email notifications
 - Standard support (email, 1-day SLA)
 
-**The upgrade trigger for Scale**: the team exceeds 40 seats, OR they require SSO/SAML, OR they need multi-organisation management, OR they need custom data residency.
+At launch, Scale's concrete differentiation over Growth is seats (40 vs 10) and faster support. Its compliance-*operations* layer — a viewer role for auditors, retention policy controls, and a formal uptime SLA — is post-launch and becomes the Scale differentiator as it ships (see the Compliance Operations Features section). Audit-grade export is **not** a Scale gate; it is included from Growth (Decision 12).
+
+**The upgrade trigger for Scale**: the team exceeds 40 seats, OR they need the compliance-operations layer (auditor viewer role, retention controls, SLA), OR they require SSO/SAML, OR they need multi-organisation management, OR they need custom data residency.
 
 ---
 
@@ -229,15 +231,19 @@ The free tier has exactly two limits. Both are structural rather than artificial
 | Seats  | 1 (owner only, no invitations) | Collaboration is what makes the product valuable at team scale. 1 seat means the product is useful for self-evaluation; the moment you want someone else involved, you need a paid plan. This is not an artificial gate — it maps directly to when value multiplies. |
 | Export | None                           | Export is for compliance and team records. A single-user evaluation has no export use case.                                                                                                                                                                          |
 
-### Compliance and Governance Features (Scale and Enterprise Only)
+### Compliance Operations Features (Scale and Enterprise Only)
 
-These features are meaningful only to buyers with active compliance requirements. Including them on lower tiers adds interface complexity without value for the majority of users.
+Audit-grade export is **not** gated here — it is available from Growth (see Decision 12). The Scale-only features are the compliance *operations* layer: meaningful only to buyers running an active compliance programme, and adding interface complexity without value for the majority of users. These are post-launch builds; they define the Scale compliance story as they ship.
 
-| Feature                                    | Scale | Enterprise | Rationale                                                                                                                                                                        |
-| ------------------------------------------ | ----- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Audit-grade export (PDF / structured JSON) | Yes   | Yes        | Compliance requires formatted, machine-readable reports — not raw CSV. CSV on Growth handles ad-hoc needs; formal audit reports are a distinct compliance programme requirement. |
+| Feature                      | Scale | Enterprise | Rationale                                                                                                                                                  |
+| ---------------------------- | ----- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Viewer role (auditor access) | Yes   | Yes        | Read-only access for auditors without consuming an editing seat or risking the immutable record. Only relevant once external auditors are in the picture. |
+| Retention policy controls    | Yes   | Yes        | Configurable retention is a formal compliance-programme requirement, not an everyday need.                                                                |
+| Uptime SLA                   | Yes   | Yes        | A contractual guarantee procurement asks for; irrelevant to smaller self-serve teams.                                                                     |
 
-More features regarding compliancy like Retention policy controls, Uptime SLA audit, SSO/SAML will come after launch of initial product
+SSO/SAML is gated at Enterprise (see Decision 10).
+
+**Next-phase vision capabilities (not yet priced):** UAT authoring + external partner sign-off and the Jira integration (see [product-vision.md](../product-vision.md)) are likely paid-tier differentiators — current lean is Scale/Enterprise — but their packaging is deliberately undecided until the features are specified and there is real demand signal. Do not bake them into the tier matrix yet.
 
 ### Features by Tier
 
@@ -286,7 +292,7 @@ $49/month is below the threshold that requires approval at virtually any startup
 
 **Argument 3: The price signals that the product is real.**
 
-A $9/month or $19/month price point for a governance tool signals a side project, not infrastructure. QA leads and VP Engineering at regulated companies are not looking for cheap tooling — they are looking for credible tooling. A price point that is clearly "under $50 but not embarrassingly cheap" is part of the product's credibility signal. Underpricing in B2B does not attract more customers — it attracts worse customers who negotiate harder and churn faster. Sharp eyes and a sharp price.
+A $9/month or $19/month price point for a governance tool signals a side project, not infrastructure. QA leads and VP Engineering at regulated companies are not looking for cheap tooling — they are looking for credible tooling. A price point that is clearly "under $50 but not embarrassingly cheap" is part of the product's credibility signal. Underpricing in B2B does not attract more customers — it attracts worse customers who negotiate harder and churn faster. A serious tool carries a serious price.
 
 ### What to Do Instead of Lowering the Price
 
@@ -320,7 +326,7 @@ At $49/month for up to 10 seats, NoHotfix is $4.90/seat — cheaper per seat tha
 
 ### The Free Tier Signup and First Session
 
-**Goal**: Get the free user to hit the artifact gate within their first session. Not a demo — the actual gate on a real playbook they have started to build. That experience is the product's best sales argument. Nothing slips through, not even on a solo first run.
+**Goal**: Get the free user to hit the artifact gate within their first session. Not a demo — the actual gate on a real playbook they have started to build. That experience is the product's best sales argument. The gate holds, even on a solo first run.
 
 Free tier onboarding flow:
 
@@ -345,7 +351,7 @@ Seats are the only capacity limit on paid plans. The UX at the boundary should s
 
 **Seat limit hit on Growth**: When an Admin tries to invite an 11th member, show a modal:
 
-> "Your Growth plan includes 10 seats. Invite [name] by upgrading to Scale — up to 40 members, plus audit-grade export and compliance features."
+> "Your Growth plan includes 10 seats. Invite [name] by upgrading to Scale — up to 40 members, plus the compliance-operations layer (auditor viewer role, retention controls, SLA)."
 > [Upgrade to Scale] [Not now]
 
 **Approaching the seat ceiling**: Show an ambient seat usage indicator ("8 of 10 seats") on the members page and billing settings page. At 80% utilisation, surface a soft callout:
@@ -362,12 +368,12 @@ During early bird phase, the modal should mention the early bird pricing. After 
 
 Do not show this prompt anywhere other than the invite flow. The free tier should never feel like it is constantly pushing the user to pay.
 
-### Export Feature as a Compliance Upsell
+### Export and the Compliance Upsell
 
-CSV export is included in Growth. Audit-grade PDF export is Scale-only. In the run history export dropdown, show both options — with the PDF option labelled "Scale" and revealing an upgrade prompt when clicked:
+Audit-grade export (PDF / structured JSON) and CSV are both included from **Growth** — a QA lead facing their first audit request should never be blocked from exporting evidence by a tier wall (see Decision 12). Free has no export.
 
-> "Audit-grade PDF export is available on the Scale plan. Scale includes structured run reports, a viewer role for auditors, and compliance retention controls."
-> [Upgrade to Scale] [Export as CSV instead]
+- **Free → Growth at the export moment**: when a Free user opens the export action, surface that export (like team collaboration) requires a paid plan, leading into the invite/upgrade flow.
+- **Growth → Scale compliance-ops upsell**: the Scale upgrade prompt fires around the *operations* features an audit programme needs — a viewer role for auditors, retention controls, and a formal SLA — not around export. Surface it where those needs appear (e.g. when inviting an auditor who should have read-only access), not on the export button.
 
 Surface the compliance need at the moment the user expresses it. Do not hide the option.
 
@@ -400,7 +406,7 @@ The pricing page must:
 
 1. Display three columns — Free, Growth (highlighted as "Most popular"), Scale — with Enterprise as a callout below
 2. Free column should be visually present but clearly subordinate — it is a starting point, not a competing product
-3. During early bird phase: show early bird prices prominently with a "First 100 orgs" badge and the standard price struck through. After early bird cap: show standard prices with optional annual toggle
+3. During early bird phase: anchor on the **standard** price as the reference number and frame the early bird as a saving, not as "the price" — e.g. "$49/mo · $29 early bird for the first 100 orgs (save $20/mo)" with a "First 100 orgs" badge and the standard price struck through. Use this standard-price-first framing consistently across the page, emails, onboarding, and any community mentions so word-of-mouth never settles on $29 as the baseline (see Risk 5). After early bird cap: show standard prices with optional annual toggle
 4. CTAs: Free column → "Start for free" (no credit card); Growth/Scale columns → "Upgrade" (goes to Stripe Checkout)
 5. Prominently state "No credit card required" under the Free CTA
 6. Enterprise callout: "More than 40 seats, need SSO, or have compliance procurement requirements? [Talk to us]"
@@ -424,10 +430,10 @@ The seat usage indicator ("X of Y seats") creates ambient awareness so the upgra
 
 ### Lever 3: Compliance Trigger (Growth to Scale)
 
-When a Growth-tier team begins a SOC2 audit or receives a compliance questionnaire from a prospect, they immediately need what only Scale provides: audit-grade PDF export, viewer role, and formal SLA. This trigger is external, but the product can make the gap visible before the urgency hits:
+When a Growth-tier team begins a SOC2 audit or receives a compliance questionnaire from a prospect, they immediately need the compliance-operations layer only Scale provides: a viewer role for auditors, retention controls, and a formal SLA. (Audit-grade export itself is already in Growth — see Decision 12 — so the export need does not by itself drive this upgrade; the *operations* of running an audit do.) This trigger is external, but the product can make the gap visible before the urgency hits:
 
-- Surface the Scale feature set as visible-but-locked options on the run history export dropdown
-- Include a compliance-framed lifecycle email at month 3: "Are your runs ready for an auditor? Scale includes audit-grade PDF export and a viewer role for compliance reviews."
+- Surface the Scale compliance-operations features as visible-but-locked options where they belong (e.g. an "invite auditor (viewer)" affordance on the members page)
+- Include a compliance-framed lifecycle email at month 3: "Running an audit? Scale adds a viewer role for auditors, retention controls, and an uptime SLA."
 
 ### Lever 4: Annual Upgrade at Renewal
 
@@ -585,6 +591,14 @@ $49/month is below the approval threshold at virtually every startup and Series 
 
 **Reasoning**: Teams that pause for budget or structural reasons and return later should find their audit history intact. Deleting data on expiry removes the most compelling reason to reactivate. Storage cost for inactive orgs is negligible — artifact files in DigitalOcean Spaces can be tiered to cold storage after 90 days of org inactivity.
 
+### Decision 12: Audit-Grade Export at Growth, Not Scale
+
+**Decision**: Audit-grade export (PDF / structured JSON) is included from the Growth tier, alongside CSV. Scale's compliance differentiation is the operations layer — viewer role for auditors, retention policy controls, and a formal uptime SLA — not export.
+
+**Reasoning**: The Growth-tier buyer (a QA lead at a Series A–B company) is precisely the person who receives their first SOC2 audit request. Gating export at Scale forces a ~3x jump ($49 → $149) to unlock a single feature at the exact moment of high-intent compliance urgency — the worst possible place to create friction. That is a churn trigger, not an upgrade trigger. Export is a compliance *output* every paying team can need; the genuinely Scale-appropriate features are the compliance *operations* a formal programme runs (auditor access, retention, SLA). This also resolves an internal inconsistency in earlier drafts, which listed export as both a Growth inclusion and a Scale-only feature.
+
+**Trade-off accepted**: Scale's launch differentiation is effectively seats (40) plus faster support until the compliance-operations features ship post-launch. Acceptable — Scale is an anchor and a headroom tier at launch; its compliance-ops story strengthens as those features roll out.
+
 ---
 
 ## Validation Plan
@@ -676,7 +690,7 @@ The qualitative exit reason at the invite gate is the most important data point 
 
 **Scenario**: The first 20 paying customers are all on Growth. Scale gets no signups in the first 3 months.
 
-**Mitigation**: Expected and acceptable. Scale is aspirational positioning and a pricing anchor that makes Growth feel like rational value. If Scale remains empty after 6 months, consider whether its compliance features (audit export, viewer role) should be pulled into Growth to strengthen the Growth conversion argument — then introduce a new Scale tier at a higher price point with the next tier of features (SSO-adjacent, multi-team management, etc.).
+**Mitigation**: Expected and acceptable. Scale is aspirational positioning and a pricing anchor that makes Growth feel like rational value. If Scale remains empty after 6 months, consider whether its compliance-operations features (viewer role, retention controls) should be pulled into Growth to strengthen the Growth conversion argument — then introduce a new Scale tier at a higher price point with the next tier of features (SSO-adjacent, multi-team management, etc.).
 
 ---
 

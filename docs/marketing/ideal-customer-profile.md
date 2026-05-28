@@ -1,7 +1,7 @@
 # Ideal Customer Profile — NoHotfix.com
 
 **Product**: NoHotfix
-**Date generated**: 2026-03-10 (rebranded 2026-03-11)
+**Date generated**: 2026-05-28
 **Source documents**: docs/project-summary.md, docs/project-scope.md, docs/marketing/competitors.md, docs/marketing/pricing-model.md
 
 ---
@@ -70,14 +70,15 @@ These companies have grown past the "five engineers ship anything" phase but hav
 - **Context**: Multiple product teams, each running their own release process inconsistently
 - **Pain**: A central QA/release team wants to standardize but has no tooling to enforce it across teams
 - **Buying motion**: Top-down — a QA director or VP Engineering mandates adoption
-- **Consideration**: Longer sales cycle, higher ACV, requires SSO and audit export features (v2)
+- **Consideration**: Longer sales cycle, higher ACV, requires SSO and the Scale/Enterprise compliance-operations features (viewer role, retention controls, SLA — post-launch)
 
 ### Software Development Agencies
 
 - **Context**: Agencies delivering software to clients who require formal QA sign-off before handoff
-- **Pain**: Clients ask "how do I know this was tested?" — agencies need a professional, shareable artifact
+- **Pain**: Clients ask "how do I know this was tested?" — and "is this what we agreed to?" Agencies need a professional, shareable artifact and a way for the client to actually accept the work
 - **Buying motion**: A single delivery lead or account manager champions the tool
-- **Consideration**: Per-project pricing may fit better; client-facing read-only run sharing would be high value
+- **Consideration**: Per-project pricing may fit better; client-facing read-only run sharing is high value today
+- **Strong fit for the next-phase vision**: The **UAT authoring + external partner sign-off** capability (see [product-vision.md](../product-vision.md)) is built for exactly this motion — the agency authors acceptance tests, sends the client a link to walk them and sign off, and the sign-off becomes the record. This is the clearest expansion-driven ICP and a reason to watch agency demand closely even pre-build.
 
 ---
 

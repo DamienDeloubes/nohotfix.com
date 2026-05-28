@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+@import '@nohotfix/design-tokens/tokens.css';
+@import '@fontsource-variable/dm-sans/index.css';
+@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/geist-mono/index.css';

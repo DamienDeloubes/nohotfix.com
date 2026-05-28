@@ -1,8 +1,8 @@
 # Marketing Website Sitemap — NoHotfix.com
 
 **Product**: NoHotfix
-**Date generated**: 2026-03-10 (rebranded 2026-03-11)
-**Source documents**: docs/project-summary.md, docs/project-scope.md, docs/marketing/pricing-model.md, docs/marketing/competitors.md, docs/marketing/ideal-customer-profile.md, docs/design/brand-identity.md, docs/marketing/positioning.md, docs/marketing/messaging.md
+**Date generated**: 2026-05-28
+**Source documents**: docs/project-summary.md, docs/project-scope.md, docs/product-vision.md, docs/marketing/pricing-model.md, docs/marketing/competitors.md, docs/marketing/ideal-customer-profile.md, docs/design/brand-identity.md, docs/marketing/positioning.md, docs/marketing/messaging.md
 
 ---
 
@@ -28,7 +28,8 @@
 
 **What is NOT included and why**:
 
-- No integrations page — NoHotfix has no integrations in v1. Adding a page for planned integrations is aspirational marketing that creates expectation debt.
+- No integrations page (yet) — NoHotfix has no integrations in v1. Adding a page for planned integrations is aspirational marketing that creates expectation debt. **Add a `/features/jira` page when Jira integration ships** (next-phase vision — see [product-vision.md](../product-vision.md)). Until it ships, do not market it.
+- No UAT page (yet) — same reasoning. **Add a `/features/uat` page when UAT authoring + partner sign-off ships.** Until then it lives only in the vision docs, not on the marketing site.
 - No case studies page — no customers yet. Add when the first 2–3 customer stories exist.
 - No security page — address security questions inline on pricing and in docs. A standalone security page at this stage over-engineers the concern without delivering credibility.
 - No careers page — pre-PMF. Add when hiring.
@@ -48,13 +49,13 @@
 | **URL path**            | `/`                                                                                                                                                       |
 | **Purpose**             | Convert engineering managers and QA leads who land on the site into free signups by making the enforcement mechanic viscerally clear in the first scroll. |
 | **Target audience**     | QA Lead (primary), VP Engineering (secondary)                                                                                                             |
-| **Primary message**     | Watch every release land. Your team can't mark a spec as passed without the evidence.                                                                     |
+| **Primary message**     | Ship it once. Your team can't mark a spec as passed without the evidence — so it's caught before production, not by your users.                            |
 | **Supporting messages** | The go/no-go decision is permanent. The audit record writes itself. Start free — no credit card, no time limit on the Free plan.                          |
 | **Conversion goal**     | Start free (sign up for Free tier)                                                                                                                        |
 
 **Key sections (in order)**:
 
-1. **Hero** — Headline: "Watch every release land." Subheadline: 2-sentence supporting value prop (enforcement mechanic + audit record). Primary CTA: "Start free". Secondary CTA: "See how it works". Dark-mode full-bleed background with a product screenshot or animated UI showing a blocked pass action (spec with missing artifact = pass button disabled).
+1. **Hero** — Headline: "Ship it once." Subheadline: 2-sentence supporting value prop (enforcement mechanic + audit record). Primary CTA: "Start free". Secondary CTA: "See how it works". Dark-mode full-bleed background with a product screenshot or animated UI showing a blocked pass action (spec with missing artifact = pass button disabled).
 
 2. **Pain hook** — A Notion checklist screenshot or minimal illustration with caption: "This can be checked off without evidence. NoHotfix can't." No body copy. The contrast does the work.
 
@@ -242,7 +243,7 @@
 
 4. **Relevant compliance frameworks** — SOC2, PCI-DSS, HIPAA-adjacent: brief, non-prescriptive statement about how NoHotfix evidence maps to testing evidence requirements in these frameworks. Do not make compliance certification claims NoHotfix hasn't earned.
 
-5. **Scale tier for compliance teams** — Link to pricing. Scale tier includes audit-grade export (PDF / structured JSON), up to 40 seats, 1-day SLA.
+5. **Plans for compliance teams** — Link to pricing. Audit-grade export (PDF / structured JSON) is available from the Growth tier. Scale adds the compliance-operations layer — a viewer role for auditors, retention controls, and a formal uptime SLA — plus up to 40 seats and faster support.
 
 6. **CTA** — "Book a demo" (primary) and "Start free" (secondary).
 
@@ -268,7 +269,7 @@
 
 3. **Accountability without micromanagement** — The artifact enforcement mechanic holds testers accountable without requiring the manager to chase them. The process enforces itself.
 
-4. **Team-level visibility** — Dashboard shows active runs across the team. Run history is filterable. The VP Engineering has an overhead view of the state of any run at any time.
+4. **Team-level visibility** — Dashboard shows active runs across the team. Run history is filterable. The VP Engineering has a single consolidated view of the state of any run at any time.
 
 5. **CTA** — "Start free" → sign up.
 
@@ -283,14 +284,14 @@
 | **Purpose**             | Convert visitors who are ready to evaluate commitment — by making the pricing model simple, the free tier compelling, and the upgrade triggers clear.                                  |
 | **Target audience**     | All three personas (at different conversion readiness levels)                                                                                                                          |
 | **Primary message**     | Start free. Pay when you invite your team.                                                                                                                                             |
-| **Supporting messages** | Flat monthly fee per team — no per-seat overage. Early bird pricing for the first 100 organisations, locked for life. The enforcement triad is available on every tier including Free. |
+| **Supporting messages** | Seat-banded tiers with a permanent Free tier — no per-seat overage (hit a tier's seat ceiling and you upgrade). Early bird pricing for the first 100 organisations, locked for life. The enforcement triad is available on every tier including Free. |
 | **Conversion goal**     | Start free (Free tier) / Start free and upgrade (Growth / Scale)                                                                                                                       |
 
 **Key sections (in order)**:
 
 1. **Tier table** — Three tiers (Free, Growth, Scale) plus Enterprise. Each tier: price, seat count, key inclusions, CTA. Early bird pricing prominently labeled. Annual discount available on Growth and Scale (post-early-bird).
 
-2. **Feature gate matrix** — What each tier includes. Keep it honest: the enforcement triad (artifact gating, go/no-go decision, run immutability) is present on every tier including Free. The differentiators between tiers are seats and audit-grade export.
+2. **Feature gate matrix** — What each tier includes. Keep it honest: the enforcement triad (artifact gating, go/no-go decision, run immutability) is present on every tier including Free. The differentiators between tiers are seats and — at Scale — the compliance-operations layer (viewer role, retention controls, uptime SLA). Audit-grade export is available from Growth.
 
 3. **FAQ — "Why is Free actually free?"** — Explain: Free is a solo evaluation lane. Full enforcement mechanics, 1 seat. The moment you want to invite a teammate, you move to Growth.
 

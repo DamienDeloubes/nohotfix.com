@@ -4,7 +4,7 @@ _NoHotfix.com — Last updated: 2026-03-11_
 
 ## Project Identity
 
-- **Product**: NoHotfix.com — release readiness platform (rebranded from NoHotfix.com on 2026-03-11)
+- **Product**: NoHotfix.com — release readiness platform broadening to the QA/test tooling choice (see docs/product-vision.md)
 - **Domain**: nohotfix.com (acquired). Auth subdomain: auth.nohotfix.com. AuthKit subdomain: nohotfix.authkit.app.
 - **Core question it answers**: "Are we ready to ship, and can we prove it?"
 - **Core defensibility triad**: artifact enforcement + go/no-go gate + run immutability

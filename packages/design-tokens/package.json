@@ -1,0 +1,35 @@
+{
+  "name": "@nohotfix/design-tokens",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "./src/tokens.ts",
+  "types": "./src/tokens.ts",
+  "exports": {
+    ".": {
+      "types": "./src/tokens.ts",
+      "default": "./src/tokens.ts"
+    },
+    "./tokens": {
+      "types": "./src/tokens.ts",
+      "default": "./src/tokens.ts"
+    },
+    "./tokens.css": "./src/tokens.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write . --ignore-path ../../.prettierignore"
+  },
+  "devDependencies": {
+    "@nohotfix/eslint-config": "workspace:*",
+    "@nohotfix/prettier-config": "workspace:*",
+    "@nohotfix/typescript-config": "workspace:*",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

@@ -43,8 +43,8 @@ export function ConfirmDialog({ open, onConfirm, onCancel, title, description, c
 
   if (!open) return null;
 
-  const confirmColor = variant === 'destructive' ? '#dc2626' : '#2563eb';
-  const confirmHoverColor = variant === 'destructive' ? '#b91c1c' : '#1d4ed8';
+  const confirmColor = variant === 'destructive' ? 'var(--color-error-600)' : 'var(--color-primary)';
+  const confirmHoverColor = variant === 'destructive' ? 'var(--color-error-700)' : 'var(--color-primary-hover)';
 
   return (
     <dialog
@@ -52,17 +52,19 @@ export function ConfirmDialog({ open, onConfirm, onCancel, title, description, c
       onCancel={handleCancel}
       onClick={handleBackdropClick}
       style={{
-        border: 'none',
-        borderRadius: '8px',
+        border: '1px solid var(--border-default)',
+        borderRadius: '10px',
         padding: 0,
         maxWidth: '440px',
         width: '90vw',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+        background: 'var(--bg-card-elevated)',
+        color: 'var(--text-primary)',
+        boxShadow: 'var(--shadow-modal)',
       }}
     >
       <div style={{ padding: '24px' }}>
-        <h2 style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 600, color: '#111827' }}>{title}</h2>
-        <p style={{ margin: '0 0 24px', fontSize: '14px', lineHeight: '1.5', color: '#6b7280' }}>{description}</p>
+        <h2 style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 600, color: 'var(--text-primary)' }}>{title}</h2>
+        <p style={{ margin: '0 0 24px', fontSize: '14px', lineHeight: '1.5', color: 'var(--text-secondary)' }}>{description}</p>
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
           <button
             type="button"
@@ -71,10 +73,10 @@ export function ConfirmDialog({ open, onConfirm, onCancel, title, description, c
               padding: '8px 16px',
               fontSize: '14px',
               fontWeight: 500,
-              border: '1px solid #d1d5db',
-              borderRadius: '6px',
-              background: '#fff',
-              color: '#374151',
+              border: '1px solid var(--border-default)',
+              borderRadius: '10px',
+              background: 'var(--bg-card)',
+              color: 'var(--text-primary)',
               cursor: 'pointer',
             }}
           >
@@ -88,7 +90,7 @@ export function ConfirmDialog({ open, onConfirm, onCancel, title, description, c
               fontSize: '14px',
               fontWeight: 500,
               border: 'none',
-              borderRadius: '6px',
+              borderRadius: '10px',
               background: confirmColor,
               color: '#fff',
               cursor: 'pointer',

@@ -152,7 +152,6 @@ export const RESERVED_SLUGS: ReadonlySet<string> = new Set([
   'pro',
   'production',
   'release',
-  'release-pilot',
   'nohotfix',
   'nohotfix-io',
   'staging',

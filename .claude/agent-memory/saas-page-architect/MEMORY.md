@@ -18,7 +18,7 @@
 
 ### Product Core (never omit from any page design)
 
-- **Tagline**: "Release with proof."
+- **Tagline**: "Ship it once." (catch every issue before production does)
 - **Core triad**: Artifact-gated execution + Go/no-go decision gate + Run immutability
 - **Strongest differentiator**: The pass action is BLOCKED (not warned, not reminded — blocked) until artifacts attached
 - **Second differentiator**: Run immutability — record cannot be edited after go/no-go decision

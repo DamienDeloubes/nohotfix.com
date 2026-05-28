@@ -5,7 +5,7 @@ import { Subheader } from './Subheader.js';
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen layout bg-[var(--surface-page)]">
+    <div className="min-h-screen layout bg-[var(--bg-page)]">
       <Header />
       <Subheader />
 

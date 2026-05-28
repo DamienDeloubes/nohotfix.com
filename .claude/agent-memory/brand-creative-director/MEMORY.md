@@ -1,44 +1,46 @@
 # Brand Creative Director — Memory Index
 
-## Status
+## Source of truth
 
-Brand identity: FINALIZED v2.0 (2026-03-11, rebrand to NoHotfix). Do not re-open decided items unless user explicitly requests.
+The brand is defined in the repo docs — treat these as canonical and read them before
+acting; do not rely on remembered brand specs:
 
-## Product Name
+- `docs/design/brand-identity.md`, `docs/marketing/messaging.md`,
+  `docs/marketing/positioning.md`, `docs/product-vision.md`.
 
-**NoHotfix** (rebranded from NoHotfix on 2026-03-11)
-Domain: nohotfix.com | Auth: nohotfix.authkit.app
+See [[brand-identity]] for a quick pointer + anchors.
 
-## Key Decisions (quick reference)
+## Quick anchors — v5.0 (CANONICAL)
 
-- Tagline: "Watch every release land." — locked
-- Logo: The Strike (dominant diagonal 40-45° upper-right to lower-left + 2 left-aligned horizontal bars below; 3px/2.5px rounded strokes; not a literal bird)
-- Wordmark: "Release" Inter 400 + "Hawk" Inter 700, +0.01em tracking
-- Primary blue: #0036FF (not Tailwind blue-600 — higher saturation, electric)
-- Base background: #0D0920 (dark navy, ToDesktop-adjacent)
-- No-Go: Amber #F59E0B | Go: Emerald #00CC80 | Error: Red #EF4444
-- Display font: Aeonik Pro (marketing/hero only) | UI: Inter | Mono: Geist Mono
-- Visual mode: Dark-dominant, glassmorphism adopted from todesktop.com
-- No illustrations, no buzzwords
-- Hawk vocabulary: permitted with discipline — anchor phrases only, never in UI labels
-
-## Personality Traits (priority order)
-
-1. Precise 2. Grounded 3. Watchful 4. Vigilant 5. Quietly Opinionated
-
-## Approved Hawk Anchor Phrases
-
-"Sharp eyes on every release" / "Nothing slips through" / "Locked on" / "Clear sight" / "Watch every release land"
-Use in: hero copy, section intros, email subject lines only. Never in UI labels or error messages.
-
-## Full Brand Identity
-
-See: brand-identity.md — contains all hex codes, CSS tokens, glass recipes, shadow system,
-animation guidelines, type scale, logo spec (The Strike), component principles, hawk vocabulary rules.
+- Product: **NoHotfix** · Domain: nohotfix.com · Tagline: **"Ship it once."**
+- Hero headline (marketing): **"The release gate that holds."**
+- Vocabulary: ship it once · caught before production · no surprises in prod · proof before you ship
+- Light CTA orange `#EA6B04` (Orange-600); light inline link `#9A3F05` (Orange-800, AA on `#FAFAFA`)
+- Dark primary orange `#F97316` (Orange-500); fire gradient `#FF8D28 → #FF0000` (logo only)
+- Light bg `#FAFAFA`; dark bg `#111110` (warm near-black, replaces retired `#0D0920` violet)
+- Display: **DM Sans** 600–700 (replaces unlicensed Aeonik Pro) · UI: Inter · Mono: Geist Mono
+- Glass model A: nav + overlays only (both themes); cards SOLID both themes
+- Go `#00CC80`; No-Go yellow `#EAB308`; Error crimson `#F43F5E`; logo: unchanged
+- Blue `#0036FF` RETIRED. Violet base palette RETIRED.
+- Token file: `packages/design-tokens/src/tokens.css` (authoritative)
 
 ## User Preferences
 
 - Wants sparring / opinionated dialogue, not diplomatic hedging
-- Rejected: indigo palette, hexagon logo, checkmark-plane hybrid, cartoonish bird references
-- Approved: pure blue, amber no-go, geometric strike mark, no-illustration stance, disciplined hawk vocabulary
-- Reference site locked: todesktop.com
+- Rejected: indigo palette, hexagon logo, checkmark-plane hybrid, cartoonish/mascot references
+- Rejected: blue `#0036FF` direction; violet base palette; dark-dominant as the only mode
+- Approved: orange as brand color, fire-in-the-"o" logo, light-first + co-equal dark, DM Sans display
+- Reference sites (v5): Cloudflare / Linear / Stripe (todesktop retired as primary reference)
+
+## Key decisions made (v5.0, 2026-05-28)
+
+Supersedes v4. Canonical docs updated: brand-identity.md v5.0, website-vision.md v2.0, pages/homepage.md v2.0.
+- Light-first + co-equal dark; OS `prefers-color-scheme` drives default; light = no `dark` class
+- Violet Base palette retired; replaced by Surface scale (light) and Dark scale (dark)
+- Light bg `#FAFAFA`; light cards `#FFFFFF`; dark bg `#111110`; dark cards `#1E1D1B` (solid)
+- Light primary: `#EA6B04` CTA; `#9A3F05` inline links. Dark primary: `#F97316` unchanged
+- Display: Aeonik Pro → DM Sans (free/OFL). 700 hero, 600 H1/H2. H2 face: Inter→DM Sans on marketing
+- Glass model A: backdrop-filter on nav/overlays only; cards solid in both themes
+- `--ease-page` added (`cubic-bezier(0.4,0,0.2,1)`); `--duration-deliberate` 450ms→400ms
+- Semantic colors, Inter, Geist Mono, logo, fire gradient: unchanged
+- Rebrand proposal files (`docs/design/rebrand-proposal/`) are superseded — read-only reference

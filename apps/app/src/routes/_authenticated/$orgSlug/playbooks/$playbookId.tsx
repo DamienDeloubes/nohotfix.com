@@ -129,9 +129,9 @@ function PlaybookDetailPage() {
               border: 'none',
               cursor: 'pointer',
               fontWeight: activeTab === t ? 600 : 400,
-              color: activeTab === t ? '#2563eb' : '#6b7280',
+              color: activeTab === t ? 'var(--color-primary)' : 'var(--text-muted)',
               fontSize: '0.875rem',
-              borderBottom: activeTab === t ? '2px solid #2563eb' : '2px solid transparent',
+              borderBottom: activeTab === t ? '2px solid var(--color-primary)' : '2px solid transparent',
               marginBottom: '-1px',
               textTransform: 'capitalize',
             }}

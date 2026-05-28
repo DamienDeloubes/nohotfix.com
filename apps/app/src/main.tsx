@@ -1,3 +1,5 @@
+import '@nohotfix/design-tokens/tokens.css';
+import '@fontsource-variable/dm-sans';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/geist-mono';
 import './app.css';

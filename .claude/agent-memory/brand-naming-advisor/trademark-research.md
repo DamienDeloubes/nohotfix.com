@@ -59,10 +59,9 @@
 - nohotfix.net: ECONNREFUSED — no active product.
 - GitHub: ONE archived repository — Aquilio/nohotfix (archived Aug 2019, read-only). A GitHub App that auto-created PRs when dependencies updated. The app itself has been removed. Aquilio (aquil.io) has CLOSED operations.
 - USPTO/EUIPO: No confirmed trademark registrations (JavaScript-rendered interfaces limit definitive search; professional search recommended)
-- Web search (Bing): No active software products using "NoHotfix" or "Release Hawk" found
+- Web search (Bing): No active software products using "NoHotfix" found
 - G2/ProductHunt: No listings accessible (403 errors), but no other evidence of active products
 - npm: Unable to confirm (403), but no evidence of packages in other searches
-- No DevOps or release management SaaS tools using "Hawk" branding found
 
 ### Key Risk Factor: nohotfix.com Casino Affiliate Site
 

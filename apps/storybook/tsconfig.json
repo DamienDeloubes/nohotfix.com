@@ -1,0 +1,10 @@
+{
+  "extends": "@nohotfix/typescript-config/react.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", ".storybook"],
+  "exclude": ["node_modules", "dist", "storybook-static"]
+}

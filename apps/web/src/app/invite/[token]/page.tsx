@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
@@ -12,7 +14,11 @@ interface ValidateResponse {
   orgName?: string;
 }
 
-export default async function InvitePage({ params }: { params: Promise<{ token: string }> }) {
+export default async function InvitePage({
+  params,
+}: {
+  params: Promise<{ token: string }>;
+}): Promise<ReactElement> {
   const { token } = await params;
 
   let result: ValidateResponse;
@@ -53,7 +59,7 @@ export default async function InvitePage({ params }: { params: Promise<{ token: 
             <p style={{ color: '#6b7280' }}>This invite link is no longer valid. It may have been revoked or the link is incorrect.</p>
           </>
         )}
-        <a href="/" style={{ display: 'inline-block', marginTop: '1.5rem', color: '#2563eb', textDecoration: 'underline' }}>
+        <a href="/" style={{ display: 'inline-block', marginTop: '1.5rem', color: 'var(--text-link)', textDecoration: 'underline' }}>
           Go to NoHotfix
         </a>
       </div>

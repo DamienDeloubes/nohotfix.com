@@ -1,8 +1,9 @@
 # Homepage — NoHotfix.com
 
 **URL**: `/`
-**Design inspiration**: [todesktop.com](https://www.todesktop.com/) — dark-dominant, glassmorphism, premium micro-interactions
-**Last updated**: 2026-03-10
+**Version**: 2.0
+**Last updated**: 2026-05-28
+**Design reference**: Cloudflare (light-first confidence), Linear (card discipline), Stripe (screenshot-as-argument). Glass model A per brand-identity.md — nav/overlays only, solid cards both themes.
 
 ---
 
@@ -18,7 +19,7 @@ The page is not a feature catalog. It is an argument. The argument is: the tools
 
 - **Primary**: QA Lead / Senior QA Engineer who owns the release process but controls none of its enforcement. Has experienced at least one of: a tester skipping a spec, a compliance audit where they reconstructed evidence manually, a production incident traced to an untested scenario.
 - **Secondary**: VP Engineering making the go/no-go call on a Slack thread, who has no formal record of what was known before they shipped.
-- **Entry points**: Direct / word of mouth, LinkedIn ad targeting, SEO ("release checklist software", "pre-deployment checklist tool"), engineering community referrals (Rands, Ministry of Testing).
+- **Entry points**: Direct / word of mouth, LinkedIn ad targeting, SEO ("release checklist software", "pre-deployment checklist tool"), engineering community referrals.
 
 ---
 
@@ -29,20 +30,22 @@ The page is not a feature catalog. It is an argument. The argument is: the tools
 
 ---
 
-## Page Gradient Treatment (Global)
+## Theme and Background Treatment
 
-The page background is a single continuous vertical gradient that transitions across all sections. This is the defining visual characteristic, matching the ToDesktop reference:
+The page is light-first. Light mode is the canonical design state for the marketing site. Dark mode is equally designed and switches automatically from `prefers-color-scheme`.
 
-```
-Top (Hero): #F0F4FF — very light blue-white, near white
-↓ (Pain Hook / Guarantees): Transitions through light blue-gray
-↓ (How It Works): Transitions to medium indigo (#1A1640 / Base-700)
-↓ (Who It's For): Deep purple (#130F2E / Base-800)
-↓ (Comparison): Deep blue-purple (#0D0920 / Base-900)
-↓ (Pricing / Final CTA): Near-black (#080412 / Base-950)
-```
+### Light mode — clean page background
 
-Implementation: A single `<div>` behind all sections with `background: linear-gradient(to bottom, #EEF2FF 0%, #C7D2FE 8%, #818CF8 20%, #1A1640 40%, #130F2E 60%, #0D0920 80%, #080412 100%)`. All sections sit on top of this with transparent or semi-transparent backgrounds. This creates the sensation of descending deeper into the product's world as you scroll.
+Page background: `var(--bg-page)` — `#FAFAFA`. No vertical gradient. Sections differentiate via card surfaces, section-alt backgrounds, and whitespace — not a dark descent. The warm-white ground lets orange CTAs read as architectural details, not alarms.
+
+Section alternation (light):
+- Default sections: `#FAFAFA` background, transparent
+- Alternate sections (e.g. Three Guarantees, Pricing): `var(--bg-section-alt)` — `#F4F4F5`
+- Feature cluster / bento cards: `#FFFFFF` with 1px `rgba(0,0,0,0.08)` border
+
+### Dark mode — warm near-black
+
+Page background: `var(--bg-page)` — `#111110` (Dark-900, warm near-black; replaces retired violet `#0D0920`). No vertical gradient. Cards sit on `#1E1D1B` (solid, no glass). Nav and modals use frosted glass per the nav recipe in brand-identity.md.
 
 ---
 
@@ -52,731 +55,442 @@ Implementation: A single `<div>` behind all sections with `background: linear-gr
 
 ### Section 1: Sticky Navigation
 
-**Purpose**: Persistent wayfinding and always-available conversion trigger. Must be present on every scroll position.
+**Purpose**: Persistent wayfinding and always-available conversion trigger.
 
 **Layout**: Full-width, fixed, `position: sticky; top: 0; z-index: 100`
 
 **Content Elements**:
 
-- **Left**: NoHotfix logo mark (three descending horizontal lines in `#0036FF`) + wordmark ("Release" in Inter 400, "Hawk" in Inter 700). Total height: 24px. Links to `/`.
-- **Center**: Navigation links — "How It Works" (`/how-it-works`), "Features" (dropdown trigger: Artifact Enforcement, Go/No-Go Gate, Audit Trail), "Use Cases" (dropdown trigger: QA Teams, Compliance, Engineering Managers), "Pricing" (`/pricing`), "Changelog" (`/changelog`)
-- **Right**: Two items — "Log in" (text link, `rgba(255,255,255,0.70)`) + "Start free" (primary blue button, `#0036FF`)
+- **Left**: NoHotfix logo wordmark — fire-in-the-o mark. Light mode: letterforms `#111110`, fire glyph gradient (`#FF8D28 → #FF0000`). Dark mode: letterforms `#FFFFFF`, fire glyph gradient. Height: 24px. Links to `/`. On page load, the fire glyph kindles once (600ms opacity/gradient-reveal from flat `#E05C00` to full gradient, `ease-out`) — fires once per session, never repeats.
+- **Center**: Navigation links — "How It Works" (`/how-it-works`), "Features" (dropdown), "Use Cases" (dropdown), "Pricing" (`/pricing`), "Changelog" (`/changelog`)
+- **Right**: "Log in" (text link) + "Start free" (primary orange button)
 
 **Scroll Transform Behavior**:
 
-- Default state (0–39px scroll): `background: transparent; border-bottom: 1px solid transparent`
-- Scrolled state (40px+): Triggers `nav.scrolled`:
-  - `background: rgba(13, 9, 32, 0.80)`
-  - `border-bottom: 1px solid rgba(255,255,255,0.08)`
-  - `backdrop-filter: blur(16px) saturate(180%)`
-  - `transition: all 450ms cubic-bezier(0.6, 0.6, 0, 1)`
+- Default state (0–39px): `background: transparent; border-bottom: 1px solid transparent`
+- Scrolled state (40px+):
+  - Light mode: `background: rgba(250, 250, 250, 0.90); border-bottom: 1px solid rgba(0,0,0,0.08); backdrop-filter: blur(12px); transition: all 300ms cubic-bezier(0.4,0,0.2,1)`
+  - Dark mode: `background: rgba(17, 17, 16, 0.85); border-bottom: 1px solid rgba(255,255,255,0.07); backdrop-filter: blur(12px); transition: all 300ms cubic-bezier(0.4,0,0.2,1)`
 
-**Dropdown Menus**: Glass card treatment on open — `background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; backdrop-filter: blur(20px)`. Each dropdown item has an icon (linear, 2px stroke, 20px), a label, and a one-line description.
+**Dropdown Menus**: Glass overlay treatment — `background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; backdrop-filter: blur(20px)`. Each item: icon (linear, 2px stroke, 20px), label, one-line description.
+
+**Button styles**:
+
+- "Start free" — light: `background: #EA6B04; color: #FFFFFF; padding: 8px 20px; border-radius: 10px; font: Inter 500 14px`. Hover: `background: #C05A00`. Dark: `background: #F97316`. Hover: `background: #FB923C`.
+- "Log in" — Inter 400 14px, `rgba(0,0,0,0.55)` light / `rgba(255,255,255,0.70)` dark. Hover: full opacity, 150ms.
 
 **Responsive behavior**:
-
-- Below 957px: Center nav links collapse into hamburger icon (right side, before CTA button)
-- Below 576px: "Start free" button text shortens to "Start free", "Log in" hidden (available inside hamburger menu)
-
-**Button Styles**:
-
-- "Start free": `background: #0036FF; color: white; padding: 8px 20px; border-radius: 10px; font: Inter 500 14px`. Has subtle inset white highlight: `box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset`. On hover: inset opacity increases to 0.24, color shifts to `#3361FF`, transition 150ms.
-- "Log in": No background, just text at 70% white opacity. On hover: 100% opacity, 150ms.
+- Below 957px: center nav links collapse to hamburger
+- Below 576px: "Log in" hidden (available in hamburger menu)
 
 ---
 
 ### Section 2: Hero
 
-**Purpose**: State the transformation in 5 seconds. The visitor must immediately understand: (1) what NoHotfix is, (2) why it matters to them, (3) what to do next. No ambiguity. No metaphors. No hedging.
+**Purpose**: State the transformation in 5 seconds. Immediate understanding of: (1) what NoHotfix is, (2) why it matters, (3) what to do next.
 
-**Layout**: Centered single-column, full-viewport-height (`min-height: 100vh`), content vertically centered with slight upward bias (60/40 split). Light background at the top of the page gradient — this section sits over the lightest part of the gradient.
+**Layout**: Centered single-column, full-viewport-height (`min-height: 100vh`), content vertically centered with slight upward bias (60/40 split).
 
-**Color Treatment**: This section sits at the top of the gradient — near-white to light blue-indigo. Text is DARK (`#0F172A` for headlines, `#334155` for body) because this is the lightest section. This is a deliberate inversion of the ToDesktop pattern, which also opens light before going dark.
+**Color Treatment — light mode**: White/warm-white background. Text is dark (`#111110` for headline, `#52514c` for body). Orange is the accent — CTAs, focus elements, the logo fire glyph. No dark overlay, no gradient backdrop.
+
+**Color Treatment — dark mode**: `#111110` near-black. Text is light (`#F5F4F0` headline, `rgba(255,255,255,0.65)` body). Orange-500 for CTAs.
 
 **Content Elements**:
 
 **Pre-headline label** (above the main headline):
 
-- Small pill badge: `border: 1px solid rgba(0,54,255,0.30); background: rgba(0,54,255,0.08); color: #0036FF; border-radius: 9999px; padding: 4px 14px; font: Inter 500 13px`
-- Text: "Release readiness — built for engineering teams"
-- Animation: Fades in first, 600ms after page load, `ease-out`
+- Small pill badge
+- Light mode: `border: 1px solid rgba(234,107,4,0.30); background: rgba(234,107,4,0.10); color: #EA6B04; border-radius: 9999px; padding: 4px 14px; font: Inter 500 13px`
+- Dark mode: `border: 1px solid rgba(249,115,22,0.30); background: rgba(249,115,22,0.10); color: #F97316`
+- Text: "QA & release readiness — built for engineering teams"
+- Animation: fades in first, 600ms after page load, `ease-out`
 
 **Main Headline**:
 
-- Font: Aeonik Pro 500, 74px/84px, letter-spacing: -0.03em
-- Text: **"Watch every release land."**
-- Color: Text gradient — `background: linear-gradient(135deg, #0F172A 0%, #1e3a5f 50%, #0036FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent`
-- Animation: Loading shimmer sweeps across the text from left to right, 2.5s duration, fires once on load. After shimmer: text settles to final gradient state.
-- Mobile (below 576px): 46px/52px
+- Font: DM Sans 700, 74px/1.08, letter-spacing: -0.04em
+- Text: **"The release gate that holds."**
+- Light mode: `color: #111110` — solid near-black on warm white. The weight and face carry the authority; no text gradient needed.
+- Dark mode: optional warm-to-light gradient — `background: linear-gradient(135deg, #FFFFFF 0%, #FED7AA 60%, #F97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent`
+- Animation: fades in 300ms after pre-headline, 500ms `ease-out`. No shimmer in light mode (the dark headline on white is already high-contrast and deliberate). Dark mode may retain a single shimmer sweep (amber-white `rgba(255,220,150,0.35)`, 2.5s, fires once).
+- Mobile (below 576px): 46px/1.1
 
 **Sub-headline** (below main headline, 24px gap):
 
-- Font: Inter 400, 18px/28px, color: `#334155`
+- Font: Inter 400, 18px/1.6, color: `#52514c` (light) / `rgba(255,255,255,0.65)` (dark)
 - Text: **"Your team can't mark a spec as passed without the evidence. The go/no-go decision is permanent. The record writes itself."**
 - Max-width: 560px, centered
-- Animation: Fades in 150ms after headline, `opacity: 0 → 1`, 600ms `ease-out`
+- Animation: fades in 150ms after headline, 600ms `ease-out`
 
 **CTA Row** (below sub-headline, 40px gap):
 
-- Two buttons side by side, centered, 12px gap between
+- Two buttons, centered, 12px gap
 - **Primary button**: "Start free — no credit card"
-  - `background: #0036FF; color: white; padding: 14px 28px; border-radius: 10px; font: Inter 500 15px`
-  - Inset highlight: `box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 4px 16px rgba(0,54,255,0.40)`
-  - On hover: `background: #3361FF`, inset increases to 0.28, lift shadow increases, scale: 1.02, transition 300ms `ease-premium`
-  - Arrow icon (`→`) after text, shifts right 4px on hover, 300ms
+  - Light: `background: #EA6B04; color: #ffffff; padding: 14px 28px; border-radius: 10px; font: Inter 500 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(234,107,4,0.25)`
+  - Hover: `background: #C05A00`, shadow deepens, `transform: translateY(-1px)`, 150ms
+  - Dark: `background: #F97316`. Hover: `background: #FB923C`
+  - Arrow icon (`→`) after text, shifts right 4px on hover
 - **Secondary button**: "See how it works"
-  - `background: white; color: #0F172A; padding: 14px 28px; border-radius: 10px; font: Inter 500 15px; border: 1px solid rgba(0,0,0,0.12)`
-  - `box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)`
-  - On hover: `box-shadow` increases for lift, `border-color` shifts to `rgba(0,54,255,0.30)`, transition 300ms
+  - Light: `background: #FFFFFF; color: #111110; border: 1px solid rgba(0,0,0,0.12); padding: 14px 28px; border-radius: 10px; font: Inter 500 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.06)`
+  - Hover: `background: #F4F4F5`, border `rgba(0,0,0,0.18)`, 150ms
+  - Dark: `background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.14)`
   - Links to `/how-it-works`
-- Animation: Both buttons fade in 300ms after sub-headline, sliding up 12px as they fade in
+- Animation: both buttons fade in 300ms after sub-headline, sliding up 12px
 
 **Social proof micro-signal** (below CTAs, 24px gap):
 
-- Font: Inter 400 13px, color: `#64748B`
+- Font: Inter 400 13px
+- Light: `color: #78776f`
+- Dark: `color: #64748b`
 - Text: "Free tier available. No credit card required. Full enforcement on every plan."
-- Centered, no animation
 
 **Product Preview** (below CTAs block, 64px gap):
-This is the centerpiece visual element — equivalent to ToDesktop's animated terminal. It shows NoHotfix's core enforcement flow as a live UI simulation.
+
+This is the centerpiece visual element. A product UI screenshot or faithful simulation showing the enforcement mechanic.
 
 - **Container**: `max-width: 960px`, centered, `border-radius: 28px`
-- **Outer frame**: Decorative browser chrome strip at the top — `background: rgba(13,9,32,0.06); border: 1px solid rgba(0,0,0,0.10); border-radius: 28px; padding: 12px 16px 0`
-  - Three traffic-light dots (12px circles, `#EF4444`, `#F59E0B`, `#22C55E`)
-  - Fake URL bar centered: `nohotfix.com/runs/release-v2.4.1` in Geist Mono 12px, `rgba(0,0,0,0.40)` text on `rgba(0,0,0,0.06)` pill
-- **Inner UI simulation**: A faithful but simplified representation of the NoHotfix run execution view. Dark background (`#0D0920`) inside the browser frame.
+- **Light mode treatment**: Screenshot in a clean browser chrome strip. Outer frame: `background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 28px; padding: 12px 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06)`. No glow effect. The product UI screenshot sits inside on a white card surface.
+- **Dark mode treatment**: Glass chrome frame — `background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 28px; padding: 12px 16px 0; box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 24px 80px rgba(249,115,22,0.08)`. Three traffic-light dots. Fake URL bar in Geist Mono 12px.
+- **Inner UI simulation** (both themes): Three tabbed states — same content as before, now using v5 badge colors. In Progress: slate `#94A3B8` (dark) / `#475569` (light). Blue is retired.
 
-**UI Simulation Content** — Three tabbed states that auto-cycle (6s per tab) with manual override:
+**UI Simulation Content** — Three tabbed states that auto-cycle (6s per tab):
 
-Tab 1: "Execute specs"
+Tab 1: "Execute specs" — spec list with blocked pass button (artifact required). The key enforcement visual.
 
-- Shows a run execution view: spec list with 3 specs visible
-- Spec 1: "API authentication flow" — Status badge: PASSED (green). Artifact attached: a small thumbnail labeled "auth-screenshot.png"
-- Spec 2: "Payment gateway integration" — Status badge: IN PROGRESS (blue). Artifact requirement shown: "File upload required". Pass button state: DISABLED (grayed out, with tooltip "Upload required artifact to enable").
-  - This is the key enforcement visual: the pass button is visually blocked. A small lock icon or blocked indicator beside it.
-- Spec 3: "Error handling — 500 responses" — Status badge: PENDING (slate)
-- Annotation overlay: Small tooltip pointing to the disabled pass button, text: "Blocked — artifact required"
+Tab 2: "Go/No-Go decision" — decision review screen, Go/No-Go buttons, mandatory justification field.
 
-Tab 2: "Go/No-Go decision"
-
-- Shows the decision review screen
-- Header: "Release v2.4.1 — Go / No-Go Review"
-- Full spec list with outcomes — 2 passed (green badges), 1 failed (amber badge)
-- Failed spec has amber "Failed" badge and severity indicator
-- Go/No-Go action row: Two large buttons — "Ship it (Go)" (green, active) and "Hold (No-Go)" (amber)
-- A text field below: "Justification required for Go with failures" — partially filled in
-- Annotation: Small tooltip pointing to justification field: "Mandatory for Go with failures"
-
-Tab 3: "Immutable record"
-
-- Shows a completed, locked run in read-only state
-- Header: "Release v2.4.1" with a lock icon and "LOCKED" badge (green)
-- Decision block: "Go decision by Alex Chen · March 8, 2026 at 14:32 UTC"
-- Justification block (Geist Mono 13px): "Minor auth token edge case in low-traffic scenario. Mitigation: server-side session invalidation on next request. Accepted risk."
-- Spec list below in read-only view, artifacts rendered inline (thumbnail images visible)
-- Annotation: "The record is sealed. Nothing in it can be changed."
+Tab 3: "Immutable record" — locked run in read-only state. Static — no animation (immutability is a fact, not a transition).
 
 **Tab Navigation**:
-
-- Three tab labels at the top of the UI frame: "Execute specs", "Go/No-Go", "Record"
-- Active tab: blue underline, Inter 500, white; inactive: Inter 400, `rgba(255,255,255,0.50)`
-- Auto-cycles every 6s. Manual click overrides and pauses auto-cycle.
-- Transition between tabs: fade out content (200ms) → swap content → fade in (300ms)
+- Light mode active tab: `#EA6B04` underline (2px), Inter 500, `#111110` text; inactive: Inter 400, `rgba(0,0,0,0.45)`
+- Dark mode: `#F97316` underline, Inter 500, white; inactive: `rgba(255,255,255,0.50)`
+- Auto-cycles every 6s. Manual click overrides.
 
 **Frame animation**:
+- On initial load: preview slides up from 24px below while fading in, 700ms after CTAs appear
+- Dark mode only: subtle pulsing glow on outer border — `0 24px 80px rgba(249,115,22,0.08)` breathing between 0.06–0.10, 4s infinite ease-in-out. Light mode: no glow — the shadow provides the presence.
 
-- On initial load, the product preview slides up from 24px below while fading in (700ms after the CTAs appear)
-- Subtle pulsing glow on the outer border: `box-shadow: 0 0 0 1px rgba(0,54,255,0.20), 0 24px 80px rgba(0,54,255,0.15)` that breathes (4s infinite ease-in-out) — pulse between 0.15 and 0.30 opacity on the glow
-
-**Decorative elements around the preview** (subtle, not competing with content):
-
-- Two small orbiting dots — abstract `border-radius: 50%` elements, 6px, `#0036FF` at 40% opacity, slowly orbiting the preview frame at different radii. One completes a revolution in 12s, the other in 18s. They are purely decorative, CSS `@keyframes rotate`.
-- Fade mask at the bottom of the hero section: `mask-image: linear-gradient(to bottom, black 70%, transparent 100%)` on the preview container — it dissolves softly into the next section
+**Decorative elements** (dark mode only):
+- Two small orbiting dots: 6px, `#F97316` at 40% opacity, CSS `@keyframes rotate`. 12s and 18s periods. These are not used in light mode — unnecessary against a white background.
 
 **Responsive behavior**:
-
-- Below 1040px: Preview max-width reduces to 100% with 32px horizontal padding
-- Below 768px: UI simulation tabs collapse to scroll-horizontal indicator pills rather than full labels; preview shows Tab 1 only, no auto-cycle
-- Below 576px: Product preview is still shown but at a reduced viewport scale (75% scale transform), so the key enforcement visual (blocked pass button) remains visible
+- Below 1040px: max-width reduces to 100%, 32px horizontal padding
+- Below 768px: tabs collapse to scroll-horizontal indicator pills; preview shows Tab 1 only
+- Below 576px: preview visible at 75% scale, blocked pass button remains legible
 
 ---
 
 ### Section 3: Pain Hook
 
-**Purpose**: Create the "yes, exactly that" recognition moment for the QA lead who has lived this. State the contrast (Notion vs. NoHotfix) in the most direct, economical language possible. No body copy — the juxtaposition does the work.
+**Purpose**: "Yes, exactly that" recognition moment for the QA lead.
 
-**Layout**: Centered, `max-width: 760px`, symmetric side-by-side comparison OR a before/after card pair. Background: transparent (sits over mid-gradient, transitioning from light to medium indigo).
+**Layout**: Centered, `max-width: 760px`, two-card contrast pair.
 
-**Color Treatment**: Section sits over the gradient transition from light blue to first indigo tones. Cards are white (for the "before" state) and glass-dark (for the "after" state).
+**Color Treatment (light)**: Page background `#FAFAFA`. Cards on `#FFFFFF` with `rgba(0,0,0,0.08)` borders. The "before" card uses `#F4F4F5` background — subtly depressed vs. the white NoHotfix card.
 
-**Content Elements**:
+**Color Treatment (dark)**: Surfaces stay on `#111110`. The "before" card uses `rgba(255,255,255,0.06)` for subtle lift.
 
 **Section label** (above cards):
-
-- Font: Inter 500 13px, `#0036FF`, all-caps, letter-spacing: +0.08em
+- Light mode: Inter 500 13px, `#EA6B04`, all-caps, letter-spacing: +0.08em
+- Dark mode: `#F97316`
 - Text: "THE PROBLEM WITH CHECKLISTS"
 
 **Two-card contrast layout**:
 
 **Left card — "The way it works now"**:
 
-- Background: `white; border: 1px solid rgba(0,0,0,0.10); border-radius: 20px; padding: 32px`
-- Contains a minimal representation of a Notion-style checkbox list:
-  - Three rows, each with a checkbox and spec label
-  - Checkboxes: two checked, one unchecked — but they are all visually identical; no enforcement signal
-  - Font: Inter 400 14px, `#334155`
-  - Row 1: ✅ "API authentication flow — passed"
-  - Row 2: ✅ "Payment gateway — passed"
-  - Row 3: ☐ "Error handling — not started"
-- Below the list, a subtle caption in Inter 400 13px `#94A3B8`:
-  - "Anyone can tick this. No evidence required."
-- Card has a slight gray-wash tint to signal "this is the problem" — not alarming, just muted and flat
-- Label above card: "Notion / Confluence checklist" in Inter 500 13px `#64748B`
+- Light: `background: #F4F4F5; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 32px`
+- Dark: `background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; padding: 32px`
+- Minimal Notion-style checkbox list (unchanged content). No top-edge highlight — flat, deliberately uninspiring (the "before" state).
+- Caption: "Anyone can tick this. No evidence required."
 
 **Right card — "NoHotfix"**:
 
-- Background: `rgba(13,9,32,1.0)` (fully dark), `border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; padding: 32px`
-- Contains the same three specs, but with the NoHotfix enforcement state:
-  - Row 1: Green "Passed" badge — artifact thumbnail shown inline (small 40x40 image preview)
-  - Row 2: Blue "In Progress" badge — pass button visible but DISABLED with lock icon
-  - Row 3: Slate "Pending" badge — pass button not yet reachable
-- Below the list, caption in Inter 400 13px `rgba(255,255,255,0.50)`:
-  - "The pass action is blocked. Not warned. Blocked."
-- Label above card: "NoHotfix" in Inter 500 13px `#6688FF`
+- Light: `background: #FFFFFF; border: 1px solid rgba(0,0,0,0.10); border-radius: 20px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)`
+- Dark: `background: #1E1D1B; border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; padding: 32px; box-shadow: 0 1px 0 rgba(255,255,255,0.09) inset, 0 4px 20px rgba(0,0,0,0.35)`
+- Label: "NoHotfix" — `#EA6B04` (light) / `#F97316` (dark), Inter 500 13px
+- Enforcement-state spec list with correct v5 badge colors
+- Caption: "The pass action is blocked. Not warned. Blocked."
 
-**Visual separator between cards**: A vertical dividing element (desktop only) — thin `1px` line `rgba(0,0,0,0.15)`, with the word "VS" in a centered pill: `background: white; border: 1px solid rgba(0,0,0,0.10); border-radius: 9999px; padding: 4px 12px; font: Inter 500 12px #334155`
+**VS separator**: thin `1px` rule + centered pill: `background: white (light) / #1E1D1B (dark); border: 1px solid rgba(0,0,0,0.10); border-radius: 9999px; padding: 4px 12px; font: Inter 500 12px`
 
-**Animations**:
+**Animations**: left card from -20px horizontal, right card from +20px, both fade in from `opacity: 0` on scroll-into-view, 500ms `ease-out`.
 
-- Cards enter with a subtle stagger: left card from -20px horizontal, right card from +20px horizontal. Both fade in from `opacity: 0`. Triggered on scroll-into-view. Duration: 500ms `ease-out`.
-- Right card (NoHotfix): the disabled pass button has a very subtle amber glow pulse on the lock icon — `box-shadow: 0 0 8px rgba(245,158,11,0.50)` breathing 2s infinite. This draws the eye to the enforcement signal.
-
-**Responsive behavior**:
-
-- Below 768px: Stack vertically, left card on top, right card below, "VS" separator becomes a horizontal divider between them
-- Below 576px: Cards reduce to 90% viewport width
+**Responsive**: below 768px stack vertically; "VS" becomes a horizontal divider.
 
 ---
 
-### Section 4: The Three Guarantees
+### Section 4: Mechanism Triad ("Three Guarantees")
 
-**Purpose**: State the three core product guarantees (the messaging pillars) as concrete facts. Each guarantee is paired with a product screenshot/UI demonstration. This is the first place the product's specific mechanics get named.
+**Purpose**: Three core product mechanics — concrete facts, not vague benefits.
 
-**Layout**: Three equal-width columns on desktop (bento grid approach), each containing a heading, a supporting sentence, and a product UI card visual. Max-width: 1100px, centered, 24px column gaps.
+**Layout**: Three equal-width columns, max-width: 1100px, centered, 24px gaps.
 
-**Color Treatment**: Section sits over medium indigo gradient (`#1A1640` / Base-700 territory). Cards are glass-dark with subtle inner lighting (the standard glass recipe). Section has a very subtle horizontal rule at the top: `1px solid rgba(255,255,255,0.06)`.
+**Color Treatment**: Section uses `var(--bg-section-alt)` — `#F4F4F5` (light) / `#161513` (dark). Subtle top rule: `1px solid rgba(0,0,0,0.06)` (light) / `rgba(255,255,255,0.06)` (dark).
 
 **Section Heading** (above cards):
 
-- Font: Aeonik Pro 500, 48px/52px, letter-spacing: -0.025em
-- Color: White (`#FFFFFF`)
+- Font: DM Sans 600, 48px/1.1, letter-spacing: -0.03em
+- Light: `color: #111110`. Dark: `color: #F5F4F0`
 - Text: **"Three things we guarantee every time."**
-- Centered, max-width: 600px
 
 **Section Sub-heading**:
 
-- Font: Inter 400, 18px/28px, color: `rgba(255,255,255,0.60)`
+- Font: Inter 400, 18px/1.6, color: `#52514c` (light) / `rgba(255,255,255,0.60)` (dark)
 - Text: "Not reminders. Not suggestions. Hard constraints built into the release workflow."
-- Centered, max-width: 520px, 16px below heading
 
-**Three guarantee cards**:
+**Three guarantee cards** — solid card recipe, both themes:
+
+- Light: `background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)`
+- Dark: `background: #1E1D1B; border: 1px solid rgba(255,255,255,0.09); border-radius: 20px; padding: 32px; box-shadow: 0 1px 0 rgba(255,255,255,0.09) inset, 0 4px 20px rgba(0,0,0,0.35)`
+- Hover (both themes): `transform: translateY(-4px)`, shadow-2, border brightens, 300ms `--ease-premium`
 
 **Card 1: Artifact Enforcement**
 
-- Glass card recipe: `background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; padding: 32px; backdrop-filter: blur(12px)`
-- Inset top-edge light: `box-shadow: 0 1px 0 rgba(255,255,255,0.10) inset, 0 4px 24px rgba(0,0,0,0.40)`
-- **Card icon**: A lock icon (linear, 2px stroke, 32px) in `#0036FF`, inside a `48px × 48px` circle with `background: rgba(0,54,255,0.12); border: 1px solid rgba(0,54,255,0.20); border-radius: 9999px`
-- **Card heading**: "Specs don't pass until the evidence does." — Inter 600 24px/32px, white, letter-spacing: -0.01em
-- **Card body**: "Every spec declares exactly what evidence is required — a file, a log, a measurement, a URL. The pass action is blocked until every requirement is satisfied. No exceptions, no workarounds." — Inter 400 15px/24px, `rgba(255,255,255,0.60)`
-- **Card visual**: A minimal UI fragment showing a spec row with a DISABLED pass button and a tooltip: "2 of 3 artifacts required". Blue lock icon on the button. The button has `opacity: 0.40`, cursor: not-allowed. Dimensions: full card width, `height: 140px`, sits below the body text, `border-radius: 12px`, `background: rgba(0,0,0,0.30)`
-- **Card link**: "Artifact enforcement →" in Inter 500 14px `#6688FF` at card bottom. On hover: color shifts to `#99AAFF`, underline appears, arrow shifts right 4px.
+- Icon: lock, 32px, `#EA6B04` (light) / `#F97316` (dark), in 48px circle with `rgba(234,107,4,0.12)` bg
+- Heading: "Specs don't pass until the evidence does." — Inter 600 24px/1.35, `#111110` (light) / white (dark)
+- Body: Inter 400 15px/1.6, `#52514c` (light) / `rgba(255,255,255,0.60)` (dark)
+- UI fragment: disabled pass button with lock icon; `opacity: 0.40`, `cursor: not-allowed`
+- Card link: "Artifact enforcement →" — `#EA6B04` (light) / `#FB923C` (dark), Inter 500 14px. Hover: `#C05A00` (light) / `#FDBA74` (dark), underline, arrow shifts right 4px.
 
 **Card 2: Go/No-Go Decision Gate**
 
-- Same glass card recipe as Card 1
-- **Card icon**: A flag icon in `#00CC80` (Go green), same circle treatment with `rgba(0,204,128,0.12)` background
-- **Card heading**: "One screen. One decision. The record is sealed." — same style
-- **Card body**: "The release decision is formal: role-gated to Admins, only available after every spec reaches a terminal state. A Go with failures requires mandatory written justification — permanently recorded." — same style
-- **Card visual**: A minimal representation of the Go/No-Go decision buttons — a green "Ship it (Go)" button and an amber "Hold (No-Go)" button side by side, with a spec severity list visible above them. Dimensions same as Card 1 visual.
-- **Card link**: "Go/No-Go gate →" in `#00CC80` at card bottom. On hover: `#00E591`.
+- Icon: flag, 32px, `#00CC80`, circle with `rgba(0,204,128,0.12)` bg
+- Heading: "One screen. One decision. The record is sealed."
+- Card link: `#00CC80`, hover `#00E591`
 
 **Card 3: Run Immutability**
 
-- Same glass card recipe
-- **Card icon**: A shield-check icon in `#99AAFF` (blue-200), same circle with `rgba(153,170,255,0.12)` background
-- **Card heading**: "After the decision, nothing changes." — same style
-- **Card body**: "Once the go/no-go decision is recorded, the run is locked — permanently. No edits, no overwrites. The record contains every artifact submitted, the decision with decider identity and timestamp, and any written justification. Send the URL to your auditor." — same style
-- **Card visual**: A read-only run record fragment — a large LOCKED status badge (green), a decision record block in Geist Mono showing the decision timestamp and decider name, and a small artifact grid showing locked thumbnails. Dimensions same as above.
-- **Card link**: "Immutable audit trail →" in `#99AAFF` at card bottom.
+- Icon: shield-check, 32px, `#94A3B8` (dark) / `#64748B` (light), circle with `rgba(148,163,184,0.12)` bg
+- Heading: "After the decision, nothing changes."
+- Card link: `#94A3B8` (dark) / `#64748B` (light), hover Slate-300 / Slate-500
 
 **Animations**:
+- Section heading: fade in + slide up 16px, 600ms `--ease-page`
+- Cards: stagger-fade-in — 0ms, 100ms, 200ms offsets, each slides up 20px, 600ms `--ease-page`
+- Card 1 UI fragment: faint orange lock glow breathing 2s infinite. Card 2 Go button: faint green pulse. Card 3 LOCKED badge: static — by design.
 
-- Section heading: fades in + slides up 16px on scroll-into-view, 600ms `ease-out`
-- Cards: stagger-fade-in — Card 1 at 0ms, Card 2 at 100ms, Card 3 at 200ms. Each slides up 20px while fading in. 600ms `ease-out`. Triggered when the section enters viewport.
-- Cards on hover: `transform: translateY(-4px)`, `box-shadow` increases from shadow-1 to shadow-2, `border-color` shifts to `rgba(255,255,255,0.18)`. Transition 300ms `ease-premium`.
-- Card visuals: The UI fragments within each card have a subtle idle animation. Card 1's disabled button has the amber lock glow. Card 2's Go button has a very faint green pulse. Card 3's LOCKED badge is static — by design (it is immutable, it does not animate).
-
-**Responsive behavior**:
-
-- Below 1040px: 3 columns remain but card padding reduces to 24px
-- Below 768px: Collapses to single column, cards stack vertically with 16px gap
-- Below 576px: Cards go full viewport width with 16px horizontal padding
+**Responsive**: below 768px → single column, 16px gap.
 
 ---
 
 ### Section 5: How It Works (Compressed)
 
-**Purpose**: Give the visitor a 30-second mental model of the complete core loop — enough to understand what they would be adopting, without the full detail of `/how-it-works`. This section should prompt a "that actually makes sense" reaction, not overwhelm. The link to `/how-it-works` exists for those who want depth.
+**Purpose**: 30-second mental model of the complete core loop.
 
-**Layout**: Centered, max-width: 900px. A horizontal 4-step flow on desktop (stepper/connector pattern). Below each step, a short label and one-sentence description.
-
-**Color Treatment**: Deep indigo / `Base-800` gradient territory. Section header in white. Step items in glass-card style, connected by thin lines.
+**Layout**: Centered, max-width: 900px. Horizontal 4-step flow on desktop.
 
 **Section Heading**:
 
-- Font: Aeonik Pro 500, 48px/52px, letter-spacing: -0.025em, white
+- Font: DM Sans 600, 48px/1.1, letter-spacing: -0.03em
 - Text: **"Build once. Enforce every time."**
-- Centered
 
-**Section Sub-heading**:
+**4-step horizontal stepper**: glass card nodes (nav-level glass treatment for the step cards, as elevated interactive elements) connected by dotted lines. Steps and content identical to v1. Step icons in `#FB923C` (Orange-400) steps 1–3, `#00CC80` step 4. Connector arrows `rgba(0,0,0,0.20)` (light) / `rgba(255,255,255,0.20)` (dark).
 
-- Font: Inter 400, 18px/28px, `rgba(255,255,255,0.60)`
-- Text: "The core loop, from playbook to permanent record."
+**Animations**: stagger-fade-in per node, 80ms delays. Connector lines draw left-to-right, `width: 0 → 100%`, 400ms `--ease-out`. Triggered 400ms after node animation.
 
-**4-step horizontal stepper**:
-
-Each step is a glass card node with an icon, a number label, a step name, and a one-sentence description. Nodes are connected by horizontal dotted lines (`border-top: 1px dashed rgba(255,255,255,0.15)`).
-
-**Step 1: Build a playbook**
-
-- Icon: Layers icon (linear, 2px stroke, 24px) in `#6688FF`
-- Step number: "01" in Inter 500 12px `rgba(255,255,255,0.30)`
-- Step name: "Build a playbook" in Inter 600 16px white
-- Description: "Create reusable specs in the Spec Library. Assemble them into playbook sections. Define exactly what evidence each spec requires." Inter 400 14px `rgba(255,255,255,0.55)`, max-width: 180px
-
-**Step 2: Start a run**
-
-- Icon: Play icon in `#6688FF`
-- Step number: "02"
-- Step name: "Start a run"
-- Description: "The playbook is frozen at start time — a snapshot. Template changes don't affect the in-progress run."
-
-**Step 3: Execute with evidence**
-
-- Icon: Upload icon in `#0036FF`
-- Step number: "03"
-- Step name: "Execute with evidence"
-- Description: "Testers work through specs. Each one requires the declared evidence before the pass action unlocks."
-
-**Step 4: Make the call**
-
-- Icon: Check-circle icon in `#00CC80`
-- Step number: "04"
-- Step name: "Make the call"
-- Description: "The Admin reviews every outcome, makes the go/no-go decision, and the run locks permanently."
-
-**Connector arrows**: Between each node, a thin arrow (`→`) in `rgba(255,255,255,0.20)`, centered vertically.
-
-**Link below stepper**:
-
-- "See the full walkthrough →" in Inter 500 15px `#6688FF`. Links to `/how-it-works`. On hover: color `#99AAFF`, arrow shifts right.
-
-**Animations**:
-
-- Stepper nodes enter with a stagger on scroll-into-view: each node delays 80ms. Fade in + slight scale up from `scale(0.96)`. 500ms `ease-spring`.
-- Connector lines "draw" from left to right after nodes appear — `width: 0 → 100%` on the connecting elements, 400ms `ease-out`, triggered 400ms after node animation.
-- On hover of individual nodes: `transform: translateY(-3px)`, transition 200ms. Connector to the next node gains a blue tint on the node's hover state.
-
-**Responsive behavior**:
-
-- Below 768px: Collapse to a vertical timeline layout. Steps stack vertically with a vertical dotted left-border instead of horizontal connectors.
-- Below 576px: Same vertical layout, full width, reduced padding.
+**Responsive**: below 768px → vertical timeline layout.
 
 ---
 
 ### Section 6: Who It's For
 
-**Purpose**: Make each persona feel directly addressed. Two cards — one for QA teams, one for compliance-driven teams — each with a specific pain statement and a direct navigation link to the relevant use case page.
+**Purpose**: Make each persona feel directly addressed.
 
-**Layout**: Two cards side by side, max-width: 880px, centered, 24px gap. Cards are larger and more content-rich than the guarantee cards — these are persona cards, not feature cards.
-
-**Color Treatment**: Dark, `Base-900` territory. Cards are elevated glass (slightly more opaque than standard). Each card has a subtle color accent from the persona's primary concern.
+**Layout**: Two cards, max-width: 880px, centered, 24px gap.
 
 **Section Heading**:
 
-- Font: Aeonik Pro 500, 48px/52px, white, centered
+- Font: DM Sans 600, 48px/1.1, white (`#111110` light)
 - Text: **"Built for the people who own the release."**
 
 **Card 1: For QA Teams**
 
-- Elevated glass recipe: `background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 40px; backdrop-filter: blur(16px)`
-- Blue top-edge accent: a 2px horizontal gradient stripe at the very top of the card: `background: linear-gradient(90deg, #0036FF, transparent)`, width: 60px, `border-radius: 9999px`
-- **Card label**: "For QA Teams" — Inter 500 13px `#6688FF`, all-caps, letter-spacing: +0.08em
-- **Card heading**: "Stop chasing testers for screenshots." — Inter 600 30px/38px, white, letter-spacing: -0.015em
-- **Card body**: "You own the release process but can't control whether testers actually do the work. NoHotfix makes it impossible to close a spec without the evidence. The process enforces itself." — Inter 400 16px/26px, `rgba(255,255,255,0.65)`
-- **Pain bullets** (3 items, below body):
-  - "Testers marking specs as passed without running them"
-  - "Screenshots uploaded after the fact — or not at all"
-  - "Evidence reconstruction before every compliance audit"
-  - Each prefixed with a subtle `×` in `rgba(245,158,11,0.70)` (amber — this is the "before" state, the pain)
-- **CTA link**: "For QA teams →" — Inter 600 15px, `#0036FF`. Links to `/use-cases/qa-teams`. On hover: `#3361FF`, arrow shifts right.
+- Same solid card recipe as guarantee cards.
+- Orange top-edge accent: 2px horizontal gradient stripe at card top — `background: linear-gradient(90deg, #EA6B04, transparent)` (light) / `linear-gradient(90deg, #F97316, transparent)` (dark), width: 60px
+- Pain bullets: `×` prefix in `rgba(234,107,4,0.60)` (light) / `rgba(249,115,22,0.60)` (dark)
+- CTA link: `#EA6B04` (light) / `#F97316` (dark)
 
 **Card 2: For Engineering Managers**
 
-- Same glass recipe, but with a green (`#00CC80`) top-edge accent
-- **Card label**: "For Engineering Managers" — Inter 500 13px `#00CC80`
-- **Card heading**: "Know your release is ready before you ship." — Inter 600 30px/38px, white
-- **Card body**: "The go/no-go call happens in a Slack thread. You trust the QA spreadsheet is current. If something goes wrong, there's no record of what you knew. NoHotfix gives you a formal decision interface and an immutable record of every call you make." — Inter 400 16px/26px, `rgba(255,255,255,0.65)`
-- **Pain bullets** (3 items):
-  - "Go/no-go decisions with no documented basis"
-  - "No single view of what has been tested and what failed"
-  - "Post-incident with no record of what was known before shipping"
-  - Each prefixed with `×` in `rgba(245,158,11,0.70)`
-- **CTA link**: "For engineering managers →" — Inter 600 15px, `#00CC80`. Links to `/use-cases/engineering-managers`.
+- Green top-edge accent: `linear-gradient(90deg, #00CC80, transparent)`
+- Pain bullets: same `×` treatment
+- CTA link: `#00CC80` both themes
 
-**Animations**:
-
-- Cards slide in from left and right respectively on scroll-into-view, 40px of travel, 600ms `ease-out`.
-- Pain bullets enter with a small stagger (80ms each) after the card is visible.
-- Hover: Standard lift effect — `translateY(-4px)`, shadow-2, 300ms.
-
-**Note**: A third persona card (Compliance Teams) is intentionally omitted here to keep the section scannable. The "Compliance" use case is surfaced in the comparison section below and in the Pricing section. Adding all three personas would dilute the impact.
-
-**Responsive behavior**:
-
-- Below 768px: Stack vertically, full width, 16px gap.
+**Animations**: slide in from left/right (40px travel), 600ms `ease-out`. Pain bullets stagger 80ms each.
 
 ---
 
 ### Section 7: Comparison Row
 
-**Purpose**: Dismantle the "we already have [X]" objection pre-emptively. Show that NoHotfix is not a checklist tool — it is the only tool that scores "yes" across all five release-critical dimensions. The comparison must be factually accurate and not gratuitously negative.
+**Purpose**: Dismantle the "we already have [X]" objection.
 
-**Layout**: Centered table, max-width: 900px. Five feature rows, five columns (Feature name + NoHotfix + Notion/Confluence + TestRail + Jira). Alternating subtle row backgrounds for readability.
+**Layout**: Centered table, max-width: 900px.
 
-**Color Treatment**: `Base-900` territory, dark. The table is a glass card container. NoHotfix's column has a subtle blue highlight treatment to draw the eye.
+**Color Treatment**:
+- Table container: `background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06)` (light)
+- Dark: `background: #1E1D1B; border: 1px solid rgba(255,255,255,0.09)`
 
 **Section Heading**:
 
-- Font: Aeonik Pro 500, 48px/52px, white, centered
+- Font: DM Sans 600, 48px/1.1, letter-spacing: -0.03em
 - Text: **"This isn't a checklist tool."**
 
-**Section Sub-heading**:
+**NoHotfix column highlight**: `rgba(234,107,4,0.06)` (light) / `rgba(249,115,22,0.06)` (dark) — very subtle warm wash.
 
-- Font: Inter 400, 18px/28px, `rgba(255,255,255,0.60)`
-- Text: "Five dimensions that separate release governance from release checklists."
+**Table header row** — NoHotfix column: `border-top: 3px solid #EA6B04` (light) / `3px solid #F97316` (dark).
 
-**Comparison table**:
+Check icons: `#00CC80`, 20px filled circle-check. Cross icons: `rgba(0,0,0,0.20)` (light) / `rgba(255,255,255,0.20)` (dark).
 
-Table container: `background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden`
+Row dividers: `1px solid rgba(0,0,0,0.06)` (light) / `rgba(255,255,255,0.06)` (dark).
 
-Column headers:
-| — | NoHotfix | Notion / Confluence | TestRail | Jira |
-|---|---|---|---|---|
+Feature rows (5 rows, unchanged content from v1).
 
-NoHotfix column header has a blue top-border highlight (3px, `#0036FF`) and slightly higher background opacity.
-
-Feature rows (5 rows):
-| Feature | NoHotfix | Notion | TestRail | Jira |
-|---|---|---|---|---|
-| **Artifact-gated pass action** | ✅ | ✗ | ✗ | ✗ |
-| **Role-gated go/no-go decision** | ✅ | ✗ | ✗ | ✗ |
-| **Immutable run records** | ✅ | ✗ | ✗ | ✗ |
-| **Release-centric UX** | ✅ | ✗ | ✗ | ✗ |
-| **Lightweight adoption (< 1 day)** | ✅ | ✅ | ✗ | ✗ |
-
-Check icons: `#00CC80` (Go green), 20px filled circle-check icon. Cross icons: `rgba(255,255,255,0.20)`, 20px × icon.
-
-Row styling: `border-top: 1px solid rgba(255,255,255,0.06)`. Feature name column: Inter 500 15px white. Other cells: centered icon only.
-NoHotfix column: `background: rgba(0,54,255,0.06)` — very subtle blue wash on just that column.
-
-**Footnote below table**:
-
-- Inter 400 13px `rgba(255,255,255,0.35)`
-- "TestRail and Zephyr manage test case libraries. Jira tracks tickets. Notion holds documents. NoHotfix enforces the release gate — and they can coexist."
-
-**Animations**:
-
-- Table container fades in on scroll-into-view, 600ms.
-- Checkmarks in the NoHotfix column animate in with `ease-spring` scale (from 0 to 1), staggered 60ms per row, 400ms each. This draws the eye down the NoHotfix column and creates a satisfying "all green" reveal.
-
-**Responsive behavior**:
-
-- Below 768px: TestRail and Jira columns collapse into a single "Other tools" column showing just Xs. NoHotfix and Notion columns remain.
-- Below 576px: Full table becomes a card-per-feature format — each feature as a card showing NoHotfix (yes) vs. others (no).
+**Animations**: table fades in on scroll-into-view. NoHotfix column checkmarks animate in with `--ease-spring`, staggered 60ms per row.
 
 ---
 
 ### Section 8: Pricing Summary
 
-**Purpose**: Show that getting started is free and the pricing is simple. This is not the full pricing page — it is a trust-building summary that removes the "how much does this cost?" barrier and directs interested visitors to the full pricing page.
+**Purpose**: Remove the "how much does this cost?" barrier.
 
-**Layout**: Centered, max-width: 960px. Three pricing tier cards side by side (Free, Growth, Scale), plus an Enterprise note below. CTA to `/pricing` for full detail.
-
-**Color Treatment**: `Base-950` territory, very dark. Cards are glass with progressively heavier borders to visually communicate tier levels.
+**Layout**: Centered, max-width: 960px. Three tier cards. Section uses `var(--bg-section-alt)`.
 
 **Section Heading**:
 
-- Font: Aeonik Pro 500, 48px/52px, white, centered
+- Font: DM Sans 600, 48px/1.1
 - Text: **"Start free. Pay when you invite your team."**
 
-**Section Sub-heading**:
+**Three tier cards** — solid card recipe, both themes.
 
-- Font: Inter 400 18px `rgba(255,255,255,0.60)`, centered
-- Text: "Flat monthly fee per team. No per-seat pricing. The enforcement triad is on every tier — including Free."
+**Free tier card**:
+- Light: `background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08)`
+- Dark: `background: #1E1D1B; border: 1px solid rgba(255,255,255,0.08)`
+- Price: "**$0**" — DM Sans 600 48px, `#111110` (light) / white (dark)
+- CTA: "Start free" — secondary button style
 
-**Early Bird Banner** (above the tier cards):
-
-- Pill badge: `background: rgba(0,204,128,0.12); border: 1px solid rgba(0,204,128,0.25); border-radius: 9999px; padding: 6px 16px; color: #00CC80; font: Inter 500 13px`
-- Text: "Early bird pricing — first 100 paying organisations. Locked for life."
-
-**Three tier cards**:
-
-**Free tier**:
-
-- `background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px`
-- **Tier label**: "Free" — Inter 500 14px `rgba(255,255,255,0.50)`, uppercase
-- **Price**: "$0" — Aeonik Pro 500 48px white
-- **Tagline**: "For solo evaluation" — Inter 400 14px `rgba(255,255,255,0.50)`
-- **Feature list** (3 items): Full enforcement triad / 1 seat / Unlimited playbooks + runs
-- **CTA**: "Start free" — secondary-light button style (white background, dark text, 14px Inter 500). Full width.
-- Each feature list item: `✓` in `#00CC80`, Inter 400 14px white
-
-**Growth tier** (featured/recommended):
-
-- `background: rgba(0,54,255,0.10); border: 1px solid rgba(0,54,255,0.30); border-radius: 20px; padding: 32px`
-- Blue top-border highlight: 3px `#0036FF` at top
-- **Tier label**: "Growth" with "Most popular" pill badge beside it: `background: rgba(0,54,255,0.20); color: #6688FF; border: 1px solid rgba(0,54,255,0.30)`
-- **Price**: "$29/mo" — Aeonik Pro 500 48px white; "early bird" in Inter 400 13px `#6688FF`
-- **Tagline**: "For QA teams" — Inter 400 14px `rgba(255,255,255,0.60)`
-- **Feature list** (4 items): Everything in Free / Up to 10 seats / Audit-grade export (PDF/JSON) / Email notifications
-- **CTA**: "Start free" — primary blue button, full width
-- Slightly elevated shadow: `box-shadow: 0 0 40px rgba(0,54,255,0.25)`
+**Growth tier** (featured):
+- Light: `background: rgba(234,107,4,0.08); border: 1px solid rgba(234,107,4,0.30); border-radius: 20px` with 3px orange top-border
+- Dark: `background: rgba(249,115,22,0.10); border: 1px solid rgba(249,115,22,0.30)` with 3px top-border
+- Price: "**$29/mo**" — DM Sans 600 48px
+- CTA: "Start free" — primary orange button
+- Warm glow: `box-shadow: 0 0 40px rgba(234,107,4,0.15)` (light) / `rgba(249,115,22,0.15)` (dark)
 
 **Scale tier**:
+- Light: `background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08)`
+- Dark: `background: #1E1D1B; border: 1px solid rgba(255,255,255,0.09); box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset`
 
-- `background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; padding: 32px`
-- **Tier label**: "Scale"
-- **Price**: "$99/mo" — Aeonik Pro 500 48px white; "early bird" in Inter 400 13px `rgba(255,255,255,0.40)`
-- **Tagline**: "For compliance-driven teams" — Inter 400 14px `rgba(255,255,255,0.50)`
-- **Feature list** (4 items): Everything in Growth / Up to 40 seats / 1-day SLA / Priority support
-- **CTA**: "Start free" — tertiary dark button (subtle white)
+**Animations**: stagger-fade-in on scroll, 0ms / 100ms / 200ms. Growth card scales subtly from 0.97 → 1.0.
 
-**Enterprise note** (below cards):
-
-- Centered, Inter 400 15px `rgba(255,255,255,0.55)`
-- "Need 40+ seats, SSO, or custom data residency? " + "Talk to us →" link in `#6688FF`
-
-**Link to full pricing** (below enterprise note):
-
-- "See full pricing →" in Inter 500 15px `#6688FF`, centered. Links to `/pricing`.
-
-**Animations**:
-
-- Tier cards stagger-fade-in on scroll: 0ms, 100ms, 200ms offsets. Slide up 20px while fading in. 600ms `ease-out`.
-- Growth card (featured): enters with a very subtle scale from 0.97 to 1.0, making it feel like it "pops" into place slightly more dramatically.
-
-**Responsive behavior**:
-
-- Below 768px: Stack vertically. Growth card shown first (reorder).
-- Below 576px: Cards full width with 16px padding.
+**Responsive**: below 768px → stack vertically, Growth card first.
 
 ---
 
 ### Section 9: Final CTA
 
-**Purpose**: The conversion close. Visitor has now seen the value proposition, the enforcement mechanic, the workflow, the competitive context, and the pricing. This section removes all remaining friction and makes the final ask with maximum clarity.
+**Purpose**: The conversion close.
 
-**Layout**: Centered, full-width, generous vertical padding (`120px top/bottom`). No competing elements — just the message and the CTA.
+**Layout**: Centered, full-width, `120px top/bottom` padding.
 
-**Color Treatment**: `Base-950` — the darkest point of the page. A subtle radial glow behind the content: `radial-gradient(ellipse 800px 400px at 50% 50%, rgba(0,54,255,0.12) 0%, transparent 70%)` — creates the sensation of a spotlight on the final message.
+**Color Treatment (light)**: `var(--bg-page)` — `#FAFAFA`. A subtle warm radial gradient behind the content: `radial-gradient(ellipse 800px 400px at 50% 50%, rgba(234,107,4,0.08) 0%, transparent 70%)` — barely there, just warmth.
 
-**Content Elements**:
-
-**Pre-CTA label**:
-
-- Small lock icon (16px, `rgba(255,255,255,0.30)`) beside text
-- Font: Inter 500 13px `rgba(255,255,255,0.40)`, centered
-- Text: "Available on every plan, including Free."
+**Color Treatment (dark)**: `#111110`. Radial glow `rgba(249,115,22,0.10) 0%, transparent 70%`.
 
 **Headline**:
 
-- Font: Aeonik Pro 500, 64px/72px, letter-spacing: -0.025em
-- Color: White-to-blue gradient: `linear-gradient(135deg, #FFFFFF 0%, #99AAFF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent`
-- Text: **"Watch every release land."**
-- Centered
+- Font: DM Sans 700, 64px/1.08, letter-spacing: -0.04em
+- Light: `color: #111110` — solid, heavy, no gradient required. The weight is the authority.
+- Dark: warm gradient — `linear-gradient(135deg, #FFFFFF 0%, #FED7AA 60%, #F97316 100%)` — visual bookend with the dark-mode hero
+- Text: **"Ship it once."**
 
 **Sub-headline**:
 
-- Font: Inter 400, 18px/28px, `rgba(255,255,255,0.55)`, centered, max-width: 480px
+- Font: Inter 400, 18px/1.6, `#52514c` (light) / `rgba(255,255,255,0.55)` (dark), max-width: 480px
 - Text: "Start building your first playbook today. No credit card required. No time limit on the Free plan."
 
 **CTA Button**:
 
-- Primary blue, centered, slightly larger than nav version: `padding: 16px 36px; font: Inter 500 16px; border-radius: 12px`
-- `background: #0036FF; color: white`
-- Inset highlight: `box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 8px 40px rgba(0,54,255,0.40)`
-- On hover: `background: #3361FF`, lift shadow intensifies, `transform: translateY(-1px)`, scale: 1.02, 300ms
+- Primary orange, centered
+- Light: `background: #EA6B04; color: #ffffff; padding: 16px 36px; border-radius: 12px; font: Inter 500 16px`
+- Hover: `background: #C05A00`, `transform: translateY(-1px)`, shadow deepens, 150ms
+- Dark: `background: #F97316`. Hover: `background: #FB923C`
 - Text: "Start free"
 
-**Secondary link** below button:
-
-- "See how it works →" — Inter 400 14px `rgba(255,255,255,0.40)`. Links to `/how-it-works`. On hover: `rgba(255,255,255,0.70)`.
+**Secondary link** below button: "See how it works →" — Inter 400 14px, muted color. Links to `/how-it-works`.
 
 **Animations**:
-
-- Headline enters with the same shimmer-then-settle animation as the hero headline (shorter 1.5s version)
-- CTA button fades in last, 200ms after headline settles
-- The radial glow behind the section breathes subtly: opacity pulses between 0.12 and 0.18 over 4s infinite — same treatment as the hero preview glow
+- Headline: fade in + slide up 16px, 600ms `--ease-page`
+- CTA button fades in 200ms after headline
+- Dark mode only: radial glow breathes subtly between 0.08–0.13, 4s infinite
 
 ---
 
 ### Section 10: Footer
 
-**Purpose**: Navigation, trust, and legal. Functional, not promotional. The footer must be present and complete, but must not compete with the final CTA above it.
+**Purpose**: Navigation, trust, legal.
 
-**Layout**: Multi-column, max-width: 1100px, centered. Background: `#080412` (Base-950 flat, no gradient — the gradient ends above the footer).
+**Layout**: Multi-column, max-width: 1100px. Background: `#111110` (Dark-900) — footer is always dark on both light and dark themes. It is a deliberate ground anchor.
 
-**Color Treatment**: Flat dark, `Base-950`. Top border: `1px solid rgba(255,255,255,0.06)`.
+Top border: `1px solid rgba(255,255,255,0.06)`.
 
-**Content Elements**:
+**Left column**:
+- NoHotfix logo — white variant (letterforms `#FFFFFF`, fire glyph gradient)
+- Tagline: "Ship it once." — Inter 400 14px `rgba(255,255,255,0.40)`
+- Legal: "© 2026 NoHotfix. All rights reserved." — Inter 400 12px `rgba(255,255,255,0.25)`
+- Privacy Policy + Terms links — Inter 400 12px `rgba(255,255,255,0.35)`
 
-**Left column** (brand + legal):
+**Center columns** (navigation):
 
-- NoHotfix logo mark + wordmark, white
-- Tagline below: "Watch every release land." in Inter 400 14px `rgba(255,255,255,0.40)`
-- Legal text below: "© 2026 NoHotfix. All rights reserved." in Inter 400 12px `rgba(255,255,255,0.25)`
-- Below legal: Privacy Policy link + Terms of Service link, Inter 400 12px `rgba(255,255,255,0.35)`, horizontal
+Product: How It Works / Artifact Enforcement / Go/No-Go Gate / Audit Trail
 
-**Center columns** (navigation — 3 sub-columns):
+Use Cases: For QA Teams / For Compliance Teams / For Engineering Managers
 
-Column: "Product"
+Resources: Pricing / Changelog / Blog / Documentation / About
 
-- How It Works
-- Artifact Enforcement
-- Go/No-Go Gate
-- Audit Trail
+All footer nav links: Inter 400 14px, `rgba(255,255,255,0.50)`. Hover: `rgba(255,255,255,0.90)`, 150ms. Underline on hover.
 
-Column: "Use Cases"
+**Right column**:
+- "Get started today" — Inter 500 14px `rgba(255,255,255,0.70)`
+- "Start free" button — `background: #F97316; color: white; padding: 10px 20px; border-radius: 10px; font: Inter 500 14px` (footer always dark, so dark-mode orange)
+- "No credit card required." — Inter 400 12px `rgba(255,255,255,0.30)`
 
-- For QA Teams
-- For Compliance Teams
-- For Engineering Managers
-
-Column: "Resources"
-
-- Pricing
-- Changelog
-- Blog
-- Documentation
-- About
-
-All footer nav links: Inter 400 14px, `rgba(255,255,255,0.50)`. On hover: `rgba(255,255,255,0.90)`, transition 150ms. No underline by default; underline on hover.
-
-**Right column** (CTA prompt):
-
-- Small heading: "Get started today" in Inter 500 14px `rgba(255,255,255,0.70)`
-- "Start free" button (smaller version of the primary CTA): `padding: 10px 20px; border-radius: 10px; background: #0036FF; color: white; font: Inter 500 14px`
-- Below button: "No credit card required." in Inter 400 12px `rgba(255,255,255,0.30)`
-
-**Footer bottom bar** (below main columns, separated by `1px solid rgba(255,255,255,0.05)`):
-
-- Status page link: "Status" — links to external status page (Statuspage.io)
-- No social icons at launch (no established social presence yet)
-
-**Responsive behavior**:
-
-- Below 957px: 2-column footer (brand + nav on left, use cases + resources on right; CTA column removed)
-- Below 768px: Single column, stacked sections; CTA button removed from footer
-- Below 576px: Compact single column; only essential nav links remain (Home, Pricing, Docs, About)
+**Responsive**:
+- Below 957px: 2-column (brand + nav; CTA column removed)
+- Below 768px: single column; CTA button removed
+- Below 576px: compact single column, essential nav links only
 
 ---
 
 ## Storytelling Flow
 
-The page is a descending argument, not a feature list. The narrative arc:
+The page is a descending argument:
 
-1. **Hero** — "Here's the transformation: release with proof." Makes a bold claim. Proves it visually in the product preview.
+1. **Hero** — "The release gate that holds." Bold claim. Proved visually by the blocked pass button in the product preview.
+2. **Pain Hook** — "Your current tool can be bypassed. Ours can't." The "yes, exactly that" moment.
+3. **Mechanism Triad** — "Here is what we guarantee." Concrete mechanics, not vague benefits.
+4. **How It Works** — "Here is the workflow in four steps." Mental model in 30 seconds.
+5. **Who It's For** — "This is made for you." Persona-specific acknowledgment.
+6. **Comparison** — "Here's why your current tool doesn't do this." Pre-empts "we already have X."
+7. **Pricing** — "Here's what it costs, and enforcement is on Free." Removes price barrier.
+8. **Final CTA** — "So: start now." Logical conclusion.
 
-2. **Pain Hook** — "You recognise this. Your current tool can be bypassed. Ours can't." Creates the contrast moment. The visitor who has lived the checklist problem sees it mirrored back exactly.
-
-3. **Three Guarantees** — "Here is what we guarantee, specifically." Gives the claim substance. Each guarantee is a named mechanic, not a vague benefit.
-
-4. **How It Works** — "Here is the workflow in four steps." Reduces cognitive load. The visitor can now picture what adoption looks like.
-
-5. **Who It's For** — "This is made for you." The persona-specific acknowledgment. Makes the visitor feel the product was designed with their exact situation in mind.
-
-6. **Comparison** — "Here's why your current tool doesn't do this." Pre-empts the "we already have X" objection with specific, factual evidence.
-
-7. **Pricing** — "Here's what it costs — and the enforcement is on Free." Removes the price barrier. Establishes that evaluation is possible without commitment.
-
-8. **Final CTA** — "So: start now." The logical conclusion. No new information, just the call.
-
-The color progression reinforces this arc: the page opens in cool daylight (light blue-white) and descends into deep night (near-black). The visitor moves from the familiar (bright, open, recognizable pain) into the product's world (dark, precise, formal) — a visual metaphor for the transition from informal checklists to enforced workflows.
+The visitor enters the product's world from the first pixel — clean, confident, legible. The orange accents (logo, CTAs, section labels, card highlights) provide all the warmth and energy. The structured light page communicates that this product was built by people who do not waste words.
 
 ---
 
 ## Interaction and Animation Philosophy
 
-The page has three layers of motion:
+**Layer 1 — On-load (fire once)**: pre-headline → headline → sub-headline → CTAs → product preview. Sequential, ~2.5s total.
 
-**Layer 1 — On-load animations (fire once)**:
+**Layer 2 — Scroll-triggered reveals (fire once per element)**: `opacity: 0 → 1` + `translateY(24px) → 0`, 400ms `--ease-page`. `IntersectionObserver` threshold 0.15. Stagger groups with 80–100ms delays. Do not replay on scroll-back.
 
-- Hero label → headline shimmer → sub-headline → CTAs → product preview (sequential, total ~2.5s)
-- These are load-time reveals, not scroll-triggered. They happen as the page paints.
+**Layer 3 — Idle/ambient (dark mode only, loop)**: hero preview border glow pulse (4s), final CTA radial glow breath (4s). Light mode has no ambient loops — unnecessary against a clean white surface. `prefers-reduced-motion` disables all layers.
 
-**Layer 2 — Scroll-triggered reveals (fire once per element)**:
+**Hover**:
+- Cards: `translateY(-4px)` + shadow-2 + border brightening, 300ms `--ease-premium`
+- Links with arrows: arrow shifts right 4px, 200ms `--ease-out`
+- CTA buttons: `translateY(-1px)` + shadow intensify, 150ms
 
-- Every section below the hero has scroll-triggered entrance animations.
-- Pattern: fade in + translateY(20px → 0), duration 500–600ms, `ease-out`.
-- Use `IntersectionObserver` with a 0.15 threshold (element 15% visible triggers the animation).
-- Stagger groups (e.g., three guarantee cards) with 80–100ms delays.
-- Animation fires once — do not repeat on scroll back up.
-
-**Layer 3 — Idle/ambient animations (loop infinitely)**:
-
-- Hero glow pulse on preview border: 4s ease-in-out infinite
-- Decorative orbiting dots: 12s and 18s rotation
-- Final CTA radial glow breath: 4s ease-in-out infinite
-- These should be `prefers-reduced-motion` aware: disable completely when the OS accessibility setting is set.
-
-**Hover interactions**:
-
-- All cards: `translateY(-4px)` + shadow increase + border brightening, 300ms `ease-premium`
-- All links with arrows: arrow shifts right 4px, 200ms `ease-out`
-- CTA buttons: scale 1.02 + shadow intensify, 150–300ms
-
-**What is NOT animated**:
-
-- The "locked" state on the immutable record card — immutability is a fact, not a transition
-- Table data and feature comparison checkmarks on the comparison table (only the NoHotfix column's checks animate on scroll-in)
-- Error states
-- Navigation links (only hover opacity change, no motion)
-
----
-
-## Cross-Page Navigation
-
-**From this page, the visitor can reach**:
-
-- `/how-it-works` — via "See how it works" CTA (hero), "See the full walkthrough →" link (How It Works section), footer
-- `/features/artifact-enforcement` — via "Artifact enforcement →" card link (Three Guarantees section), footer
-- `/features/go-no-go` — via "Go/No-Go gate →" card link, footer
-- `/features/audit-trail` — via "Immutable audit trail →" card link, footer
-- `/use-cases/qa-teams` — via "For QA teams →" card link (Who It's For section), footer
-- `/use-cases/engineering-managers` — via "For engineering managers →" card link, footer
-- `/use-cases/compliance` — via pricing summary mention, footer
-- `/pricing` — via "See full pricing →" link (Pricing Summary section), footer
-- App signup — via all "Start free" CTAs (hero, nav, final section, footer)
-- App login — via "Log in" nav link
-
-**Primary conversion funnel**:
-
-1. Landing → Hero → "Start free" → Signup (direct conversion, zero additional pages)
-2. Landing → Hero → "See how it works" → `/how-it-works` → "Start free" → Signup (depth-seeker conversion)
-3. Landing → Scroll → Three Guarantees → Feature deep-dive page → "Start free" → Signup (technical evaluator)
-
-**The page is designed so that** a QA lead who arrives with a specific pain (e.g., "I need to make it impossible to skip screenshot submission") can confirm within 2–3 sections that NoHotfix solves exactly that, and convert without visiting any other page. The breadth visitor who arrives without a specific pain is guided through the narrative arc to discover the problem before being offered the solution.
+**What is NOT animated**: the locked state on the immutable record card, table data, error states, navigation links (hover opacity only).
 
 ---
 
@@ -784,29 +498,34 @@ The page has three layers of motion:
 
 ### Product Preview UI Simulation
 
-This is the highest-effort component on the page. It must look faithful to the real product — not a cartoon mockup. Recommendations:
-
-- Build as a React component with three hardcoded "states" (tabs)
-- Use the actual brand tokens (glass cards, badge styles, button states) from `docs/design/brand-identity.md`
-- The disabled pass button state is the single most important visual element on the entire page — it must be instantly legible as "blocked" not "loading"
-- Do not use screenshots of the real product (they become stale). Use a purpose-built demo component.
+Build as a React component with three hardcoded states (tabs). Use exact brand tokens from brand-identity.md. The disabled pass button state is the single most important visual element on the entire page. Do not use screenshots of the real product — they become stale.
 
 ### Comparison Table
 
-- Use a real HTML `<table>` (not a CSS grid) for semantic/accessibility reasons
-- Scope the NoHotfix column highlight with a CSS class, not inline style, so it can be updated easily
-- Checkmarks and crosses: use SVG icons (not Unicode characters) for precise rendering across platforms
+Use a real HTML `<table>` for semantic/accessibility reasons. Scope the NoHotfix column highlight with a CSS class. Checkmarks and crosses: SVG icons (not Unicode).
 
 ### Pricing Cards
 
-- The "early bird" label must be visually distinct but not alarm-inducing — it is a positive signal ("price locked"), not a warning
-- Keep the feature list on each card to maximum 4–5 items. This is a summary, not the full feature matrix
-- The Growth card being "featured" (blue border, blue glow) is the primary visual signal — do not add a "Recommended" banner that competes with the border treatment
+Feature list: 4–5 items maximum. The Growth card's border treatment is the recommended signal — do not add a "Recommended" banner. Early bird label: positive, not alarming.
 
 ### Page Performance
 
-- The background gradient is a single CSS gradient on a `position: fixed` pseudo-element — one paint operation, not per-section gradients
-- Product preview images/thumbnails: WebP format, lazy-loaded below the fold
-- Aeonik Pro font: load via `font-display: swap`, subset to used glyphs only
-- All scroll animations: use `IntersectionObserver` API, not scroll event listeners
-- Decorative orbiting dots: pure CSS `@keyframes transform: rotate()`, no JS
+- Background is a flat CSS color per section — no fixed-position gradient element
+- Product preview images: WebP, lazy-loaded below fold
+- DM Sans: load via Google Fonts or `@fontsource-variable/dm-sans`, `font-display: swap`
+- All scroll animations: `IntersectionObserver` API, not scroll listeners
+- Orbiting dots (dark mode only): pure CSS `@keyframes transform: rotate()`, no JS
+
+---
+
+## Cross-Page Navigation
+
+**From this page**:
+- `/how-it-works` — hero secondary CTA, How It Works "See the full walkthrough →", footer
+- `/features/artifact-enforcement`, `/features/go-no-go`, `/features/audit-trail` — guarantee card links, footer
+- `/use-cases/qa-teams`, `/use-cases/engineering-managers` — persona card links, footer
+- `/pricing` — Pricing Summary "See full pricing →", footer
+- App signup — all "Start free" CTAs
+- App login — "Log in" nav link
+
+**Primary conversion funnel**: Landing → Hero → "Start free" → Signup (zero additional pages).

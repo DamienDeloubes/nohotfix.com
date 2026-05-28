@@ -7,34 +7,20 @@
  */
 
 @theme {
-  /* ── Color Primitives ── */
+  /* ── Color Primitives — v5 Brand (orange replaces blue/base) ── */
 
-  /* Base surfaces (full 50-950 scale, blue-violet undertone) */
-  --color-base-50: #f0eff5;
-  --color-base-100: #dedceb;
-  --color-base-200: #b9b5d4;
-  --color-base-300: #908abc;
-  --color-base-400: #6b62a3;
-  --color-base-500: #4a4280;
-  --color-base-600: #231e54;
-  --color-base-700: #1a1640;
-  --color-base-800: #130f2e;
-  --color-base-900: rgb(13, 9, 32); /* Same color as in figma */
-  --color-base-950: #080412;
-
-  --color-inactive-link: #9c9ba0;
-
-  /* Primary Blue (full 50-900 scale) */
-  --color-blue-50: #f0f3ff;
-  --color-blue-100: #e0e6ff;
-  --color-blue-200: #99aaff;
-  --color-blue-300: #6688ff;
-  --color-blue-400: #3361ff;
-  --color-blue-500: #0036ff;
-  --color-blue-600: #0028cc;
-  --color-blue-700: #001f99;
-  --color-blue-800: #001566;
-  --color-blue-900: #000a33;
+  /* Orange (primary, full 50–950 scale) */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea6b04;
+  --color-orange-700: #c05a00;
+  --color-orange-800: #9a3f05;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
 
   /* Semantic — Go (full 50-900 scale) */
   --color-go-50: #e8fdf4;
@@ -48,68 +34,41 @@
   --color-go-800: #00523a;
   --color-go-900: #002e1f;
 
-  /* Semantic — No-Go (Amber, full 50-900 scale) */
-  --color-nogo-50: #fffbeb;
-  --color-nogo-100: #fef3c7;
-  --color-nogo-200: #fde68a;
-  --color-nogo-300: #fcd34d;
-  --color-nogo-400: #fbb73a;
-  --color-nogo-500: #f59e0b;
-  --color-nogo-600: #cc6200;
-  --color-nogo-700: #a34e00;
-  --color-nogo-800: #7a3a00;
-  --color-nogo-900: #522800;
+  /* Semantic — No-Go / Warning (pure yellow, hsl 45°) */
+  --color-nogo-50: #fefce8;
+  --color-nogo-100: #fef9c3;
+  --color-nogo-200: #fef08a;
+  --color-nogo-300: #fde047;
+  --color-nogo-400: #facc15;
+  --color-nogo-500: #eab308;
+  --color-nogo-600: #ca8a04;
+  --color-nogo-700: #a16207;
+  --color-nogo-800: #854d0e;
+  --color-nogo-900: #713f12;
 
-  /* Semantic — Error (full 50-900 scale) */
-  --color-error-50: #fef2f2;
-  --color-error-100: #fee2e2;
-  --color-error-200: #fecaca;
-  --color-error-300: #fca5a5;
-  --color-error-400: #f87171;
-  --color-error-500: #ef4444;
-  --color-error-600: #dc2626;
-  --color-error-700: #b91c1c;
-  --color-error-800: #991b1b;
-  --color-error-900: #7f1d1d;
+  /* Semantic — Error (cool crimson, hsl 345–350°) */
+  --color-error-50: #fff1f2;
+  --color-error-100: #ffe4e6;
+  --color-error-200: #fecdd3;
+  --color-error-300: #fda4af;
+  --color-error-400: #fb7185;
+  --color-error-500: #f43f5e;
+  --color-error-600: #e11d48;
+  --color-error-700: #be123c;
+  --color-error-800: #9f1239;
+  --color-error-900: #881337;
 
   /* Neutrals (slate-based) */
-  --color-slate-900: #0f172a;
-  --color-slate-700: rgb(55, 62, 76);
-  --color-slate-500: #64748b;
-  --color-slate-300: #cbd5e1;
-  --color-slate-100: #f1f5f9;
   --color-slate-50: #f8fafc;
-
-  /* ── Semantic Tokens (light defaults) ── */
-
-  /* Surfaces */
-  --color-surface-page: #f8fafc;
-  --color-surface-card: #f0eff2;
-  --color-surface-elevated: white;
-  --color-surface-active: #b9b5d4;
-  --color-surface-border: rgb(240, 239, 242);
-
-  /* Text */
-  --color-secondary: #334155;
-  --color-primary: rgb(44, 85, 251);
-  --color-muted: rgb(31, 42, 61);
-  --color-danger: rgb(247, 40, 68);
-
-  /* Glass system — light mode (dark overlays on light bg) */
-  --glass-4: rgba(0, 0, 0, 0.03);
-  --glass-8: rgba(0, 0, 0, 0.05);
-  --glass-12: rgba(0, 0, 0, 0.07);
-  --glass-20: rgba(0, 0, 0, 0.12);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-border-strong: rgba(0, 0, 0, 0.15);
-
-  /* Shadows — light mode */
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-3: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-4: 0 16px 64px rgba(0, 0, 0, 0.16), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --color-slate-100: #f1f5f9;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-700: #334155;
+  --color-slate-900: #0f172a;
 
   /* ── Typography ── */
+  --font-display: 'DM Sans Variable', 'Inter Variable', sans-serif;
   --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Geist Mono Variable', 'JetBrains Mono', monospace;
 
@@ -123,40 +82,41 @@
 
   /* ── Animation (theme-independent) ── */
   --ease-premium: cubic-bezier(0.6, 0.6, 0, 1);
+  --ease-page: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-standard: 300ms;
-  --duration-deliberate: 450ms;
+  --duration-deliberate: 400ms;
   --duration-slow: 600ms;
 }
 
-/* Dark mode — applied when .dark is on <html> (set by theme-init.js before first paint) */
-.dark {
-  --surface-page: #080412;
-  --surface-card: #130f2e;
-  --surface-elevated: #1a1640;
-  --surface-active: #231e54;
-  --surface-border: rgba(255, 255, 255, 0.1);
-  --color-secondary: rgba(255, 255, 255, 0.6);
-  --color-muted: rgba(255, 255, 255, 0.4);
-  --glass-4: rgba(255, 255, 255, 0.04);
-  --glass-8: rgba(255, 255, 255, 0.08);
-  --glass-12: rgba(255, 255, 255, 0.12);
-  --glass-20: rgba(255, 255, 255, 0.2);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-border-strong: rgba(255, 255, 255, 0.18);
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
-  --shadow-3: 0 8px 40px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.14) inset;
-  --shadow-4: 0 16px 64px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.18) inset;
+/* Semantic aliases — `inline` so Tailwind utilities (bg-surface-card,
+   bg-primary, text-secondary, …) reference the LIVE tokens.css vars
+   without re-emitting them to :root. This lets them follow light/dark
+   automatically and avoids any self-referential collision. */
+@theme inline {
+  --color-surface-page: var(--bg-page);
+  --color-surface-card: var(--bg-card);
+  --color-surface-elevated: var(--bg-card-elevated);
+  --color-surface-active: var(--bg-active);
+  --color-surface-border: var(--border-default);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-danger: var(--error-text);
 }
+
+/* Dark mode is owned entirely by tokens.css (.dark on <html>); no local
+   overrides needed — the aliases above reference --bg-*/--text-*/--border-*
+   which tokens.css switches automatically. */
 
 /* Global body styles */
 body {
-  background-color: var(--surface-page);
+  background-color: var(--bg-page);
   font-family: var(--font-sans);
-  color: var(--color-base-900);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,12 +1,18 @@
 # Project Summary — NoHotfix.com
 
-_Last updated: 2026-03-11_
+_Last updated: 2026-05-28_
+
+> This document describes **v1** — what is shipped and in-build. For where the product
+> is headed beyond v1 (broader QA/test positioning, UAT authoring, Jira integration),
+> see [product-vision.md](product-vision.md).
 
 ---
 
 ## What We're Building
 
 NoHotfix is a **release readiness platform** for software teams at Series A–C B2B SaaS companies. It replaces informal release checklists (Notion pages, Google Sheets, Confluence docs) with structured, enforced testing workflows that produce immutable audit records. It sits in a micro-category between QA tooling and release orchestration — answering a single question: **"Are we ready to ship, and can we prove it?"**
+
+The promise behind the name: **catch every issue before production does, so you ship it once** — no emergency hotfix, no rollback, no surprises in prod. v1 delivers that for the release moment; the [product vision](product-vision.md) extends the same promise across QA and UAT.
 
 ---
 
@@ -27,7 +33,7 @@ No current tool combines enforced artifact collection, role-gated approval, an i
 
 v1 introduces a three-part enforcement model that is the core of NoHotfix's defensibility:
 
-1. **Artifact enforcement** — A spec cannot be marked as passed until all declared evidence requirements are satisfied. Requirements are typed (file upload, structured table, measured value, or URL) and configured per spec. This is a hard gate, not advisory.
+1. **Artifact enforcement** — A spec cannot be marked as passed until all declared evidence requirements are satisfied. Requirements are typed (file upload, text, checkbox, URL, measured value, or structured table) and configured per spec. This is a hard gate, not advisory.
 2. **Go/no-go gating** — The release decision is a formal action on a dedicated review screen, available only after all specs are executed. Only Admins can make the call. A Go decision with failed specs requires a mandatory written justification recorded in the audit trail.
 3. **Run immutability** — Once a go/no-go decision is recorded, the run is permanently locked. It becomes a tamper-evident audit artifact.
 
@@ -76,7 +82,7 @@ Go/No-Go Review Screen (Admin only)
 | Module                     | Description                                                                                                                                                                              |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Dashboard & Navigation** | Home screen with active run overview, recent runs, playbook shortcuts, and role-appropriate quick actions; persistent sidebar navigation                                                 |
-| **Billing & Subscription** | Stripe-backed subscription: 14-day trial (starts at org creation), 3-day grace period, full access block on expiry, Admin-only upgrade and billing management                            |
+| **Billing & Subscription** | Stripe-backed subscription on the seat-banded model: permanent Free tier, invite-gate upgrade to a paid plan via Stripe Checkout, seat-ceiling enforcement, Admin-only billing management. _(Current build still implements the prior 14-day-trial model; migration to the free-tier model is pending — see [pricing-model.md](marketing/pricing-model.md).)_ |
 | **Account & Team**         | WorkOS-powered auth, org management, two roles (Admin / Member)                                                                                                                          |
 | **Playbook Templates**     | Create reusable playbooks with sections and specs; inline editor with drag-and-drop reordering; preview mode; archive and duplicate                                                      |
 | **Testing Specs**          | Spec library with centralised, reusable specs; three creation paths; sync across playbooks                                                                                               |
@@ -102,6 +108,34 @@ Go/No-Go Review Screen (Admin only)
 
 ---
 
+## Product Vision — Where We're Going
+
+v1 is the **wedge**: an enforced release gate. The vision is to expand from that wedge
+into **the QA/test tooling choice** for teams who refuse to learn about bugs from
+production — without diluting the enforcement that makes the product defensible. The
+release gate stays the flagship; QA authoring, UAT, and integrations are the platform
+that grows around it.
+
+Three next-phase additions are planned (not in v1 scope):
+
+- **UAT test authoring + external partner sign-off** — author user-acceptance tests
+  (steps, test data, what to watch for, expected outcome) and share a link partners or
+  clients open without an account to walk the test and mark it passed. The first
+  NoHotfix surface used by someone outside the org.
+- **Jira integration** — attach NoHotfix tests to Jira issues as subtasks and mirror
+  status back, so verification rides along on the ticket the team already watches.
+- **Planned releases (release-readiness gate)** — a named, dated milestone that groups
+  the runs which must pass before it ships, lifting the go/no-go from a single run up to
+  the release. Reuses the existing spec → playbook → run model and composes with UAT
+  sign-off and Jira fix-versions.
+
+Full detail and the open strategic questions live in
+[product-vision.md](product-vision.md) and the briefs under
+[`development/features/vision/`](development/features/vision/). This vision does **not**
+change v1 scope.
+
+---
+
 ## Success Criteria for v1
 
 Two criteria, in order of priority:
@@ -114,10 +148,12 @@ Two criteria, in order of priority:
 
 ## Pricing Model
 
-- **Model**: Flat monthly fee per team — one price regardless of seat count.
-- **Trial**: 14-day free trial, full access. Mandatory upgrade after 14 days — no permanent free tier.
-- **Goal**: Revenue from day one. Every signup is a potential paying customer.
-- **Price points**: TBD — pending market research before first external customer conversation.
+- **Model**: Seat-banded tiers with a permanent free tier. The value metric is seats (active org members). No per-seat overage — hitting a tier's seat ceiling means upgrading to the next tier.
+- **Tiers**: **Free** (1 seat, permanent, full enforcement mechanics, no time limit) → **Growth** ($29/mo early-bird, $49 standard; up to 10 seats) → **Scale** ($99/mo early-bird, $149 standard; up to 40 seats) → **Enterprise** (custom). Annual billing is 20% off on paid tiers.
+- **Conversion**: no trial on paid plans — the free tier is the evaluation vehicle. The free → paid trigger is the invite gate (the moment a user wants to add a second member). No credit card at signup.
+- **Early bird**: the first ~100 paying orgs are grandfathered at early-bird pricing for life (separate Stripe price objects). The standard price is the reference anchor in all copy.
+- **Goal**: Revenue from day one via paid tiers; the permanent free tier exists to defeat the "glorified checklist" objection by letting prospects experience enforcement before paying.
+- Full model, feature gates, and scaling path: [pricing-model.md](marketing/pricing-model.md).
 
 ---
 
@@ -126,8 +162,9 @@ Two criteria, in order of priority:
 - Per-spec approval workflow (replaced by go/no-go as the single human gate)
 - Viewer role (no validated use case yet)
 - Slack / Teams notifications (email only in v1)
-- Jira / Linear integration
+- Jira / Linear integration (deferred from v1 → planned next phase — see [product-vision.md](product-vision.md))
 - CI/CD deploy gate
+- UAT test authoring + external partner sign-off (next-phase vision — see [product-vision.md](product-vision.md))
 - SSO / SAML (WorkOS supports it; activate at first enterprise deal)
 - Public API
 - PDF export of run records

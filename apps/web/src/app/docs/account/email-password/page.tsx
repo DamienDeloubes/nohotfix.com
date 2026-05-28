@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 const callout = {
   base: {
     padding: '1rem 1.25rem',
@@ -12,13 +14,13 @@ const callout = {
     color: '#92400e',
   } as const,
   note: {
-    backgroundColor: '#eff6ff',
-    border: '1px solid #3b82f6',
-    color: '#1e40af',
+    backgroundColor: 'var(--bg-section-alt)',
+    border: '1px solid var(--border-default)',
+    color: 'var(--text-secondary)',
   } as const,
 };
 
-export default function EmailPasswordGuidePage() {
+export default function EmailPasswordGuidePage(): ReactElement {
   return (
     <main style={{ maxWidth: '40rem', margin: '3rem auto', padding: '0 1.5rem', color: '#374151', lineHeight: 1.7 }}>
       <h1 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.5rem' }}>Changing your email or password</h1>
@@ -72,7 +74,7 @@ export default function EmailPasswordGuidePage() {
         <div style={{ ...callout.base, ...callout.note }}>
           <strong>Note:</strong> If you originally signed up via Google or GitHub, the password reset email will not arrive since no password exists for your account. If you are
           locked out, contact us at{' '}
-          <a href="mailto:support@nohotfix.com" style={{ color: '#1e40af', textDecoration: 'underline' }}>
+          <a href="mailto:support@nohotfix.com" style={{ color: 'var(--text-link)', textDecoration: 'underline' }}>
             support@nohotfix.com
           </a>{' '}
           for assistance.

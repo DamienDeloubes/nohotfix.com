@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# NoHotfix Design System — v5
+
+**The living style guide for `@nohotfix/design-tokens`.**
+
+Source of truth: `packages/design-tokens/src/tokens.css` and `packages/design-tokens/src/tokens.ts`.
+Brand spec: `docs/design/brand-identity.md`.
+
+---
+
+## Themes
+
+Use the **Theme toolbar** (sun/moon) in the top bar to switch between light and dark.
+Both themes are fully specified — neither is an afterthought.
+
+- Light default: `#FAFAFA` page, `#EA6B04` (Orange-600) primary CTA
+- Dark default: `#111110` page, `#F97316` (Orange-500) primary CTA
+
+The `dark` class on `<html>` enables dark mode. A pre-paint script sets this from
+`prefers-color-scheme` (or localStorage override).
+
+---
+
+## Glass Model A — strict rule
+
+| Surface | Light | Dark |
+|---|---|---|
+| **Cards** | Solid `#FFFFFF` + border + shadow | Solid `#1E1D1B` + inset highlight + shadow |
+| **Nav (scrolled)** | `rgba(250,250,250,0.90)` + `backdrop-filter: blur(12px)` | `rgba(17,17,16,0.85)` + blur |
+| **Overlays / modals** | Glass permitted | Glass permitted |
+
+`backdrop-filter: blur` is forbidden on cards. If you see a glass card in the codebase, flag it.
+
+The **mandatory inset top-edge highlight** (`0 1px 0 rgba(255,255,255,x) inset`) must never be omitted
+on dark-mode elevated surfaces — it is the single most important detail that makes dark surfaces feel lit.
+
+---
+
+## Accessibility rules
+
+- `Orange-500` (`#F97316`) is **forbidden** as text/link color on light surfaces — contrast ~2.8:1, fails AA.
+- Inline links on light: use `Orange-800` (`#9A3F05`) — ~7.3:1 on `#FAFAFA`.
+- Focus rings: `--border-focus` = Orange-600 on light, Orange-500 on dark.
+- All badge colors pass AA in both themes — see the Badge stories.
+
+---
+
+## Stories index
+
+**Foundations** (driven from `tokens.ts`):
+- Colors — all scales, fire gradient note
+- Typography — DM Sans / Inter / Geist Mono type specimens
+- Spacing — 4px grid visualization
+- Radius — border radius scale with usage notes
+- Elevation — shadow scale, light vs dark comparison
+- Motion — easing curves (interactive) + duration tokens
+
+**Components** (local primitives, no external library):
+- Button — primary / secondary / ghost / danger × sm/md/lg × disabled
+- Card — standard and elevated, solid (no glass)
+- Badge — go / no-go / in-progress / pending / skipped
+- Input — default / focus / error / disabled

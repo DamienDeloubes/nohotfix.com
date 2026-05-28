@@ -28,7 +28,7 @@ function SidebarItem({ to, params, label, icon }: SidebarItemProps) {
       to={to}
       params={params}
       className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors [transition-duration:var(--duration-fast)] ${
-        isActive ? 'bg-[var(--surface-active)] text-muted' : 'text-secondary hover:bg-[var(--glass-12)] hover:text-muted'
+        isActive ? 'bg-[var(--bg-active)] text-muted' : 'text-secondary hover:bg-[var(--glass-12)] hover:text-muted'
       }`}
     >
       <LordiconIcon icon={icon} size={20} colors={isActive ? activeColor : inactiveColor} />

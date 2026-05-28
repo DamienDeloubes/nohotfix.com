@@ -1,14 +1,18 @@
 ---
 name: nohotfix-brand
-description: NoHotfix rebrand identity — palette, concept directions, recommended mark, file locations
+description: NoHotfix logo/visual exploration — palette, concept directions, recommended mark
 metadata:
   type: project
 ---
 
-## NoHotfix Brand Identity (rebrand from NoHotfix)
+## NoHotfix Brand Identity (logo/visual exploration)
 
-**Status as of 2026-05-27:** Concepts generated, no direction selected yet.
-**Assets:** `/Users/damien/Documents/Git/Damiendeloubes/nohotfix.com/brand/nohotfix/`
+**Status:** Concepts generated, no direction selected yet — confirm with the user.
+
+> **Conflict note:** This exploration (palette `#1A3FFF`, Geist display, "Negation Mark")
+> differs from the canonical `docs/design/brand-identity.md` (`#0036FF`, Aeonik display,
+> "Checkpoint" mark). The logo/palette direction is unresolved; the user must pick.
+> Concept SVG assets were removed — nothing to load from disk.
 
 ### Recommended direction: Concept 2 — The Negation Mark
 
@@ -51,10 +55,10 @@ Pure type: "No" Inter 800 italic Ember-500 + "hotfix" Inter 300 italic Ink-600 +
 
 - Wordmark "No": Inter Variable 800, italic
 - Wordmark "hotfix": Inter Variable 300
-- Marketing display: Geist 700 (replaces Aeonik Pro from NoHotfix)
-- UI/Dashboard: Inter (unchanged)
-- Code: Geist Mono (unchanged)
+- Marketing display: Geist 700 (this exploration proposes replacing Aeonik Pro)
+- UI/Dashboard: Inter
+- Code: Geist Mono
 
 **Why Geist over Aeonik Pro for display:** Geist is more machine-precision than humanist. Matches engineer-respecting brand voice better than Aeonik's fashion-tech warmth.
 
-See [[patterns]] for SVG scaling methodology (unchanged from NoHotfix).
+See [[patterns]] for SVG scaling methodology.

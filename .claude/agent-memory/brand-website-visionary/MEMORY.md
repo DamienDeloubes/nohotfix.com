@@ -1,0 +1,4 @@
+- [NoHotfix Website Vision](project-nohotfix-website-vision.md) — SUPERSEDED by rebrand: was dark-dominant; see project-rebrand-2026.md for current direction
+- [NoHotfix Brand Reference](reference-nohotfix-brand.md) — Quick-ref from brand-identity.md v4.0; NOTE: rebrand underway, this reflects the OLD system pending sign-off
+- [Founder Aesthetic Preferences](user-founder-aesthetic-preferences.md) — UPDATED 2026-05-28: light-first, Cloudflare-leaning, orange retained, dark as equal peer; no violet-base
+- [NoHotfix Rebrand 2026](project-rebrand-2026.md) — Authorized full rebrand: light-first+dark-peer, Cloudflare ref, fire logo kept, proposal at docs/design/rebrand-proposal/01-brand-vision.md

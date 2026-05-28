@@ -1,4 +1,6 @@
-export default function PricingPage() {
+import type { ReactElement } from 'react';
+
+export default function PricingPage(): ReactElement {
   return (
     <main>
       <h1>Pricing</h1>

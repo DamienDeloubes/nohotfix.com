@@ -54,7 +54,7 @@ export function ThemeToggle() {
           <CurrentIcon />
         </Button>
       </Dropdown.Trigger>
-      <Dropdown.Popover placement="bottom end" className="bg-[var(--surface-card)] border border-[var(--surface-border)] [box-shadow:var(--shadow-3)]">
+      <Dropdown.Popover placement="bottom end" className="bg-[var(--bg-card)] border border-[var(--border-default)] [box-shadow:var(--shadow-card)]">
         <Dropdown.Menu aria-label="Theme preference" selectionMode="single" selectedKeys={new Set([preference])} onAction={(key) => setPreference(key as ThemePreference)}>
           {OPTIONS.map(({ key, label, icon: Icon }) => (
             <Dropdown.Item key={key} id={key} className={preference === key ? 'text-muted' : 'text-secondary'}>

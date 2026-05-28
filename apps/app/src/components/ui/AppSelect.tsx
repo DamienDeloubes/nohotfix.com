@@ -24,11 +24,11 @@ export function AppSelect({ 'aria-label': ariaLabel, options, value, onChange, p
       {...(placeholder !== undefined ? { placeholder } : {})}
     >
       {label ? <Label>{label}</Label> : null}
-      <Select.Trigger className="bg-[var(--glass-4)] border border-[var(--glass-border)] rounded-[var(--radius-sm)] h-10 min-h-10 hover:bg-[var(--glass-8)] data-[focus-visible=true]:border-blue-500 data-[open=true]:border-blue-500 transition-colors [transition-duration:var(--duration-fast)] px-3">
+      <Select.Trigger className="bg-[var(--glass-4)] border border-[var(--glass-border)] rounded-[var(--radius-sm)] h-10 min-h-10 hover:bg-[var(--glass-8)] data-[focus-visible=true]:border-[var(--border-focus)] data-[open=true]:border-[var(--border-focus)] transition-colors [transition-duration:var(--duration-fast)] px-3">
         <Select.Value className="text-sm text-white" />
         <Select.Indicator className="text-white/30" />
       </Select.Trigger>
-      <Select.Popover className="bg-base-800 border border-[var(--glass-border)] [box-shadow:var(--shadow-3)] p-1.5 rounded-[var(--radius-sm)]">
+      <Select.Popover className="bg-[var(--bg-card-elevated)] border border-[var(--border-default)] [box-shadow:var(--shadow-card)] p-1.5 rounded-[var(--radius-sm)]">
         <ListBox aria-label={ariaLabel} className="text-sm outline-none">
           {options.map((opt) => (
             <ListBox.Item

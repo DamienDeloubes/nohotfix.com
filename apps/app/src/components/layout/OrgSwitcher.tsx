@@ -35,7 +35,7 @@ export function OrgSwitcher() {
             </svg>
           </button>
         </Dropdown.Trigger>
-        <Dropdown.Popover className="bg-[var(--surface-card)] border border-[var(--surface-border)] [box-shadow:var(--shadow-3)]">
+        <Dropdown.Popover className="bg-[var(--bg-card)] border border-[var(--border-default)] [box-shadow:var(--shadow-card)]">
           <Dropdown.Menu
             aria-label="Switch organisation"
             selectionMode="single"
@@ -48,7 +48,7 @@ export function OrgSwitcher() {
             }}
           >
             {(orgs ?? []).map((org) => (
-              <Dropdown.Item key={org.slug} id={org.slug} className={org.slug === orgSlug ? 'bg-[var(--surface-active)] text-muted' : 'text-secondary'}>
+              <Dropdown.Item key={org.slug} id={org.slug} className={org.slug === orgSlug ? 'bg-[var(--bg-active)] text-muted' : 'text-secondary'}>
                 <Label>{org.name}</Label>
               </Dropdown.Item>
             ))}

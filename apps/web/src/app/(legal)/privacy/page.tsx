@@ -1,4 +1,6 @@
-export default function PrivacyPage() {
+import type { ReactElement } from 'react';
+
+export default function PrivacyPage(): ReactElement {
   return (
     <main>
       <h1>Privacy Policy</h1>

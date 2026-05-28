@@ -1,14 +1,14 @@
 # Product Positioning — NoHotfix.com
 
 **Product**: NoHotfix
-**Date generated**: 2026-03-10 (rebranded 2026-03-11)
-**Source documents**: docs/project-summary.md, docs/project-scope.md, docs/marketing/competitors.md, docs/marketing/pricing-model.md, docs/marketing/ideal-custom-profile.md, docs/design/brand-identity.md
+**Date generated**: 2026-05-28
+**Source documents**: docs/project-summary.md, docs/project-scope.md, docs/product-vision.md, docs/marketing/competitors.md, docs/marketing/pricing-model.md, docs/marketing/ideal-customer-profile.md, docs/design/brand-identity.md
 
 ---
 
 ## Category
 
-**Release Readiness / Release Governance** — a micro-category between QA tooling and release orchestration.
+**Release Readiness / Release Governance** — a micro-category between QA tooling and release orchestration. This is the **wedge** and the launch positioning. The broader ambition (see [Where We're Expanding](#where-were-expanding)) is to grow from this wedge into **the QA/test tooling choice** — without becoming a generic, undifferentiated test-management suite.
 
 Existing categories fail to describe what NoHotfix does:
 
@@ -16,7 +16,7 @@ Existing categories fail to describe what NoHotfix does:
 - "Project management" (Jira, Notion, Linear) captures the planning before a release but has no concept of evidence-gated pass/fail or an irreversible go/no-go decision.
 - "Release automation" (GitHub Actions, Octopus Deploy) covers the mechanics of deploying code but says nothing about whether the thing being deployed has been validated by a human being.
 
-NoHotfix answers a question none of these tools answer: **"Are we ready to ship, and can we prove it?"** That's a distinct workflow, a distinct moment in the release cycle, and a distinct buyer pain. The category name is Release Readiness.
+NoHotfix answers a question none of these tools answer: **"Are we ready to ship, and can we prove it?"** That's a distinct workflow, a distinct moment in the release cycle, and a distinct buyer pain. The promise behind the name is the same in plain language: **catch every issue before production does, so you ship it once.**
 
 ---
 
@@ -84,6 +84,18 @@ NoHotfix answers a question none of these tools answer: **"Are we ready to ship,
 
 ---
 
+## Where We're Expanding
+
+The release gate is the wedge, not the ceiling. The vision is to grow into **the QA/test tooling choice** by adding capabilities that serve the same "ship it once" promise — each one extending the enforced-testing model rather than diluting it. (Full detail: [product-vision.md](../product-vision.md). These are **next-phase**, not launch positioning.)
+
+- **UAT test authoring + external partner sign-off.** Today every NoHotfix user is internal. The vision adds **user-acceptance testing**: a QA owner authors tests (steps, test data, what to watch for, expected outcome) and shares a link a client or partner opens *without an account* to walk the test and sign off. This introduces a brand-new persona — the **external UAT partner / client stakeholder** — and positions NoHotfix as the place acceptance is proven, not just internal QA.
+
+- **Jira integration.** Attach NoHotfix tests to Jira issues as subtasks and mirror status back, so verification is visible on the ticket the team already watches. This is a wedge *into* the Atlassian ecosystem (where Zephyr/Xray live) rather than a competitor on their terms — the enforcement and evidence stay in NoHotfix; Jira just reflects the state.
+
+**The guardrail**: breadth must never blunt the wedge. NoHotfix is not chasing TestRail's feature surface. Every expansion answers "how does this help you catch it before production?" — if it doesn't, it doesn't ship.
+
+---
+
 ## Positioning Principles
 
 **1. Enforcement is the product.** NoHotfix does not help teams create better checklists — existing tools already do that. It makes checklists structurally enforceable. Every messaging decision must start from the enforcement mechanic, not from the checklist workflow. "Enforce" is the verb that differentiates NoHotfix from every alternative.
@@ -95,3 +107,5 @@ NoHotfix answers a question none of these tools answer: **"Are we ready to ship,
 **4. The audience reads like engineers, not like buyers.** QA leads and VP Engineering are precise readers. They do not respond to vague benefit language ("streamline your release process"). They respond to specific, concrete descriptions of the enforcement mechanic and what it prevents. Write to their technical instincts.
 
 **5. Never gate the core value.** The artifact-gated spec execution, go/no-go decision gate, and run immutability are available on every tier including Free. Positioning must reflect this: evaluation on Free delivers the full enforcement experience. Any suggestion that the "real" enforcement features require a paid plan would be false and would undermine the positioning.
+
+**6. Expand from the wedge, never away from it.** As the product broadens (UAT, Jira, and beyond), the enforced release gate remains the flagship and the entry point. Every new capability must answer "how does this help you catch it before production?" The brand premise — ship it once — is delivered by enforcement, not by breadth. Breadth without the gate would just be another test tool, and the positioning would collapse into the crowded test-management category we deliberately avoid.

@@ -1,14 +1,16 @@
 # Competitive Landscape — NoHotfix.com
 
-_Last updated: 2026-02-26 (rebranded 2026-03-11)_
+_Last updated: 2026-05-28_
 
 ---
 
 ## Summary Positioning
 
-NoHotfix operates in a micro-category between QA tooling and release orchestration: **Release Readiness / Release Governance**. It answers a specific question that no existing tool answers well: _"Are we ready to ship, and can we prove it?"_
+NoHotfix's wedge is a micro-category between QA tooling and release orchestration: **Release Readiness / Release Governance**. It answers a specific question that no existing tool answers well: _"Are we ready to ship, and can we prove it?"_ — or in the language of the name, _"can we catch it before production and ship it once?"_
 
 The whitespace: no current tool combines (1) enforced artifact collection + (2) role-gated approval + (3) immutable audit trail + (4) a release-centric UX in a lightweight, mid-market package.
+
+The broader ambition (next-phase — see [product-vision.md](../product-vision.md)) is to expand from that wedge into **the QA/test tooling choice**: adding UAT authoring with external partner sign-off and a Jira integration. That expansion brings two new competitive frontiers — UAT/feedback tools and Jira-native test tools — covered in [Adjacent Tools](#adjacent-tools-different-problem-overlapping-audience) and the threats table below. The differentiation stays the enforcement triad; breadth is added without abandoning it.
 
 ---
 
@@ -126,6 +128,26 @@ These tools are not competitors in the traditional sense, but they touch the sam
 - **What it is**: Incident management and on-call scheduling
 - **Overlap**: Both care about production incidents — PagerDuty responds after; NoHotfix prevents them before
 - **Relationship**: Complementary. Strong narrative: "NoHotfix before the deploy. PagerDuty if something goes wrong anyway."
+
+---
+
+## UAT & External Feedback Tools (Next-Phase Competitive Frontier)
+
+These become relevant when NoHotfix ships **UAT authoring + external partner sign-off** (next-phase vision). They are not v1 competitors. The angle that wins here is that NoHotfix already owns the *internal* enforced-testing model — UAT is the same evidence-backed test pointed at an external reviewer — so teams get internal QA and external acceptance in one tool with one mental model.
+
+### UserTesting / Centercode / similar
+
+- **What they are**: Dedicated platforms for user research, beta programs, and managed UAT / feedback collection
+- **Strengths**: Purpose-built feedback capture, panels of testers, research workflows
+- **Weaknesses**: Heavy, research-oriented, and disconnected from the release gate; no concept of enforced pass/fail or an immutable release record; overkill for "send a client a structured test to sign off"
+- **How to beat it**: NoHotfix UAT is lightweight, lives next to the release decision, and produces the same evidence-backed record as internal testing — not a separate research silo.
+
+### UserSnap / Marker.io / shared-doc UAT
+
+- **What they are**: Visual feedback / bug-report widgets, and the spreadsheets-and-email UAT process most agencies actually run today
+- **Strengths**: Low friction, familiar; clients already know how to comment
+- **Weaknesses**: No structured steps, no test data, no pass/fail sign-off that means anything, no record
+- **How to beat it**: "Send your client a link to walk the actual tests and sign off — on the record" beats an email thread and a shared sheet.
 
 ---
 

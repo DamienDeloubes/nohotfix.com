@@ -1,41 +1,81 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { DM_Sans, Inter, Geist_Mono } from 'next/font/google';
 
+import '@nohotfix/design-tokens/tokens.css';
 import './globals.css';
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-display',
+  display: 'swap',
+});
 
 const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'NoHotfix — Release with proof.',
-  description: 'Release readiness, enforced. Artifact-gated specs, formal go/no-go decisions, and immutable run records. Start free.',
+  title: 'NoHotfix — Ship it once.',
+  description:
+    'Catch every issue before production does. Artifact-gated specs, formal go/no-go decisions, and immutable run records. Start free.',
   openGraph: {
-    title: 'NoHotfix — Release with proof.',
-    description: 'Artifact-gated specs, formal go/no-go decisions, and immutable run records for engineering teams.',
+    title: 'NoHotfix — Ship it once.',
+    description:
+      'Artifact-gated specs, formal go/no-go decisions, and immutable run records for engineering teams.',
     type: 'website',
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactElement {
   return (
-    <html lang="en" className={`${inter.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${inter.variable} ${geistMono.variable}`}>
       <head>
-        {/* Aeonik Pro — replace with your licensed font files */}
-        <style
+        {/*
+         * Pre-paint theme script — sets/removes `dark` class before first paint
+         * to eliminate FOUC. Reads localStorage `theme-preference`, falls back
+         * to OS prefers-color-scheme. Light = no class (light-first).
+         */}
+        <script
           dangerouslySetInnerHTML={{
-            __html: `
-              :root {
-                --font-display: 'Inter', -apple-system, sans-serif;
-                --font-geist-mono: 'Courier New', monospace;
-              }
-            `,
+            __html: `(function(){
+  try {
+    var stored = localStorage.getItem('theme-preference');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = stored === 'dark' || (stored !== 'light' && prefersDark);
+    if (dark) document.documentElement.classList.add('dark');
+
+    // Runtime listener: auto-switch on OS change (only when no manual override)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      var override = localStorage.getItem('theme-preference');
+      if (!override) {
+        if (e.matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    });
+  } catch(e) {}
+})();`,
           }}
         />
       </head>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased bg-[var(--bg-page)] text-[var(--text-primary)] transition-colors duration-300">
+        {children}
+      </body>
     </html>
   );
 }

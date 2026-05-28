@@ -1,28 +1,27 @@
 # Product Marketing Strategist — Memory
 
-## NoHotfix Positioning (rebranded from NoHotfix on 2026-03-11)
+## NoHotfix Positioning
 
-**Category**: Release Readiness / Release Governance (micro-category between QA tooling and release orchestration)
+**Category**: Release Readiness / Release Governance (micro-category between QA tooling and release orchestration). This is the **wedge**; the vision broadens to "the QA/test tooling choice" (UAT authoring, Jira integration) without diluting the enforcement core — see `docs/product-vision.md`.
 
-**Core differentiation**: The enforcement triad — artifact-gated spec execution + go/no-go decision gate + run immutability. No competitor combines all three. This is the entire positioning.
+**Core differentiation**: The enforcement triad — artifact-gated spec execution + go/no-go decision gate + run immutability. No competitor combines all three. The triad stays the flagship even as the platform broadens.
 
 **The one-line contrast**: "A Notion checklist can be checked off without doing the work. NoHotfix can't."
 
-**Tagline**: "Watch every release land." (replaced "Release with proof." on 2026-03-11 rebrand)
+**Tagline**: "Ship it once." (the promise behind the name: catch every issue before production does)
 
 **Domain**: nohotfix.com (confirmed, user acquired)
 
-## Hawk Brand Vocabulary (official — Option B, used sparingly)
+## NoHotfix Vocabulary (official — use sparingly)
 
-Five anchor phrases. Use when they reinforce precision/scrutiny. Never as decoration.
+Four anchor phrases, all serving one idea: catch it first, ship it once. Never as decoration.
 
-1. "Watch every release land." — tagline only
-2. "Sharp eyes on every release" — scrutiny, QA lead / VP Eng context
-3. "Nothing slips through" — enforcement, blocked pass action, immutability
-4. "Locked on" — go/no-go decision moment
-5. "Overhead view" — VP Eng multi-team visibility, use sparingly
+1. "Ship it once." — tagline only
+2. "Caught before production" — enforcement: blocked pass action, immutability
+3. "No surprises in prod" — VP Eng / outcome-focused copy
+4. "Proof before you ship" — compliance / audit context
 
-**Voice rule**: Hawk vocabulary is permitted when it reinforces precision and scrutiny — never as decoration. No feather imagery. No bird mascots. No puns.
+**Voice rule**: vocabulary is permitted when it reinforces the concrete promise — never as decoration. No mascots, no animal/bird imagery, no puns.
 
 ## Target Personas
 
@@ -46,16 +45,10 @@ Five anchor phrases. Use when they reinforce precision/scrutiny. Never as decora
 - Early bird = first ~100 paying orgs, grandfathered Stripe price objects.
 - The enforcement triad is available on ALL tiers including Free — never gate the core value in messaging.
 
-## Messaging Pillars
-
-1. **Evidence-Gated Execution** — pass action is blocked until artifacts are attached. Six artifact types.
-2. **Role-Gated Go/No-Go** — Admin-only decision screen, all specs must be terminal, mandatory written justification for Go with failures.
-3. **Immutable Audit Record** — 3-layer enforcement, tamper-evident, send auditor the URL.
-
 ## Key File Locations
 
 - `docs/marketing/positioning.md` — Category definition, 3 personas, competitive positioning, 5 positioning principles
-- `docs/marketing/messaging.md` — Value prop, hawk vocabulary table, 3 pillars with proof points, narrative, voice guidelines
+- `docs/marketing/messaging.md` — Value prop, NoHotfix vocabulary, 3 pillars with proof points, narrative, voice guidelines
 - `docs/marketing/sitemap.md` — Full site architecture with page-level specs for all 12 pages
 - `docs/marketing/ideal-customer-profile.md` — ICP detail, buying journey, negative ICP
 - `docs/marketing/competitors.md` — Competitive landscape, positioning summary table
@@ -70,10 +63,36 @@ Five anchor phrases. Use when they reinforce precision/scrutiny. Never as decora
 - Fortune 500 without enterprise sales motion
 - "QA = CI pipelines only" shops
 
-## Voice Rules
+## Rebrand — Tagline & H1 Options (doc: `docs/design/rebrand-proposal/04-tagline-and-headline-options.md`)
 
-- Precise, grounded, confident. Never cartoonish, never enterprise-gray, never buzzword-driven.
-- Never say "streamline." Never say "AI-powered." No bird mascots, no puns on "hawk."
-- Hawk vocabulary (sharp eyes, locked on, nothing slips through, overhead view) permitted only when reinforcing precision and scrutiny — never as decoration.
-- Write for technical readers. Use their vocabulary: specs, runs, artifacts, go/no-go, run immutability.
-- Concrete mechanics > vague benefit language.
+Founder requested a wider menu. 10 tagline candidates + 10 H1 candidates evaluated. Decisions:
+
+- **Tagline #1**: "Ship it once." — incumbent, stays. Name + tagline are the same claim in two registers.
+- **Tagline #2**: "The gate holds." — best mechanic-first alternative; use as section headline regardless.
+- **Tagline #3**: "Nothing ships without evidence." — enforcement-absolute; for sceptics/conversion copy.
+- **H1 #1**: "The release gate that holds." — the correct homepage H1. Category-establishing + mechanic-implying.
+- **H1 #2**: "Specs don't pass until the evidence does." — best for QA persona landing pages / subhead opener.
+- **H1 #3**: "The pass action is blocked. Until the artifact is attached." — QA engineer acquisition channels only.
+- **Recommended hero pairing**: H1 = "The release gate that holds." / Subhead = "Specs don't pass until the evidence does. The go/no-go call is Admin-only and permanent. When the decision is made, the run is sealed."
+- "The checklist is a shared lie." — manifesto section only, never the H1.
+- "Your release checklist, structurally enforced." — accessible but contradicts the positioning; avoid as H1.
+
+## Voice Rules (v5 — APPROVED 2026-05-28)
+
+Three adjectives: Clinically confident. Structurally warm. Deliberately legible.
+The shift: explanatory → declarative. Mechanic-first. Softness edited out.
+
+- State the mechanic; let the reader infer the benefit. Engineers distrust benefit language.
+- No soft connectives: "helps you," "makes it easy to," "allows teams to." Direct subject-verb only.
+- Hero copy: max 10 words per sentence. Body: complete declarative sentences, present tense, active subject. Microcopy: verb first.
+- Wit is single-use — the 404 line ("This page doesn't exist. It wasn't shipped.") earns its impact by appearing once.
+- Never say "streamline," "AI-powered," "ensure," "help" (as a verb), "robust," "end-to-end," "seamless," "powerful," "solution," "leverage," "next-generation," "world-class."
+- No mascots, no animal/bird imagery. NoHotfix vocabulary permitted only when reinforcing the concrete promise.
+- Write for technical readers: specs, runs, artifacts, go/no-go, run immutability, sealed, blocked, terminal.
+
+## Messaging Pillars (v5 statements)
+
+1. **Evidence-Gated Execution** — "The pass action is blocked. Not warned. Blocked — until the required artifact is attached." Section headline: "No artifact, no pass. Full stop."
+2. **Role-Gated Go/No-Go** — "One screen. One Admin. Every spec outcome visible before the call is made. The decision is permanent." Section headline: "The release decision, made once and locked."
+3. **Immutable Audit Record** — "When the go/no-go call is made, the run is sealed. Nothing in it can be edited. Send the URL." Section headline: "The record is sealed when the call is made."
+4. **Lightweight Adoption** _(supporting pillar)_ — "A playbook is live in an afternoon. No implementation project. No dedicated admin." Section headline: "Start enforcing in hours, not quarters."

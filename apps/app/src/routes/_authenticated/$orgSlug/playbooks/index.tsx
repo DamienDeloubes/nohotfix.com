@@ -91,8 +91,8 @@ function PlaybooksPage() {
                 onClick={() => setActiveTab(t)}
                 className={`rounded-lg cursor-pointer px-4 py-1.5 text-sm font-medium transition-colors duration-150 capitalize ${
                   activeTab === t
-                    ? 'bg-[var(--glass-12)] text-base-900 dark:text-slate-50'
-                    : 'text-secondary hover:bg-[var(--glass-8)] hover:text-base-900 dark:hover:text-slate-50'
+                    ? 'bg-[var(--glass-12)] text-[var(--text-primary)]'
+                    : 'text-secondary hover:bg-[var(--glass-8)] hover:text-[var(--text-primary)]'
                 }`}
               >
                 {t}
@@ -131,7 +131,7 @@ function PlaybooksPage() {
                   //   </Card>
                   <div key={playbook.id} className="bg-white rounded-md border border-surface-border p-6 relative">
                     <div className="">
-                      <h4 className="text-base-900 font-semibold text-xl">{playbook.name}</h4>
+                      <h4 className="text-[var(--text-primary)] font-semibold text-xl">{playbook.name}</h4>
                       {playbook.description && <span className="text-muted text-sm">{playbook.description}</span>}
                     </div>
 

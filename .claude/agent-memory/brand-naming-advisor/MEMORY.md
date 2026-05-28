@@ -103,7 +103,7 @@
 
 ## New Product Context (April 2026)
 
-- User is evaluating names for a NEW standalone product (separate from NoHotfix/NoHotfix)
+- User was evaluating names for a partner-UAT product, then considered separate from the main product. **NOTE (2026-05-28): this UAT capability is now planned as a NoHotfix next-phase feature, not a separate product — see `docs/product-vision.md` and `docs/development/features/vision/uat-test-authoring.md`.**
 - Product: Guided partner acceptance testing tool — agencies/vendors share a link with non-technical business partners who walk through test flows on staging sites with inline annotations
 - Positioning: "BugHerd meets TestRail, focused on external partner UAT"
 - Primary competitors: Marker.io, BugHerd, Usersnap, aqua cloud

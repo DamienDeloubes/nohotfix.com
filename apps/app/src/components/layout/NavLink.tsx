@@ -16,7 +16,7 @@ export function NavLink({ to, params, label, icon }: NavLinkProps) {
   const [hovered, setHovered] = useState(false);
   const { resolvedTheme } = useTheme();
   const activeColor = resolvedTheme === 'dark' ? '#ffffff' : 'var(--color-primary)';
-  const inactiveColor = resolvedTheme === 'dark' ? '#9c9ba0' : 'var(--color-muted)';
+  const inactiveColor = 'var(--color-muted)';
 
   return (
     <Link

@@ -32,7 +32,7 @@ function getSystemTheme(): ResolvedTheme {
   } catch {
     // matchMedia unavailable
   }
-  return 'dark'; // default to dark when indeterminate
+  return 'light'; // light-first: default when OS preference is indeterminate
 }
 
 function resolveTheme(preference: ThemePreference): ResolvedTheme {

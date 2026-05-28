@@ -153,13 +153,13 @@ function EnvironmentsSettingsPage() {
           }}
           placeholder="New environment name"
           maxLength={100}
-          className="bg-[var(--glass-4)] border border-[var(--glass-border)] rounded-[var(--radius-sm)] text-white text-sm px-3 py-2 outline-none placeholder:text-white/40 focus:border-blue-500 transition-colors [transition-duration:var(--duration-fast)] flex-1"
+          className="bg-[var(--glass-4)] border border-[var(--glass-border)] rounded-[var(--radius-sm)] text-white text-sm px-3 py-2 outline-none placeholder:text-white/40 focus:border-[var(--border-focus)] transition-colors [transition-duration:var(--duration-fast)] flex-1"
         />
         <button
           type="button"
           onClick={() => void handleAdd()}
           disabled={createMutation.isPending || !newName.trim()}
-          className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-[var(--radius-sm)] disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed"
+          className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white text-sm font-medium px-4 py-2 rounded-[var(--radius-sm)] disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed"
         >
           Add environment
         </button>
@@ -245,7 +245,7 @@ function SortableEnvironmentRow({ env, onRename, onDeleteClick, deleteConfirmId,
               onBlur={() => void handleSave()}
               maxLength={100}
               autoFocus
-              className="bg-[var(--glass-4)] border border-blue-500 rounded-[var(--radius-sm)] text-white text-sm px-3 py-2 outline-none placeholder:text-white/40 transition-colors [transition-duration:var(--duration-fast)] w-full"
+              className="bg-[var(--glass-4)] border border-[var(--border-focus)] rounded-[var(--radius-sm)] text-white text-sm px-3 py-2 outline-none placeholder:text-white/40 transition-colors [transition-duration:var(--duration-fast)] w-full"
             />
             {editError && <p className="text-error-500 text-xs mt-1 mb-0">{editError}</p>}
           </div>
