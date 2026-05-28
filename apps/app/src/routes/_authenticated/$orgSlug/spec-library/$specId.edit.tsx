@@ -37,7 +37,7 @@ function EditSpecPage() {
 
   if (!isAdmin) {
     return (
-      <div style={{ padding: '2rem', color: '#ef4444' }}>
+      <div style={{ padding: '2rem', color: 'var(--error-text)' }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Access Denied</h2>
         <p>You need admin access to edit specs.</p>
       </div>
@@ -45,12 +45,12 @@ function EditSpecPage() {
   }
 
   if (specQuery.isLoading) {
-    return <div style={{ padding: '2rem', color: '#6b7280' }}>Loading spec...</div>;
+    return <div style={{ padding: '2rem', color: 'var(--text-muted)' }}>Loading spec...</div>;
   }
 
   if (specQuery.isError || !specQuery.data) {
     return (
-      <div style={{ padding: '2rem', color: '#ef4444' }}>
+      <div style={{ padding: '2rem', color: 'var(--error-text)' }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Spec not found</h2>
         <p>The spec you are trying to edit does not exist or could not be loaded.</p>
       </div>

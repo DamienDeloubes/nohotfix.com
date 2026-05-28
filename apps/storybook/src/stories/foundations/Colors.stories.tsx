@@ -1,18 +1,9 @@
 import { colorScales, type Scale } from '@nohotfix/design-tokens';
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 
 // ---------------------------------------------------------------------------
 // Swatch helpers
 // ---------------------------------------------------------------------------
-
-function hexToRgb(hex: string): string {
-  const clean = hex.replace('#', '');
-  const r = parseInt(clean.substring(0, 2), 16);
-  const g = parseInt(clean.substring(2, 4), 16);
-  const b = parseInt(clean.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
-}
 
 function relativeLuminance(hex: string): number {
   const clean = hex.replace('#', '');
@@ -37,7 +28,7 @@ function labelColor(hex: string): string {
 // Swatch
 // ---------------------------------------------------------------------------
 
-function Swatch({ name, value, notes }: { name: string; value: string; notes?: string }) {
+function Swatch({ name, value, notes }: { name: string; value: string; notes?: string | undefined }) {
   return (
     <div style={{ width: 160 }}>
       <div

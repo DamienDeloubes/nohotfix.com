@@ -1,6 +1,5 @@
 import { typeScale, fontFamilies } from '@nohotfix/design-tokens';
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 
 const familyMap: Record<'display' | 'body' | 'mono', string> = {
   display: fontFamilies.display,

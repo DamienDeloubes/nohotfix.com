@@ -36,7 +36,7 @@ const tiers = [
   },
 ];
 
-export function PricingSummary() {
+export function PricingSummary(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-32 px-6 bg-[var(--bg-page)]">
       <div className="max-w-[960px] mx-auto">

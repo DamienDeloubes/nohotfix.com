@@ -39,7 +39,7 @@ function AcceptInvitePage() {
       <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ textAlign: 'center', maxWidth: '400px', padding: '2rem' }}>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1rem' }}>Could not accept invite</h1>
-          <p style={{ color: '#6b7280' }}>{error}</p>
+          <p style={{ color: 'var(--text-muted)' }}>{error}</p>
         </div>
       </main>
     );
@@ -48,7 +48,7 @@ function AcceptInvitePage() {
   return (
     <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
       <div style={{ textAlign: 'center', padding: '2rem' }}>
-        <p style={{ color: '#6b7280' }}>Accepting invite...</p>
+        <p style={{ color: 'var(--text-muted)' }}>Accepting invite...</p>
       </div>
     </main>
   );

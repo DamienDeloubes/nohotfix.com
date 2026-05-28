@@ -35,7 +35,7 @@ const guarantees = [
   },
 ];
 
-export function ThreeGuarantees() {
+export function ThreeGuarantees(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-32 px-6 bg-[var(--bg-section-alt)]">
       <div className="max-w-[1100px] mx-auto">

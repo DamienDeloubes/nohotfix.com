@@ -21,7 +21,7 @@ function NewPlaybookPage() {
 
   if (!isAdmin) {
     return (
-      <div style={{ padding: '2rem', color: '#ef4444' }}>
+      <div style={{ padding: '2rem', color: 'var(--error-text)' }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Access Denied</h2>
         <p>You need admin access to create playbooks.</p>
       </div>

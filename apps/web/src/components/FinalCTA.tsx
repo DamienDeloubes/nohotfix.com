@@ -4,7 +4,7 @@ import { ScrollReveal } from './ScrollReveal';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
-export function FinalCTA() {
+export function FinalCTA(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-[120px] px-6 overflow-hidden bg-[var(--bg-section-alt)]">
       {/* Subtle radial glow — orange-tinted per brand */}

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 
 // Shadow levels sourced from tokens.css (read from CSS vars at runtime to reflect theme)
 const shadowLevels = [

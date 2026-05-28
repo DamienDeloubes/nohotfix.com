@@ -71,7 +71,7 @@ function PlaybookDetailPage() {
 
   if (error) {
     return (
-      <div style={{ padding: '2rem', color: '#ef4444' }}>
+      <div style={{ padding: '2rem', color: 'var(--error-text)' }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Error</h2>
         <p>{error.message}</p>
       </div>
@@ -105,10 +105,10 @@ function PlaybookDetailPage() {
               padding: '2px 8px',
               fontSize: '0.75rem',
               fontWeight: 600,
-              color: '#92400e',
-              backgroundColor: '#fef3c7',
+              color: 'var(--nogo-text)',
+              backgroundColor: 'var(--nogo-surface)',
               borderRadius: '9999px',
-              border: '1px solid #fcd34d',
+              border: '1px solid var(--nogo-border)',
             }}
           >
             Archived
@@ -117,7 +117,7 @@ function PlaybookDetailPage() {
         {isAdmin && <PlaybookActionMenu isArchived={isArchived} onArchive={() => setShowArchiveDialog(true)} onUnarchive={handleUnarchive} />}
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid #e5e7eb', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid var(--border-default)', marginBottom: '1.5rem' }}>
         {TABS.map((t) => (
           <button
             key={t}
@@ -174,8 +174,8 @@ function PlaybookDetailPage() {
 
       {activeTab === 'history' && (
         <>
-          {historyQuery.isLoading && <div style={{ padding: '1rem', color: '#6b7280' }}>Loading history...</div>}
-          {historyQuery.isError && <div style={{ padding: '1rem', color: '#ef4444' }}>Failed to load history.</div>}
+          {historyQuery.isLoading && <div style={{ padding: '1rem', color: 'var(--text-muted)' }}>Loading history...</div>}
+          {historyQuery.isError && <div style={{ padding: '1rem', color: 'var(--error-text)' }}>Failed to load history.</div>}
           {historyQuery.data && <PlaybookHistoryTimeline entries={historyQuery.data.entries} />}
         </>
       )}
@@ -218,12 +218,12 @@ function PlaybookActionMenu({ isArchived, onArchive, onUnarchive }: { isArchived
         onClick={() => setOpen(!open)}
         style={{
           background: 'none',
-          border: '1px solid #d1d5db',
+          border: '1px solid var(--border-default)',
           borderRadius: '4px',
           padding: '4px 8px',
           cursor: 'pointer',
           fontSize: '14px',
-          color: '#6b7280',
+          color: 'var(--text-muted)',
         }}
         aria-label="Actions"
       >
@@ -236,8 +236,8 @@ function PlaybookActionMenu({ isArchived, onArchive, onUnarchive }: { isArchived
             right: 0,
             top: '100%',
             marginTop: '4px',
-            background: '#fff',
-            border: '1px solid #e5e7eb',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-default)',
             borderRadius: '6px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
             zIndex: 10,
@@ -260,10 +260,10 @@ function PlaybookActionMenu({ isArchived, onArchive, onUnarchive }: { isArchived
                 border: 'none',
                 cursor: 'pointer',
                 fontSize: '13px',
-                color: '#374151',
+                color: 'var(--text-secondary)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f3f4f6';
+                e.currentTarget.style.background = 'var(--bg-hover)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = 'none';
@@ -287,10 +287,10 @@ function PlaybookActionMenu({ isArchived, onArchive, onUnarchive }: { isArchived
                 border: 'none',
                 cursor: 'pointer',
                 fontSize: '13px',
-                color: '#dc2626',
+                color: 'var(--color-error-600)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#fef2f2';
+                e.currentTarget.style.background = 'var(--error-surface)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = 'none';

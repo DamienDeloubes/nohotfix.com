@@ -1,6 +1,5 @@
 import { radius } from '@nohotfix/design-tokens';
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 
 function RadiusDoc() {
   return (

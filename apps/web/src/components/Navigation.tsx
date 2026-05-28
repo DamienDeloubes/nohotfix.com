@@ -5,7 +5,7 @@ import { NoHotfixLogo } from './NoHotfixLogo';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
-export function Navigation() {
+export function Navigation(): React.ReactElement {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   // Track dark mode for logo variant selection

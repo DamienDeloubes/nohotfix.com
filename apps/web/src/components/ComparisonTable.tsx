@@ -16,7 +16,7 @@ const competitors = [
   { name: 'Jira', results: [false, false, false, false, false] },
 ];
 
-export function ComparisonTable() {
+export function ComparisonTable(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-32 px-6 bg-[var(--bg-section-alt)]">
       <div className="max-w-[900px] mx-auto">

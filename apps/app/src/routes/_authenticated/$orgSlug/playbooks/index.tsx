@@ -1,16 +1,6 @@
 import { useSubheader } from '@/components/layout/SubheaderContext.js';
-import { AppButton } from '@/components/ui/AppButton.js';
 import { LordiconIcon } from '@/components/ui/LordiconIcon.js';
-import { Card, Link } from '@heroui/react';
-import {
-  ArchivePlaybookDialog,
-  PlaybookCard,
-  PlaybookCardGrid,
-  PlaybookListEmptyState,
-  useArchivePlaybook,
-  usePlaybookList,
-  useUnarchivePlaybook,
-} from '@nohotfix/domain-authoring/ui';
+import { ArchivePlaybookDialog, PlaybookListEmptyState, useArchivePlaybook, usePlaybookList } from '@nohotfix/domain-authoring/ui';
 import { useOrgContext } from '@nohotfix/domain-identity/ui';
 import { requireRole } from '@nohotfix/shared';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
@@ -45,18 +35,8 @@ function PlaybooksPage() {
     isArchived,
   });
 
-  const unarchiveMutation = useUnarchivePlaybook({ orgSlug, invalidateKeys });
-
-  const handleRowClick = (playbookId: string) => {
-    void navigate({ to: '/$orgSlug/playbooks/$playbookId', params: { orgSlug, playbookId } });
-  };
-
   const handleCreateClick = () => {
     void navigate({ to: '/$orgSlug/playbooks/new', params: { orgSlug } });
-  };
-
-  const handleUnarchive = (playbookId: string) => {
-    unarchiveMutation.mutate({ playbookId });
   };
 
   useEffect(() => {

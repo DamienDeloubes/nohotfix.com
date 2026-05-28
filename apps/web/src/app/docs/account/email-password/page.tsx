@@ -9,9 +9,9 @@ const callout = {
     marginBottom: '1.5rem',
   } as const,
   warning: {
-    backgroundColor: '#fef3c7',
-    border: '1px solid #f59e0b',
-    color: '#92400e',
+    backgroundColor: 'var(--nogo-surface)',
+    border: '1px solid var(--nogo-border)',
+    color: 'var(--nogo-text)',
   } as const,
   note: {
     backgroundColor: 'var(--bg-section-alt)',
@@ -22,9 +22,9 @@ const callout = {
 
 export default function EmailPasswordGuidePage(): ReactElement {
   return (
-    <main style={{ maxWidth: '40rem', margin: '3rem auto', padding: '0 1.5rem', color: '#374151', lineHeight: 1.7 }}>
+    <main style={{ maxWidth: '40rem', margin: '3rem auto', padding: '0 1.5rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
       <h1 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.5rem' }}>Changing your email or password</h1>
-      <p style={{ color: '#6b7280', marginBottom: '2rem' }}>
+      <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
         NoHotfix uses WorkOS to handle all authentication. This means that changing your email address or password is not possible directly from the NoHotfix UI.
       </p>
 
@@ -46,7 +46,7 @@ export default function EmailPasswordGuidePage(): ReactElement {
         <div style={{ ...callout.base, ...callout.warning }}>
           <strong>Warning:</strong> If you are the sole owner of an organisation, you must first transfer ownership to another admin before the old account can be removed. An
           organisation must always have at least one owner. If you need help, contact us at{' '}
-          <a href="mailto:support@nohotfix.com" style={{ color: '#92400e', textDecoration: 'underline' }}>
+          <a href="mailto:support@nohotfix.com" style={{ color: 'var(--nogo-text)', textDecoration: 'underline' }}>
             support@nohotfix.com
           </a>
           .

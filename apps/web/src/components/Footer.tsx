@@ -22,7 +22,7 @@ const footerLinks = {
   ],
 };
 
-export function Footer() {
+export function Footer(): React.ReactElement {
   return (
     <footer className="border-t border-[var(--border-default)] bg-[var(--bg-page-shell)]">
       <div className="max-w-[1100px] mx-auto px-6 py-16">

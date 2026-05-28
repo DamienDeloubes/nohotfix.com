@@ -33,7 +33,7 @@ const steps = [
   },
 ];
 
-export function HowItWorks() {
+export function HowItWorks(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-32 px-6 bg-[var(--bg-page)]">
       <div className="max-w-[900px] mx-auto">

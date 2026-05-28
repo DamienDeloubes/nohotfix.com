@@ -91,7 +91,7 @@ function SpecDetailPage() {
 
   if (!isAdmin) {
     return (
-      <div style={{ padding: '2rem', color: '#ef4444' }}>
+      <div style={{ padding: '2rem', color: 'var(--error-text)' }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Access Denied</h2>
         <p>You need admin access to view specs.</p>
       </div>
@@ -108,7 +108,7 @@ function SpecDetailPage() {
         onUnarchiveClick={isArchived ? handleUnarchiveClick : undefined}
       />
 
-      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid #e5e7eb', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid var(--border-default)', marginBottom: '1.5rem' }}>
         {TABS.map((t) => (
           <button
             key={t}
@@ -136,8 +136,8 @@ function SpecDetailPage() {
 
       {activeTab === 'history' && (
         <>
-          {historyQuery.isLoading && <div style={{ padding: '1rem', color: '#6b7280' }}>Loading history...</div>}
-          {historyQuery.isError && <div style={{ padding: '1rem', color: '#ef4444' }}>Failed to load history.</div>}
+          {historyQuery.isLoading && <div style={{ padding: '1rem', color: 'var(--text-muted)' }}>Loading history...</div>}
+          {historyQuery.isError && <div style={{ padding: '1rem', color: 'var(--error-text)' }}>Failed to load history.</div>}
           {historyQuery.data && <SpecHistoryTimeline entries={historyQuery.data.entries} />}
         </>
       )}

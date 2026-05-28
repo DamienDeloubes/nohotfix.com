@@ -7,7 +7,7 @@ const DarkVeil = dynamic(() => import('./DarkVeil'), { ssr: false });
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
-export function Hero() {
+export function Hero(): React.ReactElement {
   const [loaded, setLoaded] = useState(false);
   const [isDark, setIsDark] = useState(false);
 

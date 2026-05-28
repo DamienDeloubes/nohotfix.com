@@ -2,7 +2,7 @@
 
 import { ScrollReveal } from './ScrollReveal';
 
-export function PainHook() {
+export function PainHook(): React.ReactElement {
   return (
     <section className="relative py-24 px-6 bg-[var(--bg-page)]">
       <div className="max-w-[760px] mx-auto">

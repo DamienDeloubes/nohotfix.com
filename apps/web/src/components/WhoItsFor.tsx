@@ -31,7 +31,7 @@ const personas = [
   },
 ];
 
-export function WhoItsFor() {
+export function WhoItsFor(): React.ReactElement {
   return (
     <section className="relative py-24 sm:py-32 px-6 bg-[var(--bg-page)]">
       <div className="max-w-[880px] mx-auto">

@@ -1,6 +1,6 @@
 import { motion } from '@nohotfix/design-tokens';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function EasingDemo({ name, value }: { name: string; value: string }) {
   const [active, setActive] = useState(false);

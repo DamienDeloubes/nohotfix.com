@@ -28,7 +28,7 @@ export function NoHotfixLogo({
   height = 24,
   className,
   id,
-}: NoHotfixLogoProps) {
+}: NoHotfixLogoProps): React.ReactElement {
   // #111110 = Dark-900 (v5 near-black, replaces retired violet #0D0920)
   const letterColor = variant === 'dark' ? '#FFFFFF' : '#111110';
   // Unique gradient ID per instance to avoid conflicts when multiple logos are on the page
