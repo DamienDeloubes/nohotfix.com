@@ -150,9 +150,16 @@ This refines the currently-built order by (1) adding the honest **trust strip** 
 1. **Spec + findings** — a spec open; the tester types findings into the fields. Deliberately ordinary — indistinguishable from any checklist tool. *(the "before")*
 2. **Blocked** — Submit is hit and stopped: *"Required screenshot not attached."* The action is **disabled, not warned**. **The money frame** — the section's payoff. *(the "after")*
 3. **Submitted** — screenshot attached; Submit succeeds (✓).
-4. **Summary + go/no-go** — a high-level run summary: failed specs, counts by **impact (high / medium / low)**, and the **GO / NO-GO** action. Completes the arc: tried to cut the corner → couldn't → here's the verdict.
+4. **Summary + go/no-go** — a high-level run summary: failed specs, counts by **severity (critical / high / medium / low)**, and the **GO / NO-GO** action. Completes the arc: tried to cut the corner → couldn't → here's the verdict.
 
-**Content status** — Placeholder until grounded in the real app. **Open question: confirm the product's severity model** (docs reference specs "sorted by severity" — verify high/medium/low impact vs. another taxonomy) before finalizing frame 4. Field labels, badges, and the disabled-button treatment use the exact brand/product tokens.
+**Grounded in the real model** (confirmed in `packages/domains` / `packages/shared` / `apps/app`):
+- **Severity is per-spec: `critical | high | medium | low`** (`Severity` value object, `packages/domains/authoring/src/entities/value-objects/severity.ts`, default `medium`) — frame 4 uses these **four** tiers, not high/med/low.
+- **Six artifact requirement types**: `file`, `text`, `checkbox`, `url`, `measured_value`, `table` (each with `label` + `required`). The demo's "required screenshot" is a **required `file`** requirement.
+- **Spec execution**: `result = passed | failed | skipped`, with `notes` (the tester's findings), `failureReason`, `skipReason`.
+- **Statuses/badges**: spec `pending | in_progress | passed | failed | skipped`; run `in_progress | awaiting_decision | go | no_go | abandoned`. Decisions: **`go | no_go | abandoned`**; a Go-with-failures records a written `statement`. Go badge green, No-Go yellow.
+- **URL bar**: `app.nohotfix.com/<org>/runs/<runId>`.
+
+> **Caveat — the run-execution and go/no-go *screens are not built yet*** (placeholder routes; API returns `501`). The data model is real, but there is no shipped UI to copy. This demo therefore **designs** those screens from the real schema rather than mirroring an existing one — it must stay faithful to the model (field names, states, the four-tier severity) and can double as a design reference for the eventual product UI. Treat it as forward design, not a screenshot of something shipped.
 
 **Look & feel** — Full-width browser frame on warm-white, light-mode screenshot treatment. The blocked error + disabled Submit must read instantly as *blocked, not loading* — the most important pixels in this section. Geist Mono on data fields, Inter on labels; status badges in their exact semantic colors.
 
@@ -210,7 +217,7 @@ This refines the currently-built order by (1) adding the honest **trust strip** 
 
 **Layout** — Centered table, `max-width ~900px`, in a bordered container. Columns: capability rows × {Notion-style checklist, generic test tool, **NoHotfix**}. The NoHotfix column carries a 3px orange top border and a `rgba(234,107,4,0.06)` warm column wash (the subtle comparison-table treatment from brand law).
 
-**What's shown** — 5–6 rows of real, defensible capabilities (enforced evidence, blocked pass, Admin-only permanent decision, sealed record, audit export). Go-green filled check-circles for NoHotfix; muted crosses elsewhere. Competitor columns stay neutral and fair (no strawman).
+**What's shown** — 5–6 rows of real, defensible capabilities (enforced evidence, blocked pass, Admin-only permanent decision, sealed record, audit-ready record at a shareable URL — no reconstruction). Go-green filled check-circles for NoHotfix; muted crosses elsewhere. Competitor columns stay neutral and fair (no strawman). *(Do not use "export" as a row — the dedicated export feature is post-launch; the launch proof is the sealed record + its URL.)*
 
 **Look & feel** — Calm, factual, "the gate doesn't argue." The warm wash is the only color on the NoHotfix column besides the green checks.
 
@@ -384,7 +391,7 @@ No open questions remain for this round. Finalized copy is now in the **Copy dec
 
 # Decisions (review round 2 — 2026-05-29)
 
-1. **Pain hook → scripted browser demo.** Replace the before/after two-card contrast with a single full-width, scripted, auto-advancing browser walkthrough of a release runbook (spec + findings → blocked on a missing screenshot → submitted → summary with impact counts + GO/NO-GO). The contrast becomes temporal + verbal, not side-by-side. Scripted (not interactive), scoped to this section (hero/how-it-works unchanged), go/no-go finale included. Full spec in §3. Open: confirm the severity model (high/med/low) against `apps/app`; introduce a reusable `BrowserFrame` (extracted from the hero chrome).
+1. **Pain hook → scripted browser demo.** Replace the before/after two-card contrast with a single full-width, scripted, auto-advancing browser walkthrough of a release runbook (spec + findings → blocked on a missing screenshot → submitted → summary with impact counts + GO/NO-GO). The contrast becomes temporal + verbal, not side-by-side. Scripted (not interactive), scoped to this section (hero/how-it-works unchanged), go/no-go finale included. Full spec in §3. Severity **confirmed**: per-spec `critical/high/medium/low`. **Note:** the real run-execution + go/no-go *screens aren't built yet* (stubbed routes, API 501), so the demo designs them from the real data model (six artifact types; result passed/failed/skipped; decisions go/no_go/abandoned). Introduce a reusable `BrowserFrame` (extracted from the hero chrome).
 
 ---
 
@@ -427,7 +434,7 @@ No open questions remain for this round. Finalized copy is now in the **Copy dec
   - Frame 1 (spec + findings): a spec title + the tester's findings text — ordinary, like any checklist.
   - Frame 2 (blocked): error — *Required screenshot not attached.* · Submit/Pass disabled.
   - Frame 3 (submitted): *Submitted* ✓ (screenshot attached).
-  - Frame 4 (summary + go/no-go): failed specs · counts by **High / Medium / Low impact** · **GO / NO-GO**.
+  - Frame 4 (summary + go/no-go): failed specs · counts by **severity (Critical / High / Medium / Low)** · **GO / NO-GO** (real decisions: go / no_go / abandoned).
 - *Retired:* the before/after "VS" cards — the contrast is now temporal (inside the demo) + verbal (the manifesto).
 
 ### 4 · The enforcement triad
@@ -470,9 +477,10 @@ No open questions remain for this round. Finalized copy is now in the **Copy dec
 - **H2**: The enforcement triad is free. Seats are what you pay for.
 - **Subhead**: Start for free. Pay when you invite your team.
 - **Free** — **$0** · 1 seat · full enforcement · go/no-go · sealed records · CTA: Start for free
-- **Growth** *(Most popular)* — **$29/mo** early-bird *(first 100 orgs)* · $49 standard · up to 10 seats · audit-grade export · everything in Free · CTA: Start for free
-- **Scale** — **$99/mo** early-bird · $149 standard · up to 40 seats · viewer role · retention controls · priority support · CTA: Start for free
+- **Growth** *(Most popular)* — **$49/mo** standard · **$29 early-bird** (first 100 orgs) · up to 10 seats · everything in Free · CTA: Start for free
+- **Scale** — **$149/mo** standard · **$99 early-bird** · up to 40 seats · faster (1-day) support · CTA: Start for free
 - **Footer line**: Annual billing saves 20%. Need 40+ seats or SSO? Talk to us. · **Link**: Compare all plans →
+- *Launch-scope note:* anchor on the **standard** price with early-bird framed as the saving. **Audit-grade export (PDF/JSON)** and Scale's **compliance-ops** (viewer role, retention controls, uptime SLA) are **post-launch** — do not list them as current Growth/Scale features. Browser print-to-PDF of the sealed record *is* available at launch.
 
 ### 10 · FAQ
 1. **Is the free tier really free?** — Yes. One seat, full enforcement, no credit card, no time limit. The moment you invite a teammate you move to Growth — that's the only gate.

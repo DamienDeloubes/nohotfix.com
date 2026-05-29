@@ -92,7 +92,7 @@ Go/No-Go Review Screen (Admin only)
 | **Artifact Management**    | S3-backed file storage; structured table data stored as JSON; all artifacts locked post-completion                                                                                       |
 | **Go/No-Go Decision**      | Final review screen after all specs are executed; specs sorted by severity; Admin makes judgment call; Go with failures requires mandatory written justification; run locked on decision |
 | **Run History & Audit**    | Full run history, filterable; read-only completed runs; full detail view with compliance-ready go/no-go record, per-spec artifact rendering, print-friendly layout                       |
-| **Notifications**          | Email alerts for four events: invite, run ready for decision, decision recorded, run abandoned; all team members notified of decisions and abandonment                                   |
+| **Notifications**          | At launch: the transactional invitation email only. The three workflow alerts (run ready for decision, decision recorded, run abandoned) are post-launch.                                   |
 
 ---
 
@@ -161,7 +161,7 @@ Two criteria, in order of priority:
 
 - Per-spec approval workflow (replaced by go/no-go as the single human gate)
 - Viewer role (no validated use case yet)
-- Slack / Teams notifications (email only in v1)
+- Slack / Teams notifications (email is the only channel — and at launch only the invitation email ships; workflow email notifications are post-launch)
 - Jira / Linear integration (deferred from v1 → planned next phase — see [product-vision.md](product-vision.md))
 - CI/CD deploy gate
 - UAT test authoring + external partner sign-off (next-phase vision — see [product-vision.md](product-vision.md))

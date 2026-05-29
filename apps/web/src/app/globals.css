@@ -190,6 +190,119 @@ html.lenis body {
   }
 }
 
+/* ─── Mega-menu (Radix NavigationMenu) ───
+   Headless Radix primitive styled with brand tokens. The Viewport renders the
+   active panel; it's positioned relative to NavigationMenu.Root, which lives in
+   the nav's centered grid column — so centering the viewport under the link
+   group is just left:50% + translateX(-50%). The panel surface itself (elevated
+   card) is styled in MegaPanel.tsx; this block owns positioning + motion. */
+.nav-viewport-wrapper {
+  position: absolute;
+  /* Clears the bar's lg vertical padding (pt-8/pb-8 = 32px) so the panel floats
+     just below the glass bar. COUPLED to Navigation.tsx's `sm:pt-8 sm:pb-8` — if
+     that padding changes, update this offset. */
+  top: calc(100% + 2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.nav-viewport {
+  position: relative;
+  /* Radix sets these vars to the active content's measured box; transitioning
+     them morphs the container smoothly when switching Features <-> Platform. */
+  width: var(--radix-navigation-menu-viewport-width);
+  height: var(--radix-navigation-menu-viewport-height);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  transition:
+    width var(--duration-standard) var(--ease-premium),
+    height var(--duration-standard) var(--ease-premium);
+}
+
+.nav-viewport[data-state='open'] {
+  animation: navEnter var(--duration-standard) var(--ease-premium);
+}
+.nav-viewport[data-state='closed'] {
+  animation: navExit var(--duration-fast) var(--ease-premium);
+}
+
+@keyframes navEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes navExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+/* Each panel is absolutely stacked in the viewport so they can cross-slide
+   without layout jump while the viewport box resizes between them. width:auto
+   (NOT 100%) is required so Radix can MEASURE the content and set the viewport
+   size var — with 100% the content fills the (unmeasured) viewport and both
+   collapse to 0, hiding the panel. The panel's own w-[min(92vw,680px)] drives
+   the width. (Desktop-only menu, so no mobile width:100% variant needed.) */
+.nav-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+}
+.nav-content[data-motion='from-start'] {
+  animation: navFromLeft 220ms var(--ease-premium);
+}
+.nav-content[data-motion='from-end'] {
+  animation: navFromRight 220ms var(--ease-premium);
+}
+.nav-content[data-motion='to-start'] {
+  animation: navToLeft 220ms var(--ease-premium);
+}
+.nav-content[data-motion='to-end'] {
+  animation: navToRight 220ms var(--ease-premium);
+}
+
+@keyframes navFromRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes navFromLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes navToRight {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(40px); }
+}
+@keyframes navToLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-40px); }
+}
+
+/* Reduced motion: fade only — no transform, slide, or resize animation. */
+@media (prefers-reduced-motion: reduce) {
+  .nav-viewport,
+  .nav-viewport[data-state='open'],
+  .nav-viewport[data-state='closed'],
+  .nav-content[data-motion] {
+    animation: none !important;
+    transition: opacity var(--duration-fast) linear;
+    transform: none !important;
+  }
+}
+
 /* ─── Scroll-triggered animation utilities ─── */
 .reveal {
   opacity: 0;

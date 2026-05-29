@@ -1,43 +1,9 @@
 'use client';
 
 import { GridFrame } from './GridFrame';
+import { FeatureIcon } from './nav/FeatureIcon';
+import { guarantees } from './nav/nav-content';
 import { ScrollReveal } from './ScrollReveal';
-
-const guarantees = [
-  {
-    icon: 'lock',
-    iconColorVar: 'var(--color-primary)',
-    iconBgVar: 'rgba(234,106,4,0.08)',
-    iconBorderVar: 'rgba(234,106,4,0.18)',
-    eyebrow: 'Artifact enforcement',
-    heading: 'No artifact, no pass. Full stop.',
-    body: 'The pass action is blocked until the required artifact is attached — screenshot, log, measurement, URL, or table. Six types. No workarounds.',
-    link: { text: 'How enforcement works', href: '/features/artifact-enforcement' },
-    visual: 'enforcement',
-  },
-  {
-    icon: 'flag',
-    iconColorVar: 'var(--color-go-700)',
-    iconBgVar: 'rgba(0,204,128,0.08)',
-    iconBorderVar: 'rgba(0,204,128,0.18)',
-    eyebrow: 'Go/no-go gate',
-    heading: 'The release decision, made once and locked.',
-    body: 'Only an Admin can make the call, and only after every spec is terminal. A Go with failures requires a written justification, recorded permanently.',
-    link: { text: 'Inside the decision', href: '/features/go-no-go' },
-    visual: 'decision',
-  },
-  {
-    icon: 'shield',
-    iconColorVar: 'var(--color-slate-500)',
-    iconBgVar: 'rgba(148,163,184,0.12)',
-    iconBorderVar: 'rgba(148,163,184,0.24)',
-    eyebrow: 'Immutable record',
-    heading: 'The record is sealed when the call is made.',
-    body: 'Sealed at three layers — API, service, and database. No edits. No overwrites. Send the URL.',
-    link: { text: 'See the audit trail', href: '/features/audit-trail' },
-    visual: 'immutable',
-  },
-];
 
 export function ThreeGuarantees(): React.ReactElement {
   return (
@@ -72,7 +38,7 @@ export function ThreeGuarantees(): React.ReactElement {
                       border: `1px solid ${g.iconBorderVar}`,
                     }}
                   >
-                    <GuaranteeIcon type={g.icon} colorVar={g.iconColorVar} />
+                    <FeatureIcon type={g.icon} color={g.iconColorVar} />
                   </div>
 
                   <span
@@ -190,57 +156,5 @@ function CardVisual({ type }: { type: string }) {
         Go &middot; Alex Chen &middot; Mar 8, 2026 14:32 UTC
       </div>
     </div>
-  );
-}
-
-function GuaranteeIcon({ type, colorVar }: { type: string; colorVar: string }) {
-  if (type === 'lock') {
-    return (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={colorVar}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    );
-  }
-  if (type === 'flag') {
-    return (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={colorVar}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-        <line x1="4" y1="22" x2="4" y2="15" />
-      </svg>
-    );
-  }
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={colorVar}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      <path d="M9 12l2 2 4-4" />
-    </svg>
   );
 }

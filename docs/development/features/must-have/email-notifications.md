@@ -2,6 +2,8 @@
 
 _Last updated: 2026-03-01_
 
+> **Launch scope (updated 2026-05-29):** Only the **invitation email** ships at launch — it's the transactional invite that delivers the join link, and is part of the invite flow. The other three triggers — **run ready for go/no-go, go/no-go decision recorded, run abandoned** — are **deferred to post-launch**. The full four-trigger design below is preserved as the build spec for when the workflow notifications ship.
+
 ## Overview
 
 Email notifications keep the right people informed at the key moments in the release workflow — when they are invited to join the team, when a run is ready for a go/no-go decision, when a decision has been recorded, and when a run is abandoned. In v1, email is the only notification channel; there is no in-app notification center and no Slack or Teams integration.

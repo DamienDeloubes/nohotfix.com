@@ -208,6 +208,8 @@ At launch, Scale's concrete differentiation over Growth is seats (40 vs 10) and 
 
 ## Feature Gate Matrix
 
+> **Launch scope (updated 2026-05-29):** This matrix describes the full intended model. **At launch, the only paid differentiators are seats and support speed.** Audit-grade **export** and Scale's **compliance-ops** (viewer role, retention controls, uptime SLA) are **post-launch**; **email notifications at launch are the invitation email only** (the three workflow triggers are post-launch). Rows annotated "*(post-launch)*" are not live at launch.
+
 ### Core Enforcement Features (All Tiers Including Free)
 
 These features are the product. Gating any of them — even on the free tier — would mean users cannot experience what NoHotfix actually is. The entire free tier strategy depends on these being fully present.
@@ -258,9 +260,9 @@ SSO/SAML is gated at Enterprise (see Decision 10).
 | Spec library with tagging and search | Yes            | Yes             | Yes   | Yes        |
 | Seats                                | 1              | 10              | 40    | Unlimited  |
 | Team invitations                     | No             | Yes             | Yes   | Yes        |
-| Email notifications (all 4 events)   | No (self only) | Yes             | Yes   | Yes        |
+| Email notifications (4 workflow events) *(post-launch — invite email only at launch)* | No (self only) | Yes | Yes | Yes |
 | Standard support                     | No (docs only) | Yes (3-day SLA) | Yes   | Yes        |
-| Audit-grade export (PDF/JSON)        | No             | Yes             | Yes   | Yes        |
+| Audit-grade export (PDF/JSON) *(post-launch; Growth+ when it ships)* | No | Yes | Yes | Yes |
 
 ---
 

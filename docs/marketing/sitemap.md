@@ -220,7 +220,7 @@ platform-page note in website-vision.md). Nothing here may read as a current, av
 2. **What the decision screen shows** — Full spec list sorted by severity; out-of-tolerance measured-value warnings; failed specs flagged; the Go / No-Go action with a mandatory justification field for a Go with failures.
 3. **Role gating** — Only Admins decide; the screen is inaccessible until every spec is terminal. Why: the decision is a formal accountability act, not a convenience.
 4. **The justification requirement** — The mandatory written justification for a Go with failures; show the input; explain it's recorded permanently in the audit trail.
-5. **After the decision** — The run is sealed; the team is notified by email; the record is available in run history.
+5. **After the decision** — The run is sealed; the record is available in run history. *(Email notification of the decision is post-launch — at launch the sealed record is the source of truth.)*
 6. **Final CTA** — Start free.
 
 ---
@@ -241,7 +241,7 @@ platform-page note in website-vision.md). Nothing here may read as a current, av
 1. **Hero statement** — "The record is sealed when the call is made."
 2. **What the record contains** — Full spec list with outcomes; per-spec artifact rendering (inline images, log text, URLs, measured-value comparisons, table data); the go/no-go decision with decider identity, timestamp, and justification; section-level skip reasons.
 3. **Three-layer immutability** — API middleware (no edit endpoints for completed runs), service-layer state machine (rejects mutations), DB-level constraints. Don't hide the technical detail — the audience reads like engineers.
-4. **Print-to-PDF for auditors** — A print-friendly layout; browser print-to-PDF produces a compliance-ready document. Describe what that document contains.
+4. **Print-to-PDF for auditors** — A print-friendly layout; **browser** print-to-PDF produces a compliance-ready document at launch. Describe what that document contains. *(The dedicated audit-grade **export** — one-click PDF / structured JSON — is post-launch; don't promise it as a current feature.)*
 5. **Compliance context** — SOC2, PCI-DSS, HIPAA-adjacent teams need evidence of testing; NoHotfix produces it as a natural output of running the release process. No certification claims NoHotfix hasn't earned.
 6. **Final CTA** — Talk to us (primary) and Start free (secondary).
 
@@ -287,7 +287,7 @@ platform-page note in website-vision.md). Nothing here may read as a current, av
 2. **What NoHotfix produces** — Each record: spec outcomes, submitted artifacts (screenshots, logs, measurements), the go/no-go decision with decider identity and timestamp, justification for any Go with failures, section-level skip reasons.
 3. **Immutability** — The record can't be altered after the decision. This is the tamper-evidence that makes it credible to an auditor.
 4. **Relevant frameworks** — SOC2, PCI-DSS, HIPAA-adjacent: a brief, non-prescriptive statement of how NoHotfix evidence maps to testing-evidence requirements. No certification claims not yet earned.
-5. **Plans for compliance teams** — Link to pricing. Audit-grade export (PDF / structured JSON) is available from **Growth**. **Scale** adds the compliance-operations layer (viewer role for auditors, retention controls, uptime SLA — post-launch) plus up to 40 seats and faster support.
+5. **Plans for compliance teams** — Link to pricing. At launch the compliance output is the **immutable sealed record at a shareable URL** (plus browser print-to-PDF). **Audit-grade export (PDF / structured JSON) is post-launch.** **Scale** at launch adds up to 40 seats and faster support; its compliance-operations layer (viewer role for auditors, retention controls, uptime SLA) is post-launch.
 6. **Final CTA** — Talk to us (primary), Start free (secondary).
 
 ---
@@ -328,7 +328,7 @@ platform-page note in website-vision.md). Nothing here may read as a current, av
 
 1. **Section headline** — "The enforcement triad is free. Seats are what you pay for."
 2. **Tier table** — Free (1 seat) · Growth (≤10 seats, $29 early bird / $49 standard) · Scale (≤40 seats, $99 / $149) · Enterprise (custom). Annual −20% on paid tiers. Early-bird labeled prominently; **anchor copy on the standard price** and frame early bird as the saving.
-3. **Feature-gate matrix** — Honest: the enforcement triad (artifact gating, go/no-go, immutability) is on every tier including Free. Differentiators are seats, audit-grade export (from Growth), and — at Scale — the compliance-operations layer (viewer role, retention controls, uptime SLA).
+3. **Feature-gate matrix** — Honest: the enforcement triad (artifact gating, go/no-go, immutability) is on every tier including Free. **At launch the only paid differentiators are seats and support speed** (Free 1 / Growth 10 / Scale 40; Growth 3-day, Scale 1-day). Audit-grade export and Scale's compliance-operations layer (viewer role, retention controls, uptime SLA) are **post-launch** — show as roadmap, not current.
 4. **FAQ — "Why is Free actually free?"** — Free is a solo evaluation lane: full enforcement, one seat. The moment you invite a teammate, you move to Growth (the invite gate).
 5. **FAQ — "What happens to my data if I downgrade?"** — Address retention directly.
 6. **FAQ — "Is the early-bird price locked forever?"** — Yes. First 100 paying orgs, grandfathered via Stripe price object.

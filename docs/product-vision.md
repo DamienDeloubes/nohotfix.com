@@ -68,7 +68,8 @@ checklist.
 
 The enforcement triad plus everything that supports the core loop: spec library,
 playbook templates, runs, tester assignment, run execution, run history & audit
-trail, dashboard, billing, auth, email notifications. Fully described in
+trail, dashboard, billing, auth, and the transactional invitation email (broader
+email notifications are post-launch). Fully described in
 [project-summary.md](project-summary.md). **Unchanged by this vision.**
 
 ### Phase: Next (vision — not yet in scope)

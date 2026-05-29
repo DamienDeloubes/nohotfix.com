@@ -16,6 +16,7 @@
   "dependencies": {
     "@nohotfix/design-tokens": "workspace:*",
     "@nohotfix/shared": "workspace:*",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "@workos-inc/authkit-nextjs": "^2.15.0",

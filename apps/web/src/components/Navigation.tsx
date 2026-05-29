@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { DesktopNav } from './nav/DesktopNav';
+import { guarantees, platformItems } from './nav/nav-content';
 import { NoHotfixLogo } from './NoHotfixLogo';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -44,19 +46,9 @@ export function Navigation(): React.ReactElement {
           <NoHotfixLogo variant={isDark ? 'dark' : 'light'} height={24} id="nav" />
         </a>
 
-        {/* Desktop nav links — center column */}
-        <div className="hidden lg:flex items-center gap-8 justify-self-center">
-          {['How It Works', 'Features', 'Platform', 'Pricing', 'Changelog'].map((item) => (
-            <a
-              key={item}
-              href={item === 'Pricing' ? '/pricing' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-sm font-medium transition-colors duration-150 no-underline
-                text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+        {/* Desktop nav — center column. Radix mega-menu (Features/Platform open
+            panels; the rest are plain links). */}
+        <DesktopNav className="hidden lg:block justify-self-center" />
 
         {/* Right actions */}
         <div className="flex items-center gap-3 sm:gap-4 lg:justify-self-end">
@@ -98,15 +90,53 @@ export function Navigation(): React.ReactElement {
             backdrop-blur-xl"
           style={{ background: 'var(--nav-bg)' }}
         >
-          {['How It Works', 'Features', 'Platform', 'Pricing', 'Changelog'].map((item) => (
-            <a
-              key={item}
-              href={item === 'Pricing' ? '/pricing' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-base no-underline transition-colors duration-150"
-            >
-              {item}
-            </a>
-          ))}
+          <a
+            href="/how-it-works"
+            className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-base no-underline transition-colors duration-150"
+          >
+            How It Works
+          </a>
+
+          {/* Features group — sourced from the same nav-content as the desktop panel */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-medium uppercase tracking-[0.08em] text-[var(--text-muted)]">Features</span>
+            {guarantees.map((g) => (
+              <a
+                key={g.link.href}
+                href={g.link.href}
+                className="pl-3 text-[15px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] no-underline transition-colors duration-150"
+              >
+                {g.eyebrow}
+              </a>
+            ))}
+          </div>
+
+          {/* Platform group */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-medium uppercase tracking-[0.08em] text-[var(--text-muted)]">Platform</span>
+            {platformItems.map((p) => (
+              <a
+                key={p.href}
+                href={p.href}
+                className="pl-3 text-[15px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] no-underline transition-colors duration-150"
+              >
+                {p.heading}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href="/pricing"
+            className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-base no-underline transition-colors duration-150"
+          >
+            Pricing
+          </a>
+          <a
+            href="/changelog"
+            className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-base no-underline transition-colors duration-150"
+          >
+            Changelog
+          </a>
           <a
             href={`${API_URL}/auth/login?screen_hint=sign-in`}
             className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-base no-underline transition-colors duration-150"
