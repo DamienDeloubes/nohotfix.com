@@ -29,6 +29,15 @@ export const metadata: Metadata = {
   title: 'NoHotfix — The release gate that holds.',
   description:
     'Specs don’t pass until the evidence does. The go/no-go call is permanent. The record writes itself. Start free — full enforcement on every plan.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'NoHotfix — The release gate that holds.',
     description:

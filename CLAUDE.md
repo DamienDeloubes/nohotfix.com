@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2026-03-06
 
 ## Active Technologies
+- TypeScript 5.7, Node.js ≥20 + Next.js 15 (App Router), React 18, Tailwind CSS 3, `@nohotfix/design-tokens` (CSS-variable tokens), `next/font` (DM Sans / Inter / Geist Mono), Lenis (smooth scroll, already wired). No new runtime dependency required (TextType is copy-in, like `Magnet.tsx`). (032-feature-pages)
+- N/A — static marketing pages, no persistence. (032-feature-pages)
 
 - TypeScript 5.7, Node.js 20 + Fastify 5, Kysely, TanStack Router + Query, Reac (005-org-members-list)
 - PostgreSQL (existing `memberships` + `users` tables — no schema changes) (005-org-members-list)
@@ -52,10 +54,10 @@ npm test && npm run lint
 TypeScript 5.7, Node.js 20, Next.js 15: Follow standard conventions
 
 ## Recent Changes
+- 032-feature-pages: Added TypeScript 5.7, Node.js ≥20 + Next.js 15 (App Router), React 18, Tailwind CSS 3, `@nohotfix/design-tokens` (CSS-variable tokens), `next/font` (DM Sans / Inter / Geist Mono), Lenis (smooth scroll, already wired). No new runtime dependency required (TextType is copy-in, like `Magnet.tsx`).
 
 - 031-dark-mode-toggle: Added TypeScript 5.7, React 18, Vite 6 + TailwindCSS 4.2, @heroui/styles (v3.0.0-beta.8), framer-motion (existing)
 - 030-dashboard-layout: Added TypeScript 5.7, React 18, Vite 6 + TailwindCSS 4.2, @tailwindcss/vite, @heroui/react, framer-motion, @lordicon/react, @fontsource-variable/inter, @fontsource-variable/geist-mono
-- 029-archive-playbook: Added TypeScript 5.7, Node.js 20 + Fastify 5, Kysely, TanStack Router + Query, React, Zod
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->
