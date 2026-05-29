@@ -141,19 +141,30 @@ This refines the currently-built order by (1) adding the honest **trust strip** 
 
 ## 3 · Pain hook — "the problem with checklists"
 
-**Purpose** — The "yes, exactly that" recognition moment for a QA lead. Establishes the antagonist: advisory checklists.
+**Purpose** — The "yes, exactly that" recognition moment, then the visceral proof. The manifesto names the antagonist (advisory checklists); a scripted product demo then *shows* why NoHotfix is different — you literally cannot fake a pass.
 
-**Layout** — Centered, `max-width ~760px`. A **before/after contrast pair**: left "the way it works now" card, right "NoHotfix" card, with a small "VS" pill on the dividing rule.
+**Layout** — Centered manifesto headline + supporting line, then a **single full-width product demo** (`max-width ~960px`) in a reusable browser frame. The old before/after two-card contrast is **retired**. Rationale: a half-width "after" card can't render a runbook flow legibly, and a small "before" card reintroduces the toy-UI we're removing. The contrast is now **temporal** (the demo opens looking like an ordinary checklist, then the gate blocks) and **verbal** (the manifesto) — not side-by-side.
 
-**What's shown** — Left: a flat, deliberately-uninspiring Notion-style checkbox list anyone can tick (caption: *anyone can tick this, no evidence required*). Right: the enforcement-state spec list with the blocked pass action and correct badge colors (caption: *the pass action is blocked — not warned, blocked*).
+**What's shown** — A **scripted, auto-advancing walkthrough** of a release runbook, hosted in the shared `BrowserFrame` (chrome reused from the hero: traffic-light dots, `app.nohotfix.com/runs/…` URL bar, light/dark). It must read as genuine product output (Phase 8 — "the product UI is the argument"), so it **mirrors the real run-execution + go/no-go screens in `apps/app`**, not an invented UI. Four frames:
 
-**Look & feel** — The "before" card is intentionally lower-energy: section-alt fill, no inset highlight, flat. The NoHotfix card uses the full solid-card recipe with lift — the visual hierarchy *is* the argument.
+1. **Spec + findings** — a spec open; the tester types findings into the fields. Deliberately ordinary — indistinguishable from any checklist tool. *(the "before")*
+2. **Blocked** — Submit is hit and stopped: *"Required screenshot not attached."* The action is **disabled, not warned**. **The money frame** — the section's payoff. *(the "after")*
+3. **Submitted** — screenshot attached; Submit succeeds (✓).
+4. **Summary + go/no-go** — a high-level run summary: failed specs, counts by **impact (high / medium / low)**, and the **GO / NO-GO** action. Completes the arc: tried to cut the corner → couldn't → here's the verdict.
 
-**Motion** — On scroll-into-view: left card enters from −20px X, right card from +20px X, both fade in (500ms `--ease-out`). A subtle one-time emphasis on the right card's lock icon; no looping.
+**Content status** — Placeholder until grounded in the real app. **Open question: confirm the product's severity model** (docs reference specs "sorted by severity" — verify high/medium/low impact vs. another taxonomy) before finalizing frame 4. Field labels, badges, and the disabled-button treatment use the exact brand/product tokens.
 
-**Interactivity** — Largely static; cards lift slightly on hover. Below 768px the pair stacks and "VS" becomes a horizontal divider.
+**Look & feel** — Full-width browser frame on warm-white, light-mode screenshot treatment. The blocked error + disabled Submit must read instantly as *blocked, not loading* — the most important pixels in this section. Geist Mono on data fields, Inter on labels; status badges in their exact semantic colors.
 
-**SEO** — `<h2>` naming the problem (keyword-relevant: *checklist*); the contrast captions are crawlable. No text-in-image.
+**Motion** — Scripted auto-advance through the four frames (crossfade/step); **frame 2 (blocked) held longest**. Pause on hover; step-dots allow manual scrubbing. `prefers-reduced-motion`: no auto-play — **freeze on the blocked frame** (the most persuasive single state) and expose the dots for manual paging.
+
+**Interactivity** — Not fully interactive (scripted, by decision — lowest QA/maintenance cost for ~90% of the impact). Hover pauses the auto-advance; dots page between frames.
+
+**Mobile** — A four-frame browser flow is dense on phones. Below 768px, scale the frame down with the key beats still legible, or collapse to the two that carry the argument — **the blocked frame + the go/no-go summary**. (Decide at build.)
+
+**SEO** — `<h2>` naming the problem (keyword-relevant: *checklist*); the manifesto + supporting line are crawlable text. Demo label/error/summary text rendered as real DOM (not baked into an image) so the "blocked / required artifact" claim stays indexable.
+
+**Reuse** — Extract the hero's browser chrome into a shared **`BrowserFrame`** component (can host a video, a screenshot, or this scripted demo). The blocked/disabled treatment and badges come from the existing brand tokens and the real `apps/app` screens.
 
 ---
 
@@ -371,6 +382,10 @@ All of the above are suppressed under `prefers-reduced-motion`.
 
 No open questions remain for this round. Finalized copy is now in the **Copy deck** below; next step after that is producing the product-UI preview assets (hero blocked-button state first).
 
+# Decisions (review round 2 — 2026-05-29)
+
+1. **Pain hook → scripted browser demo.** Replace the before/after two-card contrast with a single full-width, scripted, auto-advancing browser walkthrough of a release runbook (spec + findings → blocked on a missing screenshot → submitted → summary with impact counts + GO/NO-GO). The contrast becomes temporal + verbal, not side-by-side. Scripted (not interactive), scoped to this section (hero/how-it-works unchanged), go/no-go finale included. Full spec in §3. Open: confirm the severity model (high/med/low) against `apps/app`; introduce a reusable `BrowserFrame` (extracted from the hero chrome).
+
 ---
 
 # Copy deck (finalized — v1)
@@ -408,9 +423,12 @@ No open questions remain for this round. Finalized copy is now in the **Copy dec
 ### 3 · Pain hook (carries the single-use manifesto)
 - **H2 (manifesto)**: The checklist is a shared lie.
 - **Supporting line**: Anyone can tick the box. NoHotfix makes it impossible to tick without the proof.
-- **Before card** — label: *The way it works now* · caption: Anyone can tick this. No evidence required.
-- **After card** — label: *NoHotfix* · caption: The pass action is blocked. Not warned. Blocked.
-- **Divider pill**: vs
+- **Product demo (scripted, full-width browser) — frame copy is placeholder until grounded in the real `apps/app` screens**:
+  - Frame 1 (spec + findings): a spec title + the tester's findings text — ordinary, like any checklist.
+  - Frame 2 (blocked): error — *Required screenshot not attached.* · Submit/Pass disabled.
+  - Frame 3 (submitted): *Submitted* ✓ (screenshot attached).
+  - Frame 4 (summary + go/no-go): failed specs · counts by **High / Medium / Low impact** · **GO / NO-GO**.
+- *Retired:* the before/after "VS" cards — the contrast is now temporal (inside the demo) + verbal (the manifesto).
 
 ### 4 · The enforcement triad
 - **H2**: Three guarantees, enforced every time.

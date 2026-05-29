@@ -6,6 +6,7 @@ import { FinalCTA } from '@/components/FinalCTA';
 import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { HowItWorks } from '@/components/HowItWorks';
+import { LogoCloud } from '@/components/LogoCloud';
 import { Navigation } from '@/components/Navigation';
 import { PainHook } from '@/components/PainHook';
 import { PlatformThread } from '@/components/PlatformThread';
@@ -23,6 +24,7 @@ export default function HomePage(): ReactElement {
           without creating a scroll container — vertical overshoot stays visible. */}
       <main className="overflow-x-clip">
         <Hero />
+        <LogoCloud />
         <TrustStrip />
         <PainHook />
         <ThreeGuarantees />

@@ -1,7 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { Magnet } from './Magnet';
 
 const PixelBlast = dynamic(() => import('./PixelBlast'), { ssr: false });
 
@@ -151,12 +153,12 @@ export function Hero(): React.ReactElement {
             Free tier, one seat, full enforcement. No credit card.
           </p>
 
-          {/* Product Preview */}
+          {/* Product Preview — platform demo video */}
           <div
             className={`mt-16 w-full max-w-[960px] transition-all duration-700 delay-[1100ms]
               ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
-            <ProductPreview />
+            <VideoPreview reducedMotion={reducedMotion} />
           </div>
         </div>
       </div>
@@ -164,204 +166,56 @@ export function Hero(): React.ReactElement {
   );
 }
 
-function ProductPreview() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const tabs = ['Execute specs', 'Go/No-Go', 'Immutable record'];
-
-  // Manual selection overrides (and permanently stops) the auto-cycle.
-  const selectTab = useCallback((i: number) => {
-    setPaused(true);
-    setActiveTab(i);
-  }, []);
-
-  useEffect(() => {
-    if (paused) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const interval = setInterval(() => setActiveTab((prev) => (prev + 1) % 3), 6000);
-    return () => clearInterval(interval);
-  }, [paused]);
-
+function VideoPreview({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <div
-      className="relative rounded-2xl sm:rounded-[28px] overflow-hidden"
+      className="relative aspect-video w-full overflow-hidden rounded-2xl sm:rounded-[28px] bg-[var(--bg-card)]"
       style={{
         boxShadow: '0 0 0 1px var(--border-default), 0 24px 80px rgba(0,0,0,0.12)',
       }}
     >
-      {/* Browser chrome */}
-      <div className="border-b border-[var(--border-default)] px-4 py-3 flex items-center gap-3 bg-[var(--bg-section-alt)]">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#EF4444]" />
-          <div className="w-3 h-3 rounded-full bg-[#F59E0B]" />
-          <div className="w-3 h-3 rounded-full bg-[#22C55E]" />
-        </div>
-        <div className="flex-1 flex justify-center">
-          <div className="px-4 py-1 rounded-full bg-[var(--border-default)] text-[12px] font-mono text-[var(--text-muted)]">nohotfix.com/runs/release-v2.4.1</div>
-        </div>
-        <div className="w-[52px]" />
-      </div>
-
-      {/* Tab nav */}
-      <div className="border-b border-[var(--border-default)] px-6 flex gap-6 bg-[var(--bg-card)]">
-        {tabs.map((tab, i) => (
+      {/*
+       * Platform demo video goes here. Drop in once available — e.g.:
+       *
+       *   <video
+       *     className="absolute inset-0 h-full w-full object-cover"
+       *     autoPlay muted loop playsInline
+       *     poster="/platform-demo-poster.jpg"
+       *   >
+       *     <source src="/platform-demo.mp4" type="video/mp4" />
+       *   </video>
+       *
+       * The aspect-video ratio fixes the height at every breakpoint, so the hero
+       * no longer shifts (this replaced the auto-cycling tabbed product preview).
+       */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bg-section-alt)]">
+        {/* Magnet pulls the button toward the cursor when it's near; disabled
+            under prefers-reduced-motion. The button itself grows on hover and
+            dips on press. */}
+        <Magnet padding={120} magnetStrength={3} disabled={reducedMotion}>
           <button
-            key={tab}
-            onClick={() => selectTab(i)}
-            className={`py-3 text-sm font-medium border-b-2 transition-all duration-200 ${
-              activeTab === i ? 'text-[var(--text-primary)] border-[var(--color-primary)]' : 'text-[var(--text-muted)] border-transparent hover:text-[var(--text-secondary)]'
-            }`}
+            type="button"
+            aria-label="Play platform demo"
+            className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]
+              shadow-[0_8px_24px_rgba(234,106,4,0.35)]
+              transition-transform duration-200 ease-premium
+              hover:scale-110 hover:bg-[var(--color-primary-hover)]
+              active:scale-95
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-section-alt)]"
           >
-            {tab}
+            <PlayIcon />
           </button>
-        ))}
-      </div>
-
-      {/* Tab content */}
-      <div className="bg-[var(--bg-card)] p-4 sm:p-6 min-h-[320px] sm:min-h-[360px]">
-        {activeTab === 0 && <TabExecuteSpecs />}
-        {activeTab === 1 && <TabGoNoGo />}
-        {activeTab === 2 && <TabRecord />}
+        </Magnet>
+        <p className="text-sm font-medium text-[var(--text-muted)]">See NoHotfix in action</p>
       </div>
     </div>
   );
 }
 
-function SpecRow({ name, status, statusColor, artifact, blocked }: { name: string; status: string; statusColor: string; artifact?: string; blocked?: boolean }) {
-  // Light: --go-surface / --go-text / --go-border etc. resolve per theme from tokens.css
-  const colorMap: Record<string, string> = {
-    green: 'bg-[var(--go-surface)] text-[var(--go-text)] border-[var(--go-border)]',
-    slate: 'bg-[var(--bg-section-alt)] text-[var(--text-muted)] border-[var(--border-default)]',
-    amber: 'bg-[var(--nogo-surface)] text-[var(--nogo-text)] border-[var(--nogo-border)]',
-    // In-progress: slate neutral (blue is retired)
-    inprogress: 'bg-[var(--bg-section-alt)] text-[var(--text-secondary)] border-[var(--border-default)]',
-  };
-
-  const resolvedColor = statusColor === 'blue' || statusColor === 'inprogress' ? 'inprogress' : colorMap[statusColor] ? statusColor : 'slate';
-
+function PlayIcon() {
   return (
-    <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--bg-section-alt)] border border-[var(--border-default)]">
-      <div className="flex items-center gap-3 min-w-0">
-        <span className={`shrink-0 px-2.5 py-0.5 rounded-full text-xs font-medium border ${colorMap[resolvedColor]}`}>{status}</span>
-        <span className="text-sm text-[var(--text-primary)] truncate">{name}</span>
-      </div>
-      <div className="flex items-center gap-2 shrink-0 ml-3">
-        {artifact && (
-          <span className="hidden sm:inline text-xs text-[var(--text-muted)] bg-[var(--bg-section-alt)] px-2 py-1 rounded border border-[var(--border-default)]">{artifact}</span>
-        )}
-        {blocked ? (
-          <span
-            title="Attach the required screenshot to enable"
-            className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-[var(--bg-section-alt)] text-[var(--text-muted)] text-xs font-medium cursor-not-allowed animate-lock-glow border border-[var(--border-default)]"
-          >
-            <LockIcon /> Pass
-          </span>
-        ) : status === 'Passed' ? (
-          <CheckCircleIcon />
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
-function TabExecuteSpecs() {
-  return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-[var(--text-primary)] text-sm font-semibold">Release v2.4.1 — Specs</h3>
-        <span className="text-xs text-[var(--text-muted)]">2 of 3 complete</span>
-      </div>
-      <SpecRow name="API authentication flow" status="Passed" statusColor="green" artifact="auth-screenshot.png" />
-      <SpecRow name="Payment gateway integration" status="In Progress" statusColor="inprogress" blocked />
-      <SpecRow name="Error handling — 500 responses" status="Pending" statusColor="slate" />
-
-      {/* Annotation */}
-      <div className="mt-4 flex items-center gap-2 text-xs text-[var(--nogo-text)] bg-[var(--nogo-surface)] border border-[var(--nogo-border)] rounded-lg px-3 py-2">
-        <LockIcon />
-        <span>Blocked — artifact required before spec can pass</span>
-      </div>
-    </div>
-  );
-}
-
-function TabGoNoGo() {
-  return (
-    <div className="space-y-4">
-      <h3 className="text-[var(--text-primary)] text-sm font-semibold">Release v2.4.1 — Go / No-Go Review</h3>
-
-      <div className="space-y-2">
-        <SpecRow name="API authentication flow" status="Passed" statusColor="green" />
-        <SpecRow name="Payment gateway integration" status="Passed" statusColor="green" />
-        <SpecRow name="Error handling — 500 responses" status="Failed" statusColor="amber" />
-      </div>
-
-      <div className="flex gap-3 mt-4">
-        <button className="flex-1 py-2.5 rounded-md text-white text-sm font-medium shadow-[0_0_12px_rgba(0,204,128,0.30)]" style={{ background: 'var(--color-go-500)' }}>
-          Ship it (Go)
-        </button>
-        <button className="flex-1 py-2.5 rounded-md text-sm font-medium bg-[var(--nogo-surface)] text-[var(--nogo-text)] border border-[var(--nogo-border)]">Hold (No-Go)</button>
-      </div>
-
-      <div className="mt-2">
-        <label className="text-xs text-[var(--text-muted)] mb-1 block">Justification required for Go with failures</label>
-        <div className="bg-[var(--bg-section-alt)] border border-[var(--border-default)] rounded-md p-3 text-sm font-mono text-[var(--text-secondary)]">
-          Minor auth token edge case in low-traffic scenario. Mitigation: server-side session...
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function TabRecord() {
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-[var(--text-primary)] text-sm font-semibold flex items-center gap-2">
-          Release v2.4.1
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--go-surface)] text-[var(--go-text)] border border-[var(--go-border)] flex items-center gap-1">
-            <LockIcon /> LOCKED
-          </span>
-        </h3>
-      </div>
-
-      <div className="bg-[var(--bg-section-alt)] border border-[var(--border-default)] rounded-xl p-4 space-y-2">
-        <div className="text-xs text-[var(--text-muted)]">Go decision</div>
-        <div className="text-sm text-[var(--text-primary)] font-medium">Alex Chen</div>
-        <div className="text-xs font-mono text-[var(--text-secondary)]">March 8, 2026 at 14:32 UTC</div>
-      </div>
-
-      <div className="bg-[var(--bg-section-alt)] border border-[var(--border-default)] rounded-xl p-4">
-        <div className="text-xs text-[var(--text-muted)] mb-2">Justification</div>
-        <p className="text-[13px] font-mono text-[var(--text-secondary)] leading-5">
-          Minor auth token edge case in low-traffic scenario. Mitigation: server-side session invalidation on next request. Accepted risk.
-        </p>
-      </div>
-
-      <div className="space-y-2">
-        <SpecRow name="API authentication flow" status="Passed" statusColor="green" />
-        <SpecRow name="Payment gateway integration" status="Passed" statusColor="green" />
-        <SpecRow name="Error handling — 500 responses" status="Failed" statusColor="amber" />
-      </div>
-
-      <div className="text-xs text-[var(--text-muted)] text-center italic">The record is sealed. Nothing in it can be changed.</div>
-    </div>
-  );
-}
-
-function LockIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-    </svg>
-  );
-}
-
-function CheckCircleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-go-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M9 12l2 2 4-4" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M8 5v14l11-7z" />
     </svg>
   );
 }

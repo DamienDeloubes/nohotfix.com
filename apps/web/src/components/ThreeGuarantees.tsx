@@ -63,7 +63,7 @@ export function ThreeGuarantees(): React.ReactElement {
               {guarantees.map((g, i) => (
                 <div
                   key={i}
-                  className="flex flex-col p-6 sm:p-8 bg-[var(--bg-section-alt)] transition-colors duration-200 hover:bg-[var(--bg-card)]"
+                  className="flex flex-col p-6 sm:p-8 bg-[var(--bg-card)] transition-colors duration-200 hover:bg-[var(--bg-hover)]"
                 >
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center mb-6"

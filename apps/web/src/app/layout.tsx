@@ -62,7 +62,7 @@ export default function RootLayout({
     // Runtime listener: auto-switch on OS change (only when no manual override)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
       var override = localStorage.getItem('theme-preference');
-      if (!override) {
+      if (!override || override === 'system') {
         if (e.matches) {
           document.documentElement.classList.add('dark');
         } else {

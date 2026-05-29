@@ -1,7 +1,10 @@
 /**
  * NoHotfix wordmark — fire-in-the-"o" variant
  *
- * The lowercase "o" in "Hotfix" is replaced by the brand flame glyph.
+ * Polished letterforms exported from Figma (outlined paths, not system text).
+ * The lowercase "o" in "Hotfix" is the brand flame glyph with a vertical
+ * orange→red gradient.
+ *
  * Two variants:
  *   dark  — white letterforms on dark surface (nav default)
  *   light — #111110 (near-black, v5 Dark-900) on light surface (footer, light pages)
@@ -10,18 +13,21 @@
  *   <NoHotfixLogo variant="dark"  height={24} />
  *   <NoHotfixLogo variant="light" height={20} />
  *
- * The SVG scales proportionally via height prop.
- * Base canvas: 240×48. Aspect ratio: 5:1.
+ * The SVG scales proportionally via the height prop.
+ * Base canvas: 1767×317. Aspect ratio: ~5.574:1.
  * Fire gradient always rendered — never replaced with flat color in UI contexts.
  */
 
 interface NoHotfixLogoProps {
   variant?: 'dark' | 'light';
-  /** Height in px. Width scales proportionally (ratio 5:1). Default: 24 */
+  /** Height in px. Width scales proportionally (ratio ~5.574:1). Default: 24 */
   height?: number;
   className?: string;
   id?: string;
 }
+
+// Source artwork is 1767×317; keep width proportional to the requested height.
+const ASPECT_RATIO = 1767 / 317;
 
 export function NoHotfixLogo({
   variant = 'dark',
@@ -37,61 +43,63 @@ export function NoHotfixLogo({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 240 48"
+      viewBox="0 0 1767 317"
       height={height}
-      width={height * 5}
+      width={height * ASPECT_RATIO}
       fill="none"
       aria-label="NoHotfix"
       role="img"
       className={className}
     >
       <defs>
-        <linearGradient id={gradientId} x1="50%" y1="100%" x2="50%" y2="0%">
-          <stop offset="0%" stopColor="#FF8D28" />
-          <stop offset="100%" stopColor="#FF0000" />
+        <linearGradient
+          id={gradientId}
+          x1="927.3"
+          y1="137.865"
+          x2="975.445"
+          y2="316.306"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#FF8D28" />
+          <stop offset="1" stopColor="#FF0000" />
         </linearGradient>
       </defs>
 
-      {/* "NoH" — the first three characters */}
-      <text
-        x="4"
-        y="36"
-        fontFamily="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        fontWeight="700"
-        fontSize="32"
-        letterSpacing="0.32"
+      {/* x */}
+      <path
+        d="M1546.08 311.472L1622.97 202.608L1546.08 93.744H1601.81L1656.24 172.8L1710.67 93.744H1766.4L1689.5 202.608L1766.4 311.472H1710.67L1656.24 232.416L1601.81 311.472H1546.08Z"
         fill={letterColor}
-      >
-        NoH
-      </text>
-
-      {/*
-       * Fire glyph — replaces the "o" in "Hotfix" (4th char of NoHotfix)
-       * Canonical path on 20×24 local canvas.
-       * translate(68, 12): aligns after "NoH" block, y=12 so glyph spans
-       * y=12..36 (24px = matches cap-height region at 32px Inter 700).
-       * Shape: asymmetric teardrop, tip at x≈11 (slight rightward lean),
-       * left-side concavity reads as flame silhouette.
-       */}
-      <g transform="translate(68, 12)">
-        <path
-          d="M10,24 C2,24 0,18 0,13.5 C0,8 5,3 11,0.5 C16,2 20,8 20,13.5 C20,19 16,24 10,24Z"
-          fill={`url(#${gradientId})`}
-        />
-      </g>
-
-      {/* "tfix" — resumes after fire glyph */}
-      <text
-        x="90"
-        y="36"
-        fontFamily="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        fontWeight="700"
-        fontSize="32"
-        letterSpacing="0.32"
+      />
+      {/* fi */}
+      <path
+        d="M1319.41 311.472V137.376H1288.73V93.744H1319.41V69.984C1319.41 53.28 1322.29 39.888 1328.05 29.808C1333.81 19.44 1342.01 11.952 1352.67 7.34399C1363.33 2.73599 1376 0.431999 1390.69 0.431999H1413.58V44.496H1398.46C1388.96 44.496 1382.05 46.512 1377.73 50.544C1373.41 54.288 1371.25 60.912 1371.25 70.416V93.744H1506.46V311.472H1454.62V137.376H1371.25V311.472H1319.41ZM1480.97 60.912C1471.47 60.912 1463.55 58.032 1457.21 52.272C1451.17 46.224 1448.14 38.88 1448.14 30.24C1448.14 21.312 1451.17 14.112 1457.21 8.63999C1463.55 2.88 1471.47 0 1480.97 0C1490.77 0 1498.69 2.88 1504.73 8.63999C1510.78 14.112 1513.81 21.312 1513.81 30.24C1513.81 38.88 1510.78 46.224 1504.73 52.272C1498.69 58.032 1490.77 60.912 1480.97 60.912Z"
         fill={letterColor}
-      >
-        tfix
-      </text>
+      />
+      {/* t */}
+      <path
+        d="M1221.82 311.472C1207.13 311.472 1194.31 309.168 1183.37 304.56C1172.71 299.952 1164.36 292.32 1158.31 281.664C1152.27 271.008 1149.24 256.608 1149.24 238.464V137.376H1112.09V93.744H1149.24L1155.29 36.288H1201.08V93.744H1260.27V137.376H1201.08V238.464C1201.08 249.408 1203.39 257.04 1207.99 261.36C1212.89 265.392 1220.95 267.408 1232.19 267.408H1258.97V311.472H1221.82Z"
+        fill={letterColor}
+      />
+      {/* o — flame glyph */}
+      <path
+        d="M1089.33 199.979C1089.33 230.875 1077.26 260.505 1055.79 282.352C1034.32 304.199 1005.2 316.472 974.828 316.472C944.461 316.472 915.337 304.199 893.864 282.352C872.391 260.505 860.328 230.875 860.328 199.979C860.328 170.748 872.626 137.064 896.881 99.8645C897.604 98.7542 898.536 97.8001 899.623 97.0568C900.71 96.3135 901.93 95.7956 903.213 95.5328C904.497 95.27 905.819 95.2674 907.104 95.5253C908.389 95.7831 909.611 96.2962 910.7 97.0353L950.87 124.282L989.265 42.2472C989.95 40.7836 990.97 39.5087 992.239 38.5294C993.509 37.5502 994.991 36.8952 996.561 36.6196C998.131 36.3439 999.743 36.4557 1001.26 36.9454C1002.78 37.4352 1004.16 38.2886 1005.29 39.434C1023.64 58.0701 1044.59 80.6781 1060.86 107.043C1080.02 138.078 1089.33 168.477 1089.33 199.979Z"
+        fill={`url(#${gradientId})`}
+      />
+      {/* H */}
+      <path
+        d="M762.585 311.472V9.07202H814.425V311.472H762.585ZM571.641 311.472V9.07202H623.481V311.472H571.641ZM615.705 178.416V136.08H772.521V178.416H615.705Z"
+        fill={letterColor}
+      />
+      {/* o */}
+      <path
+        d="M409.87 316.656C389.134 316.656 370.414 311.904 353.71 302.4C337.294 292.608 324.334 279.216 314.83 262.224C305.614 244.944 301.006 225.216 301.006 203.04C301.006 180.288 305.758 160.416 315.262 143.424C324.766 126.144 337.726 112.752 354.142 103.248C370.846 93.4561 389.566 88.5601 410.302 88.5601C431.038 88.5601 449.614 93.4561 466.03 103.248C482.734 112.752 495.694 126 504.91 142.992C514.414 159.984 519.166 179.856 519.166 202.608C519.166 225.36 514.414 245.232 504.91 262.224C495.406 279.216 482.302 292.608 465.598 302.4C449.182 311.904 430.606 316.656 409.87 316.656ZM409.87 272.16C420.238 272.16 429.598 269.568 437.95 264.384C446.59 259.2 453.502 251.424 458.686 241.056C463.87 230.688 466.462 217.872 466.462 202.608C466.462 187.344 463.87 174.672 458.686 164.592C453.79 154.224 447.022 146.448 438.382 141.264C430.03 136.08 420.67 133.488 410.302 133.488C400.222 133.488 390.862 136.08 382.222 141.264C373.582 146.448 366.67 154.224 361.486 164.592C356.302 174.672 353.71 187.344 353.71 202.608C353.71 217.872 356.302 230.688 361.486 241.056C366.67 251.424 373.438 259.2 381.79 264.384C390.43 269.568 399.79 272.16 409.87 272.16Z"
+        fill={letterColor}
+      />
+      {/* N */}
+      <path
+        d="M0 311.472V9.07202H51.84L197.424 227.664V9.07202H249.264V311.472H197.424L51.84 93.312V311.472H0Z"
+        fill={letterColor}
+      />
     </svg>
   );
 }

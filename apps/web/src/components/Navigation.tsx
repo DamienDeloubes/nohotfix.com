@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { NoHotfixLogo } from './NoHotfixLogo';
+import { ThemeToggle } from './ThemeToggle';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.nohotfix.com';
 
@@ -33,14 +34,18 @@ export function Navigation(): React.ReactElement {
           12/16px) + panel padding (px-6 = 24px) = 36/40px, so the logo and CTA align
           with the hero's content edge. Vertical: pt-3/sm:pt-4 (12/16px) mirrors the
           hero's top gutter, so the nav content lines up with the panel's top edge. */}
-      <div className="px-9 sm:px-10 pt-3 pb-3 sm:pt-8 sm:pb-8 flex items-center justify-between">
+      {/* Mobile: simple flex row. lg+: three-column grid with symmetric 1fr
+          side columns so the center link group sits at true screen center,
+          independent of the logo/right-action widths. */}
+      <div className="px-9 sm:px-10 pt-3 pb-3 sm:pt-8 sm:pb-8 flex items-center justify-between
+        lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-3">
         {/* Logo — adapts to theme */}
         <a href="/" className="flex items-center no-underline">
           <NoHotfixLogo variant={isDark ? 'dark' : 'light'} height={24} id="nav" />
         </a>
 
-        {/* Desktop nav links */}
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop nav links — center column */}
+        <div className="hidden lg:flex items-center gap-8 justify-self-center">
           {['How It Works', 'Features', 'Platform', 'Pricing', 'Changelog'].map((item) => (
             <a
               key={item}
@@ -54,7 +59,8 @@ export function Navigation(): React.ReactElement {
         </div>
 
         {/* Right actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 lg:justify-self-end">
+          <ThemeToggle />
           <a
             href={`${API_URL}/auth/login?screen_hint=sign-in`}
             className="hidden sm:inline text-sm font-medium transition-colors duration-150 no-underline

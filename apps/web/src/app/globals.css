@@ -97,6 +97,34 @@ html.lenis body {
   background: var(--color-primary);
 }
 
+/* ─── Logo marquee (trusted-by / working-with strip) ───
+   Seamless infinite scroll: the track holds two identical copies of the logo
+   set and translates -50%, so the loop point is invisible. Edges fade via mask. */
+.logo-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.logo-marquee__track {
+  animation: logo-marquee-scroll 38s linear infinite;
+}
+.logo-marquee__track--reverse {
+  animation-direction: reverse;
+}
+@keyframes logo-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* ─── Card utilities — light + dark per brand spec ─── */
 @layer components {
   /* Standard card — solid white/dark-700, shadow + border (NO backdrop-filter) */

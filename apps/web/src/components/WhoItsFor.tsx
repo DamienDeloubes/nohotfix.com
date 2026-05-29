@@ -60,7 +60,7 @@ export function WhoItsFor(): React.ReactElement {
               {personas.map((p) => (
                 <div
                   key={p.label}
-                  className="relative flex flex-col overflow-hidden p-8 bg-[var(--bg-page)] transition-colors duration-200 hover:bg-[var(--bg-card)]"
+                  className="relative flex flex-col overflow-hidden p-8 bg-[var(--bg-card)] transition-colors duration-200 hover:bg-[var(--bg-hover)]"
                 >
                   {/* Top accent stripe — persona accent */}
                   <div
