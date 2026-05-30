@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { DesktopNav } from './nav/DesktopNav';
@@ -14,6 +15,7 @@ export function Navigation(): React.ReactElement {
   const [mobileOpen, setMobileOpen] = useState(false);
   // Track dark mode for logo variant selection
   const [isDark, setIsDark] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -48,7 +50,7 @@ export function Navigation(): React.ReactElement {
 
         {/* Desktop nav — center column. Radix mega-menu (Features/Platform open
             panels; the rest are plain links). */}
-        <DesktopNav className="hidden lg:block justify-self-center" />
+        <DesktopNav className="hidden lg:block justify-self-center" pathname={pathname} />
 
         {/* Right actions */}
         <div className="flex items-center gap-3 sm:gap-4 lg:justify-self-end">
@@ -100,15 +102,23 @@ export function Navigation(): React.ReactElement {
           {/* Features group — sourced from the same nav-content as the desktop panel */}
           <div className="flex flex-col gap-2">
             <span className="text-xs font-medium uppercase tracking-[0.08em] text-[var(--text-muted)]">Features</span>
-            {guarantees.map((g) => (
-              <a
-                key={g.link.href}
-                href={g.link.href}
-                className="pl-3 text-[15px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] no-underline transition-colors duration-150"
-              >
-                {g.eyebrow}
-              </a>
-            ))}
+            {guarantees.map((g) => {
+              const isActive = g.link.href === pathname;
+              return (
+                <a
+                  key={g.link.href}
+                  href={g.link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`pl-3 text-[15px] no-underline transition-colors duration-150 ${
+                    isActive
+                      ? 'font-medium text-[var(--color-orange-600)] dark:text-[var(--color-orange-500)]'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  }`}
+                >
+                  {g.eyebrow}
+                </a>
+              );
+            })}
           </div>
 
           {/* Platform group */}

@@ -17,24 +17,44 @@ const ITEM_CLS =
   'transition-colors duration-150 hover:bg-[var(--bg-hover)] focus-visible:bg-[var(--bg-hover)] ' +
   'focus-visible:outline-none';
 
-export function MegaPanel({ kind }: { kind: 'features' | 'platform' }): React.ReactElement {
+export function MegaPanel({
+  kind,
+  activeHref,
+}: {
+  kind: 'features' | 'platform';
+  /** Current pathname — the matching item is marked as the active page. */
+  activeHref?: string | undefined;
+}): React.ReactElement {
   if (kind === 'features') {
     return (
       <div className={PANEL_CLS}>
         <ul className="m-0 grid list-none grid-cols-1 gap-1 p-0">
-          {guarantees.map((g) => (
-            <li key={g.link.href}>
-              <a href={g.link.href} className={ITEM_CLS}>
-                <IconChip color={g.iconColorVar} bg={g.iconBgVar} border={g.iconBorderVar}>
-                  <FeatureIcon type={g.icon} color={g.iconColorVar} size={20} />
-                </IconChip>
-                <span className="min-w-0">
-                  <span className="block text-sm font-semibold text-[var(--text-primary)]">{g.eyebrow}</span>
-                  <span className="mt-0.5 block text-[13px] leading-5 text-[var(--text-muted)]">{g.short}</span>
-                </span>
-              </a>
-            </li>
-          ))}
+          {guarantees.map((g) => {
+            const isActive = g.link.href === activeHref;
+            return (
+              <li key={g.link.href}>
+                <a
+                  href={g.link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`${ITEM_CLS} ${isActive ? 'bg-[var(--bg-hover)]' : ''}`}
+                >
+                  <IconChip color={g.iconColorVar} bg={g.iconBgVar} border={g.iconBorderVar}>
+                    <FeatureIcon type={g.icon} color={g.iconColorVar} size={20} />
+                  </IconChip>
+                  <span className="min-w-0">
+                    <span
+                      className={`block text-sm font-semibold ${
+                        isActive ? 'text-[var(--color-orange-600)] dark:text-[var(--color-orange-500)]' : 'text-[var(--text-primary)]'
+                      }`}
+                    >
+                      {g.eyebrow}
+                    </span>
+                    <span className="mt-0.5 block text-[13px] leading-5 text-[var(--text-muted)]">{g.short}</span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
         <PanelFooter href="/how-it-works" label="See how it all works" />
       </div>

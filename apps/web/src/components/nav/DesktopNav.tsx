@@ -25,7 +25,15 @@ const LINK_CLS =
   'transition-colors duration-150 inline-flex items-center gap-1 focus-visible:outline-none ' +
   'focus-visible:text-[var(--text-primary)]';
 
-export function DesktopNav({ className = '' }: { className?: string }): React.ReactElement {
+export function DesktopNav({
+  className = '',
+  pathname,
+}: {
+  className?: string;
+  /** Current path — drives the active-page indicator on Features. */
+  pathname?: string | undefined;
+}): React.ReactElement {
+  const featuresActive = pathname?.startsWith('/features') ?? false;
   return (
     <NavigationMenu.Root className={`relative ${className}`} delayDuration={120} skipDelayDuration={300}>
       <NavigationMenu.List className="m-0 flex list-none items-center gap-8 p-0">
@@ -36,11 +44,16 @@ export function DesktopNav({ className = '' }: { className?: string }): React.Re
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className={LINK_CLS}>
+          <NavigationMenu.Trigger
+            aria-current={featuresActive ? 'page' : undefined}
+            className={`${LINK_CLS} ${
+              featuresActive ? '!text-[var(--color-orange-600)] dark:!text-[var(--color-orange-500)]' : ''
+            }`}
+          >
             Features <Caret />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="nav-content">
-            <MegaPanel kind="features" />
+            <MegaPanel kind="features" activeHref={pathname} />
           </NavigationMenu.Content>
         </NavigationMenu.Item>
 
